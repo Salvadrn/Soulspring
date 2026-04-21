@@ -189,6 +189,14 @@ struct ProfileView: View {
     private var actionsCard: some View {
         VStack(spacing: 10) {
             NavigationLink {
+                SoulChatView()
+            } label: {
+                actionRow(icon: "sparkles",
+                          title: "Chat con Soul",
+                          subtitle: "Tu coach de bienestar",
+                          tint: SoulTheme.Palette.terracotta)
+            }
+            NavigationLink {
                 AudioLibraryView()
             } label: {
                 actionRow(icon: "headphones",

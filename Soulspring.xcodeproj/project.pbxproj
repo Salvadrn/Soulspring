@@ -31,6 +31,7 @@
 		0F01094B1972741712D82411 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CC709F1BEE952B0BF8CCD4 /* BookingView.swift */; };
 		E847CE8ECA7E2C63BE945B57 /* DailyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30210700FA92F46C1D4D46ED /* DailyMenuView.swift */; };
 		DA80CF00176793769714084E /* SanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396AB1B1908ED0194C51B434 /* SanctuaryView.swift */; };
+		9711AE527DCD282CD054C1CE /* SoulChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACA357F6E390B8BA28B86C8 /* SoulChatView.swift */; };
 		EA15AD024C06C33B8B94F0DC /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5EB94E15E0FB79F3BAD2B7 /* Achievement.swift */; };
 		0CE33DA1AEF86E014C8B74D6 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF547549E42F0D4D66D531 /* AudioTrack.swift */; };
 		841C40F047BF15F158AAD762 /* BiologicalAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216980DE84150EEFF3F6869 /* BiologicalAge.swift */; };
@@ -51,6 +52,7 @@
 		C9D0BA6E9C62A950D1ED0F1D /* LabAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14409495860CB27511D615B5 /* LabAIService.swift */; };
 		740DB63FB6A1402DF2EF25F0 /* LabParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCEF14AB8B43AB065E9013 /* LabParser.swift */; };
 		C5F710591E8548D419A6C646 /* SoulBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D36197321AB810C970777E /* SoulBackend.swift */; };
+		2F8E01D07B3325C15A9332F9 /* SoulChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787B000F29B91A706521535 /* SoulChatService.swift */; };
 		1C8931AB01CF691DCA4623A6 /* SoulLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */; };
 		B5799FD12D4C4B3CF6CF0B27 /* StreakEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A6E3E9E3BF86CE4664E20C /* StreakEngine.swift */; };
 		016D0D2E67E4CF0DDB3C0900 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404B7EB7A01DBA200426494 /* SupabaseConfig.swift */; };
@@ -90,6 +92,7 @@
 		F9CC709F1BEE952B0BF8CCD4 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		30210700FA92F46C1D4D46ED /* DailyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMenuView.swift; sourceTree = "<group>"; };
 		396AB1B1908ED0194C51B434 /* SanctuaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryView.swift; sourceTree = "<group>"; };
+		7ACA357F6E390B8BA28B86C8 /* SoulChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulChatView.swift; sourceTree = "<group>"; };
 		7B5EB94E15E0FB79F3BAD2B7 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		54DF547549E42F0D4D66D531 /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
 		A216980DE84150EEFF3F6869 /* BiologicalAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAge.swift; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 		14409495860CB27511D615B5 /* LabAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabAIService.swift; sourceTree = "<group>"; };
 		79DCEF14AB8B43AB065E9013 /* LabParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabParser.swift; sourceTree = "<group>"; };
 		82D36197321AB810C970777E /* SoulBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulBackend.swift; sourceTree = "<group>"; };
+		7787B000F29B91A706521535 /* SoulChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulChatService.swift; sourceTree = "<group>"; };
 		F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulLinks.swift; sourceTree = "<group>"; };
 		89A6E3E9E3BF86CE4664E20C /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
 		C404B7EB7A01DBA200426494 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 				0CABF163A6802F29B123F6F0 /* Profile */,
 				ACF85EB865362D7535977710 /* Recommendations */,
 				514834C5CD5A7D693820B3DD /* Sanctuary */,
+				F1BB192DE7AB0E8A7F49CA2F /* SoulChat */,
 				B3AD9A7BD09C6CD8EDE33B50 /* MainTabView.swift */,
 			);
 			path = Features;
@@ -298,6 +303,14 @@
 			path = Sanctuary;
 			sourceTree = "<group>";
 		};
+		F1BB192DE7AB0E8A7F49CA2F /* SoulChat */ = {
+			isa = PBXGroup;
+			children = (
+				7ACA357F6E390B8BA28B86C8 /* SoulChatView.swift */,
+			);
+			path = SoulChat;
+			sourceTree = "<group>";
+		};
 		6D58E86F0AEF5D375DAAC71B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +341,7 @@
 				14409495860CB27511D615B5 /* LabAIService.swift */,
 				79DCEF14AB8B43AB065E9013 /* LabParser.swift */,
 				82D36197321AB810C970777E /* SoulBackend.swift */,
+				7787B000F29B91A706521535 /* SoulChatService.swift */,
 				F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */,
 				89A6E3E9E3BF86CE4664E20C /* StreakEngine.swift */,
 				C404B7EB7A01DBA200426494 /* SupabaseConfig.swift */,
@@ -456,6 +470,7 @@
 				0F01094B1972741712D82411 /* BookingView.swift in Sources */,
 				E847CE8ECA7E2C63BE945B57 /* DailyMenuView.swift in Sources */,
 				DA80CF00176793769714084E /* SanctuaryView.swift in Sources */,
+				9711AE527DCD282CD054C1CE /* SoulChatView.swift in Sources */,
 				EA15AD024C06C33B8B94F0DC /* Achievement.swift in Sources */,
 				0CE33DA1AEF86E014C8B74D6 /* AudioTrack.swift in Sources */,
 				841C40F047BF15F158AAD762 /* BiologicalAge.swift in Sources */,
@@ -476,6 +491,7 @@
 				C9D0BA6E9C62A950D1ED0F1D /* LabAIService.swift in Sources */,
 				740DB63FB6A1402DF2EF25F0 /* LabParser.swift in Sources */,
 				C5F710591E8548D419A6C646 /* SoulBackend.swift in Sources */,
+				2F8E01D07B3325C15A9332F9 /* SoulChatService.swift in Sources */,
 				1C8931AB01CF691DCA4623A6 /* SoulLinks.swift in Sources */,
 				B5799FD12D4C4B3CF6CF0B27 /* StreakEngine.swift in Sources */,
 				016D0D2E67E4CF0DDB3C0900 /* SupabaseConfig.swift in Sources */,
