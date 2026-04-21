@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>Soulspring</string>
+    <key>CFBundleDisplayName</key>
+    <string>Soulspring</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UILaunchScreen</key>
+    <dict>
+        <key>UIColorName</key>
+        <string>LaunchBackground</string>
+    </dict>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+    </dict>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
+
+    <!-- HealthKit usage strings -->
+    <key>NSHealthShareUsageDescription</key>
+    <string>Soulspring usa tus datos de ritmo cardíaco, actividad y sueño desde Apple Health para personalizar tu viaje de bienestar.</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>Soulspring puede guardar sesiones de mindfulness y respiración en Apple Health para mantener tu historial unificado.</string>
+
+    <!-- Motion & Fitness (pasos, energía) -->
+    <key>NSMotionUsageDescription</key>
+    <string>Soulspring lee tu actividad para mostrar pasos, energía y recomendaciones personalizadas.</string>
+
+    <!-- Notificaciones (recordatorios) -->
+    <key>NSUserNotificationUsageDescription</key>
+    <string>Soulspring envía recordatorios suaves para mantener tus rituales diarios y defender tu racha.</string>
+
+    <!-- Location (mapa del santuario) -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Usamos tu ubicación para mostrarte el Sanctuary y los espacios Soulspring más cercanos.</string>
+</dict>
+</plist>
