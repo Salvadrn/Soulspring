@@ -1,38 +1,109 @@
 import SwiftUI
 
+/// Five-tab shell with a **floating pill tab bar** — the signature
+/// navigation element of the new dark Soulspring aesthetic.
 struct MainTabView: View {
     @EnvironmentObject private var health: HealthKitManager
     @State private var selection: Tab = .home
 
-    enum Tab: Hashable {
+    enum Tab: Hashable, CaseIterable {
         case home, heart, habits, sanctuary, profile
+
+        var title: String {
+            switch self {
+            case .home:      return "Hoy"
+            case .heart:     return "Salud"
+            case .habits:    return "Rachas"
+            case .sanctuary: return "Santuario"
+            case .profile:   return "Yo"
+            }
+        }
+
+        var icon: String {
+            switch self {
+            case .home:      return "sun.max.fill"
+            case .heart:     return "heart.fill"
+            case .habits:    return "flame.fill"
+            case .sanctuary: return "leaf.fill"
+            case .profile:   return "person.fill"
+            }
+        }
     }
 
     var body: some View {
-        TabView(selection: $selection) {
-            HomeView()
-                .tabItem { Label("Hoy", systemImage: "sun.max") }
-                .tag(Tab.home)
+        ZStack(alignment: .bottom) {
+            // Content
+            Group {
+                switch selection {
+                case .home:      HomeView()
+                case .heart:     HeartRateView()
+                case .habits:    HabitsView()
+                case .sanctuary: SanctuaryView()
+                case .profile:   ProfileView()
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            HeartRateView()
-                .tabItem { Label("Salud", systemImage: "heart") }
-                .tag(Tab.heart)
-
-            HabitsView()
-                .tabItem { Label("Hábitos", systemImage: "flame") }
-                .tag(Tab.habits)
-
-            SanctuaryView()
-                .tabItem { Label("Santuario", systemImage: "leaf") }
-                .tag(Tab.sanctuary)
-
-            ProfileView()
-                .tabItem { Label("Yo", systemImage: "person.crop.circle") }
-                .tag(Tab.profile)
+            // Floating pill tab bar
+            FloatingTabBar(selection: $selection)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 10)
         }
-        .tint(SoulTheme.Color.primary)
-        .task {
-            await health.requestAuthorization()
+        .background(SoulTheme.Color.background.ignoresSafeArea())
+        .task { await health.requestAuthorization() }
+    }
+}
+
+// MARK: - Floating tab bar
+
+struct FloatingTabBar: View {
+    @Binding var selection: MainTabView.Tab
+
+    var body: some View {
+        HStack(spacing: 4) {
+            ForEach(MainTabView.Tab.allCases, id: \.self) { tab in
+                tabItem(tab)
+            }
         }
+        .padding(6)
+        .background(
+            Capsule(style: .continuous)
+                .fill(SoulTheme.Color.surface)
+                .overlay(
+                    Capsule(style: .continuous)
+                        .stroke(SoulTheme.Color.divider, lineWidth: 1)
+                )
+        )
+    }
+
+    private func tabItem(_ tab: MainTabView.Tab) -> some View {
+        let isSelected = selection == tab
+        return Button {
+            withAnimation(.interactiveSpring(response: 0.25,
+                                             dampingFraction: 0.8)) {
+                selection = tab
+            }
+        } label: {
+            HStack(spacing: 6) {
+                Image(systemName: tab.icon)
+                    .font(.system(size: 14, weight: .semibold))
+                if isSelected {
+                    Text(tab.title)
+                        .font(.system(size: 13, weight: .bold))
+                        .lineLimit(1)
+                }
+            }
+            .foregroundStyle(isSelected
+                             ? SoulTheme.Color.onAccent
+                             : SoulTheme.Color.textSecondary)
+            .padding(.horizontal, isSelected ? 16 : 12)
+            .padding(.vertical, 11)
+            .background(
+                Capsule().fill(isSelected
+                               ? AnyShapeStyle(SoulTheme.Color.primary)
+                               : AnyShapeStyle(Color.clear))
+            )
+        }
+        .buttonStyle(.plain)
     }
 }

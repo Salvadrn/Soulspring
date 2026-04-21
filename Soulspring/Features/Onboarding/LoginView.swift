@@ -1,192 +1,227 @@
 import SwiftUI
 
+/// Login / sign-up in the Mimo-inspired dark aesthetic.
+/// - Hero title up top, big pill CTAs (Apple / Google / Email).
+/// - "Ver sin cuenta" lives as a distinct third option that loads the
+///   sample data guest mode.
+/// - Bottom link for existing users.
 struct LoginView: View {
     @EnvironmentObject private var store: AppStore
 
     @State private var email: String = ""
     @State private var password: String = ""
-    @State private var isCreatingAccount: Bool = false
+    @State private var isCreatingAccount: Bool = true
+    @State private var isShowingEmailForm: Bool = false
 
     var body: some View {
         ZStack {
-            SoulTheme.Gradient.dawn.ignoresSafeArea()
+            SoulTheme.Color.background.ignoresSafeArea()
 
-            // Soft decorative blob
-            Circle()
-                .fill(SoulTheme.Palette.sage.opacity(0.25))
-                .frame(width: 360, height: 360)
-                .blur(radius: 90)
-                .offset(x: 140, y: -220)
+            VStack(spacing: 0) {
+                Spacer()
 
-            ScrollView {
-                VStack(spacing: SoulTheme.Spacing.lg) {
-                    Spacer(minLength: 60)
+                heroBlock
+                    .padding(.horizontal, SoulTheme.Spacing.lg)
 
-                    header
+                Spacer()
 
-                    form
-
-                    orDivider
-
-                    Button {
-                        withAnimation { store.continueAsGuest() }
-                    } label: {
-                        HStack(spacing: 8) {
-                            Image(systemName: "eye")
-                            Text("Ver sin cuenta")
-                        }
+                VStack(spacing: 12) {
+                    if isShowingEmailForm {
+                        emailForm
+                    } else {
+                        socialButtons
+                        orDivider
+                        emailPrimaryButton
+                        guestButton
                     }
-                    .buttonStyle(SoulSecondaryButtonStyle())
-
-                    Text("Explora con datos de ejemplo. Podrás crear tu cuenta más tarde para guardar tu progreso.")
-                        .font(SoulTheme.Font.caption)
-                        .foregroundStyle(SoulTheme.Color.textSecondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, SoulTheme.Spacing.lg)
-
-                    Spacer(minLength: 40)
-
-                    footer
                 }
                 .padding(.horizontal, SoulTheme.Spacing.lg)
+
+                Spacer(minLength: 20)
+
+                footerLink
+                    .padding(.bottom, SoulTheme.Spacing.md)
             }
         }
     }
 
-    // MARK: Header
+    // MARK: Hero
 
-    private var header: some View {
-        VStack(spacing: 14) {
+    private var heroBlock: some View {
+        VStack(spacing: 18) {
+            // Small mark
             ZStack {
                 Circle()
-                    .fill(SoulTheme.Gradient.forest)
-                    .frame(width: 76, height: 76)
-                    .shadow(color: SoulTheme.Palette.moss.opacity(0.25), radius: 16, y: 8)
+                    .fill(SoulTheme.Color.primary.opacity(0.18))
+                    .frame(width: 74, height: 74)
                 Image(systemName: "leaf.fill")
-                    .font(.system(size: 30, weight: .regular))
-                    .foregroundStyle(SoulTheme.Color.backgroundWarm)
+                    .font(.system(size: 32, weight: .bold))
+                    .foregroundStyle(SoulTheme.Color.primary)
             }
 
-            SoulEyebrow(text: "Soulspring")
+            VStack(spacing: 8) {
+                Text("Soulspring")
+                    .font(.system(size: 13, weight: .bold))
+                    .tracking(3)
+                    .foregroundStyle(SoulTheme.Color.primary)
 
-            Text("Tu santuario de\nvida consciente")
-                .font(SoulTheme.Font.hero)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(SoulTheme.Color.textPrimary)
-                .fixedSize(horizontal: false, vertical: true)
-
-            Text(isCreatingAccount
-                 ? "Crea tu cuenta para empezar tu camino."
-                 : "Bienvenido de vuelta. Respira y continuemos.")
-                .font(SoulTheme.Font.bodyText)
-                .foregroundStyle(SoulTheme.Color.textSecondary)
-                .multilineTextAlignment(.center)
-        }
-    }
-
-    // MARK: Form
-
-    private var form: some View {
-        SoulCard(padding: SoulTheme.Spacing.lg) {
-            VStack(spacing: 16) {
-                Picker("Modo", selection: $isCreatingAccount.animation()) {
-                    Text("Iniciar sesión").tag(false)
-                    Text("Crear cuenta").tag(true)
-                }
-                .pickerStyle(.segmented)
-
-                field(label: "Correo",
-                      placeholder: "hola@soulspring.mx",
-                      text: $email,
-                      icon: "envelope")
-                .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.never)
-                .autocorrectionDisabled()
-
-                field(label: "Contraseña",
-                      placeholder: "••••••••",
-                      text: $password,
-                      icon: "lock",
-                      secure: true)
-
-                Button {
-                    let trimmed = email.trimmingCharacters(in: .whitespaces)
-                    let finalEmail = trimmed.isEmpty ? "hola@soulspring.mx" : trimmed
-                    withAnimation { store.signIn(email: finalEmail) }
-                } label: {
-                    Text(isCreatingAccount ? "Comenzar mi camino" : "Entrar")
-                }
-                .buttonStyle(SoulPrimaryButtonStyle())
-                .padding(.top, 4)
-
-                if !isCreatingAccount {
-                    Button("¿Olvidaste tu contraseña?") {}
-                        .font(SoulTheme.Font.caption)
-                        .foregroundStyle(SoulTheme.Color.textSecondary)
-                }
+                Text(isCreatingAccount
+                     ? "Crea tu perfil y empieza\ntu camino hacia adentro."
+                     : "Bienvenido de vuelta.\nRespira, ya llegaste.")
+                    .font(.system(size: 28, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                    .lineSpacing(2)
             }
         }
     }
 
-    private func field(label: String,
-                       placeholder: String,
-                       text: Binding<String>,
-                       icon: String,
-                       secure: Bool = false) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            SoulEyebrow(text: label)
-            HStack(spacing: 10) {
-                Image(systemName: icon)
-                    .foregroundStyle(SoulTheme.Color.primarySoft)
-                Group {
-                    if secure {
-                        SecureField(placeholder, text: text)
-                    } else {
-                        TextField(placeholder, text: text)
-                    }
+    // MARK: Social buttons
+
+    private var socialButtons: some View {
+        HStack(spacing: 10) {
+            socialButton(icon: "applelogo", bg: Color.white, fg: Color.black)
+            socialButton(systemIcon: false, emoji: "G", bg: Color.white, fg: Color.black)
+        }
+    }
+
+    private func socialButton(icon: String? = nil,
+                              systemIcon: Bool = true,
+                              emoji: String = "",
+                              bg: Color,
+                              fg: Color) -> some View {
+        Button {
+            // hook up real auth later — for now, same as email
+            store.signIn(email: "hola@soulspring.mx")
+        } label: {
+            Group {
+                if systemIcon, let icon {
+                    Image(systemName: icon).font(.system(size: 20, weight: .bold))
+                } else {
+                    Text(emoji).font(.system(size: 20, weight: .heavy, design: .rounded))
                 }
-                .font(SoulTheme.Font.bodyText)
-                .foregroundStyle(SoulTheme.Color.textPrimary)
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 14)
+            .foregroundStyle(fg)
+            .frame(maxWidth: .infinity, minHeight: 54)
             .background(
-                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                    .fill(SoulTheme.Palette.cream.opacity(0.7))
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                    .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+                Capsule().fill(bg)
             )
         }
+        .buttonStyle(.plain)
     }
 
-    // MARK: Or divider
+    // MARK: OR divider
 
     private var orDivider: some View {
-        HStack(spacing: 12) {
-            SoulDivider()
-            Text("o")
-                .font(SoulTheme.Font.caption)
+        HStack(spacing: 10) {
+            Rectangle()
+                .fill(SoulTheme.Color.divider)
+                .frame(height: 1)
+            Text("O")
+                .font(.system(size: 11, weight: .bold))
+                .tracking(2)
                 .foregroundStyle(SoulTheme.Color.textSecondary)
-            SoulDivider()
+            Rectangle()
+                .fill(SoulTheme.Color.divider)
+                .frame(height: 1)
         }
-        .padding(.horizontal, 30)
+        .padding(.vertical, 4)
     }
 
-    private var footer: some View {
-        VStack(spacing: 6) {
-            Text("Al continuar aceptas los términos de Soulspring y nuestra política de privacidad.")
-                .font(SoulTheme.Font.caption)
-                .foregroundStyle(SoulTheme.Color.textSecondary.opacity(0.8))
-                .multilineTextAlignment(.center)
+    // MARK: Email primary (shows form when tapped)
+
+    private var emailPrimaryButton: some View {
+        Button {
+            withAnimation { isShowingEmailForm = true }
+        } label: {
+            Text("Continuar con correo")
         }
-        .padding(.horizontal, SoulTheme.Spacing.md)
-        .padding(.bottom, SoulTheme.Spacing.md)
+        .buttonStyle(SoulPrimaryButtonStyle())
+    }
+
+    // MARK: Guest
+
+    private var guestButton: some View {
+        Button {
+            withAnimation { store.continueAsGuest() }
+        } label: {
+            HStack(spacing: 6) {
+                Image(systemName: "eye")
+                Text("Ver sin cuenta")
+            }
+        }
+        .buttonStyle(SoulSecondaryButtonStyle())
+    }
+
+    // MARK: Email form
+
+    private var emailForm: some View {
+        VStack(spacing: 12) {
+            field(placeholder: "hola@soulspring.mx", text: $email, kb: .emailAddress)
+            field(placeholder: "contraseña", text: $password, secure: true)
+
+            Button {
+                let trimmed = email.trimmingCharacters(in: .whitespaces)
+                let finalEmail = trimmed.isEmpty ? "hola@soulspring.mx" : trimmed
+                withAnimation { store.signIn(email: finalEmail) }
+            } label: {
+                Text(isCreatingAccount ? "Comenzar" : "Entrar")
+            }
+            .buttonStyle(SoulPrimaryButtonStyle())
+            .padding(.top, 4)
+
+            Button {
+                withAnimation { isShowingEmailForm = false }
+            } label: {
+                Text("← Regresar")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+            }
+            .padding(.top, 4)
+        }
+    }
+
+    private func field(placeholder: String,
+                       text: Binding<String>,
+                       secure: Bool = false,
+                       kb: UIKeyboardType = .default) -> some View {
+        Group {
+            if secure {
+                SecureField(placeholder, text: text)
+            } else {
+                TextField(placeholder, text: text)
+            }
+        }
+        .keyboardType(kb)
+        .textInputAutocapitalization(.never)
+        .autocorrectionDisabled()
+        .font(SoulTheme.Font.body(16, weight: .medium))
+        .foregroundStyle(SoulTheme.Color.textPrimary)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 16)
+        .background(Capsule().fill(SoulTheme.Color.surface))
+        .overlay(Capsule().stroke(SoulTheme.Color.divider, lineWidth: 1))
+    }
+
+    // MARK: Footer
+
+    private var footerLink: some View {
+        HStack(spacing: 6) {
+            Text(isCreatingAccount ? "¿Ya tienes cuenta?" : "¿Nuevo aquí?")
+                .font(.system(size: 14, weight: .medium))
+                .foregroundStyle(SoulTheme.Color.textSecondary)
+            Button {
+                withAnimation { isCreatingAccount.toggle() }
+            } label: {
+                Text(isCreatingAccount ? "Inicia sesión" : "Crea una cuenta")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                    .underline()
+            }
+        }
     }
 }
 
 #Preview {
-    LoginView()
-        .environmentObject(AppStore())
+    LoginView().environmentObject(AppStore())
 }

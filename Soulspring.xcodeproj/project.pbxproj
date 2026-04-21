@@ -47,6 +47,7 @@
 		1C8931AB01CF691DCA4623A6 /* SoulLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */; };
 		B5799FD12D4C4B3CF6CF0B27 /* StreakEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A6E3E9E3BF86CE4664E20C /* StreakEngine.swift */; };
 		016D0D2E67E4CF0DDB3C0900 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404B7EB7A01DBA200426494 /* SupabaseConfig.swift */; };
+		20527EF793487763027435A5 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD96FD9A77B379C36F3C352 /* WidgetSnapshot.swift */; };
 		E3D2CF77F1DF53BF6337ED7A /* SoulspringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */; };
 		EA2C77835DE08916C220E23F /* RachaFlame.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7913B35613362057CB2A8 /* RachaFlame.swift */; };
 		3FA4E5D40B197819127FE0F5 /* SoulComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF41B177CC2211EAC1BBBCE /* SoulComponents.swift */; };
@@ -96,6 +97,7 @@
 		F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulLinks.swift; sourceTree = "<group>"; };
 		89A6E3E9E3BF86CE4664E20C /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
 		C404B7EB7A01DBA200426494 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		4FD96FD9A77B379C36F3C352 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
 		903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulspringApp.swift; sourceTree = "<group>"; };
 		ACA7913B35613362057CB2A8 /* RachaFlame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RachaFlame.swift; sourceTree = "<group>"; };
 		8EF41B177CC2211EAC1BBBCE /* SoulComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulComponents.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				A96DED6F8E9CED736CDA2AD8 /* Features */,
 				6D58E86F0AEF5D375DAAC71B /* Models */,
 				3C1439383DCA3F927AFD6E39 /* Services */,
+				B421D7D611A4AF9DAC417B98 /* Shared */,
 				B6900194F4319481EBBB8E7F /* SupportingFiles */,
 				C6EA7C6CFE5FB98AD48CA229 /* Theme */,
 				903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */,
@@ -282,6 +285,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		B421D7D611A4AF9DAC417B98 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4FD96FD9A77B379C36F3C352 /* WidgetSnapshot.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		C6EA7C6CFE5FB98AD48CA229 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +420,7 @@
 				1C8931AB01CF691DCA4623A6 /* SoulLinks.swift in Sources */,
 				B5799FD12D4C4B3CF6CF0B27 /* StreakEngine.swift in Sources */,
 				016D0D2E67E4CF0DDB3C0900 /* SupabaseConfig.swift in Sources */,
+				20527EF793487763027435A5 /* WidgetSnapshot.swift in Sources */,
 				E3D2CF77F1DF53BF6337ED7A /* SoulspringApp.swift in Sources */,
 				EA2C77835DE08916C220E23F /* RachaFlame.swift in Sources */,
 				3FA4E5D40B197819127FE0F5 /* SoulComponents.swift in Sources */,

@@ -6,25 +6,22 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
+            ZStack(alignment: .top) {
                 SoulBackground()
+
                 ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
+                    VStack(alignment: .leading, spacing: SoulTheme.Spacing.md) {
+                        topBar
                         greeting
-
                         RachaHero()
-
                         quickActions
-
                         metricsGrid
-
                         dailyRecommendation
-
                         remindersStrip
                     }
                     .padding(.horizontal, SoulTheme.Spacing.lg)
-                    .padding(.top, 8)
-                    .padding(.bottom, 40)
+                    .padding(.top, 10)
+                    .padding(.bottom, 120)  // space for floating tab bar
                 }
             }
             .navigationBarHidden(true)
@@ -32,19 +29,36 @@ struct HomeView: View {
         .task { await health.refreshAll() }
     }
 
+    // MARK: Top bar — streak pill + energy lightning
+
+    private var topBar: some View {
+        HStack {
+            SoulPillStat(
+                icon: "flame.fill",
+                value: "\(store.streak.currentStreak)",
+                tint: SoulTheme.Palette.gold
+            )
+            Spacer()
+            SoulPillStat(
+                icon: "bolt.fill",
+                value: "\(Int(health.activeEnergy))",
+                tint: SoulTheme.Palette.terracotta
+            )
+        }
+        .padding(.top, 4)
+    }
+
     // MARK: Greeting
 
     private var greeting: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            SoulEyebrow(text: Self.formattedToday())
-            Text("Hola, \(firstName).")
+        VStack(alignment: .leading, spacing: 4) {
+            SoulEyebrow(text: Self.formattedToday(),
+                        color: SoulTheme.Color.textSecondary)
+            Text("Hola, \(firstName)")
                 .font(SoulTheme.Font.hero)
                 .foregroundStyle(SoulTheme.Color.textPrimary)
-            Text("Tu santuario te recibe. Así va tu día.")
-                .font(SoulTheme.Font.bodyText)
-                .foregroundStyle(SoulTheme.Color.textSecondary)
         }
-        .padding(.top, 20)
+        .padding(.top, 8)
     }
 
     private var firstName: String {
@@ -52,7 +66,7 @@ struct HomeView: View {
         return n.isEmpty ? "alma" : n.components(separatedBy: " ").first ?? n
     }
 
-    // MARK: Quick actions (external links)
+    // MARK: Quick actions
 
     private var quickActions: some View {
         VStack(spacing: 12) {
@@ -64,18 +78,18 @@ struct HomeView: View {
                 } label: {
                     QuickActionTile(
                         eyebrow: "Santuario",
-                        title: "Reservar estancia",
-                        subtitle: "Fechas disponibles ahora",
+                        title: "Reservar",
+                        subtitle: "Estancia y experiencias",
                         icon: "calendar",
-                        gradient: SoulTheme.Gradient.forest)
+                        tint: SoulTheme.Palette.moss)
                 }
                 Link(destination: SoulLinks.foodInstagram) {
                     QuickActionTile(
                         eyebrow: "Soul Kitchen",
-                        title: "Menú del día",
+                        title: "Menú",
                         subtitle: SoulLinks.foodHandle,
                         icon: "fork.knife",
-                        gradient: SoulTheme.Gradient.sunset)
+                        tint: SoulTheme.Palette.terracotta)
                 }
             }
 
@@ -106,7 +120,7 @@ struct HomeView: View {
 
             SoulMetricTile(
                 eyebrow: "Pasos hoy",
-                value: "\(health.steps)",
+                value: formatted(health.steps),
                 unit: "pasos",
                 icon: "figure.walk",
                 tint: SoulTheme.Palette.moss)
@@ -123,45 +137,54 @@ struct HomeView: View {
                 value: String(format: "%.1f", health.sleepHours),
                 unit: "hrs",
                 icon: "moon.stars.fill",
-                tint: SoulTheme.Palette.earth)
+                tint: SoulTheme.Palette.lilac)
         }
+    }
+
+    private func formatted(_ n: Int) -> String {
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        f.groupingSeparator = ","
+        return f.string(from: NSNumber(value: n)) ?? "\(n)"
     }
 
     // MARK: Daily recommendation
 
     private var dailyRecommendation: some View {
         let rec = store.recommendations.first ?? RecommendationEngine.catalog[0]
-        return VStack(alignment: .leading, spacing: 12) {
+        return VStack(alignment: .leading, spacing: 10) {
             SoulSectionHeader(eyebrow: "Para ti hoy",
-                              title: "Recomendación del día",
+                              title: "Recomendación",
                               subtitle: nil)
 
             NavigationLink {
                 RecommendationsView()
             } label: {
-                SoulCard {
-                    HStack(spacing: 16) {
+                SoulCard(padding: 16) {
+                    HStack(spacing: 14) {
                         ZStack {
-                            RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                                .fill(SoulTheme.Gradient.sunset)
-                                .frame(width: 64, height: 64)
+                            Circle()
+                                .fill(SoulTheme.Palette.terracotta.opacity(0.18))
+                                .frame(width: 52, height: 52)
                             Image(systemName: rec.interest.icon)
-                                .font(.system(size: 26))
-                                .foregroundStyle(SoulTheme.Color.backgroundWarm)
+                                .font(.system(size: 22, weight: .bold))
+                                .foregroundStyle(SoulTheme.Palette.terracotta)
                         }
-                        VStack(alignment: .leading, spacing: 6) {
-                            SoulEyebrow(text: rec.category.rawValue)
+                        VStack(alignment: .leading, spacing: 4) {
+                            SoulEyebrow(text: rec.category.rawValue,
+                                        color: SoulTheme.Palette.terracotta)
                             Text(rec.title)
                                 .font(SoulTheme.Font.card)
                                 .foregroundStyle(SoulTheme.Color.textPrimary)
+                                .lineLimit(1)
                             Text(rec.summary)
                                 .font(SoulTheme.Font.caption)
                                 .foregroundStyle(SoulTheme.Color.textSecondary)
                                 .lineLimit(2)
                         }
                         Spacer(minLength: 0)
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 14, weight: .semibold))
+                        Image(systemName: "arrow.right")
+                            .font(.system(size: 14, weight: .bold))
                             .foregroundStyle(SoulTheme.Color.textSecondary)
                     }
                 }
@@ -173,7 +196,7 @@ struct HomeView: View {
     // MARK: Reminders strip
 
     private var remindersStrip: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 10) {
             HStack {
                 SoulSectionHeader(eyebrow: "Hoy",
                                   title: "Recordatorios",
@@ -189,54 +212,10 @@ struct HomeView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(store.reminders) { reminder in
-                        HStack(spacing: 10) {
-                            Image(systemName: iconFor(reminder.kind))
-                                .foregroundStyle(tintFor(reminder.kind))
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(reminder.title)
-                                    .font(SoulTheme.Font.caption)
-                                    .foregroundStyle(SoulTheme.Color.textPrimary)
-                                Text(reminder.time.formatted(date: .omitted, time: .shortened))
-                                    .font(.system(size: 11, weight: .semibold))
-                                    .foregroundStyle(SoulTheme.Color.textSecondary)
-                            }
-                            Circle()
-                                .fill(reminder.isOn ? SoulTheme.Color.primary : SoulTheme.Color.divider)
-                                .frame(width: 8, height: 8)
-                        }
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 12)
-                        .background(
-                            RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                                .fill(SoulTheme.Color.surface)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                                .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
-                        )
+                        ReminderPill(reminder: reminder)
                     }
                 }
             }
-        }
-    }
-
-    private func iconFor(_ kind: SoulReminder.Kind) -> String {
-        switch kind {
-        case .hydration: return "drop.fill"
-        case .movement:  return "figure.run"
-        case .breath:    return "wind"
-        case .sleep:     return "moon.stars.fill"
-        case .meal:      return "fork.knife"
-        }
-    }
-
-    private func tintFor(_ kind: SoulReminder.Kind) -> Color {
-        switch kind {
-        case .hydration: return SoulTheme.Palette.sky
-        case .movement:  return SoulTheme.Palette.terracotta
-        case .breath:    return SoulTheme.Palette.sage
-        case .sleep:     return SoulTheme.Palette.earth
-        case .meal:      return SoulTheme.Palette.gold
         }
     }
 
@@ -248,49 +227,101 @@ struct HomeView: View {
     }
 }
 
-// MARK: - Quick action tile
+// MARK: - QuickActionTile (dark)
 
 struct QuickActionTile: View {
     let eyebrow: String
     let title: String
     let subtitle: String
     let icon: String
-    let gradient: LinearGradient
+    let tint: Color
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 14) {
             HStack {
-                Image(systemName: icon)
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(SoulTheme.Color.backgroundWarm)
-                    .frame(width: 36, height: 36)
-                    .background(Circle().fill(.white.opacity(0.18)))
+                ZStack {
+                    Circle().fill(tint.opacity(0.18)).frame(width: 38, height: 38)
+                    Image(systemName: icon)
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundStyle(tint)
+                }
                 Spacer()
                 Image(systemName: "arrow.up.right")
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(SoulTheme.Color.backgroundWarm.opacity(0.85))
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
             }
-            Spacer(minLength: 6)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(eyebrow.uppercased())
-                    .font(.system(size: 10, weight: .bold))
-                    .tracking(1.5)
-                    .foregroundStyle(SoulTheme.Color.backgroundWarm.opacity(0.85))
+            Spacer(minLength: 2)
+            VStack(alignment: .leading, spacing: 2) {
+                SoulEyebrow(text: eyebrow, color: tint)
                 Text(title)
-                    .font(SoulTheme.Font.display(20, weight: .regular))
-                    .foregroundStyle(SoulTheme.Color.backgroundWarm)
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                 Text(subtitle)
                     .font(SoulTheme.Font.caption)
-                    .foregroundStyle(SoulTheme.Color.backgroundWarm.opacity(0.85))
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
             }
         }
         .padding(16)
-        .frame(maxWidth: .infinity, minHeight: 140, alignment: .topLeading)
+        .frame(maxWidth: .infinity, minHeight: 120, alignment: .topLeading)
         .background(
-            RoundedRectangle(cornerRadius: SoulTheme.Radius.lg)
-                .fill(gradient)
+            RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                .fill(SoulTheme.Color.surface)
         )
-        .shadow(color: SoulTheme.Palette.earth.opacity(0.10), radius: 14, y: 8)
+    }
+}
+
+// MARK: - Reminder pill
+
+struct ReminderPill: View {
+    let reminder: SoulReminder
+
+    var body: some View {
+        HStack(spacing: 10) {
+            ZStack {
+                Circle().fill(tint.opacity(0.2)).frame(width: 30, height: 30)
+                Image(systemName: icon)
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(tint)
+            }
+            VStack(alignment: .leading, spacing: 1) {
+                Text(reminder.title)
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                    .lineLimit(1)
+                Text(reminder.time.formatted(date: .omitted, time: .shortened))
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+            }
+            Circle()
+                .fill(reminder.isOn ? SoulTheme.Color.primary : SoulTheme.Palette.whisper)
+                .frame(width: 6, height: 6)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(Capsule().fill(SoulTheme.Color.surface))
+    }
+
+    private var icon: String {
+        switch reminder.kind {
+        case .hydration: return "drop.fill"
+        case .movement:  return "figure.run"
+        case .breath:    return "wind"
+        case .sleep:     return "moon.stars.fill"
+        case .meal:      return "fork.knife"
+        }
+    }
+    private var tint: Color {
+        switch reminder.kind {
+        case .hydration: return SoulTheme.Palette.sky
+        case .movement:  return SoulTheme.Palette.terracotta
+        case .breath:    return SoulTheme.Palette.moss
+        case .sleep:     return SoulTheme.Palette.lilac
+        case .meal:      return SoulTheme.Palette.gold
+        }
     }
 }
 
@@ -305,7 +336,7 @@ struct RachaHero: View {
             VStack(alignment: .leading, spacing: 18) {
                 HStack(alignment: .center, spacing: 16) {
                     RachaFlame(days: engine.currentStreak,
-                               size: 96,
+                               size: 86,
                                isAlive: engine.isGoalMetToday)
 
                     VStack(alignment: .leading, spacing: 6) {
@@ -314,8 +345,8 @@ struct RachaHero: View {
                             .font(SoulTheme.Font.title)
                             .foregroundStyle(SoulTheme.Color.textPrimary)
                         Text(engine.isGoalMetToday
-                             ? "Hoy ya defendiste tu racha."
-                             : "Completa \(max(0, store.dailyGoalTarget - engine.completedToday)) hábitos más para no romperla.")
+                             ? "Hoy ya la defendiste."
+                             : "Faltan \(max(0, store.dailyGoalTarget - engine.completedToday)) hábitos.")
                             .font(SoulTheme.Font.caption)
                             .foregroundStyle(SoulTheme.Color.textSecondary)
                     }
@@ -323,28 +354,25 @@ struct RachaHero: View {
                     ZStack {
                         SoulProgressRing(
                             progress: engine.todayProgress,
-                            lineWidth: 8,
-                            gradient: SoulTheme.Gradient.forest
-                        )
-                        .frame(width: 58, height: 58)
-                        VStack(spacing: 0) {
-                            Text("\(engine.completedToday)/\(store.dailyGoalTarget)")
-                                .font(.system(size: 12, weight: .semibold))
-                                .foregroundStyle(SoulTheme.Color.textPrimary)
-                        }
+                            lineWidth: 6,
+                            gradient: SoulTheme.Gradient.forest)
+                        .frame(width: 52, height: 52)
+                        Text("\(engine.completedToday)/\(store.dailyGoalTarget)")
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                            .foregroundStyle(SoulTheme.Color.textPrimary)
                     }
                 }
 
-                HStack(spacing: 6) {
+                HStack(spacing: 5) {
                     ForEach(engine.lastDays(14)) { day in
                         VStack(spacing: 4) {
                             RoundedRectangle(cornerRadius: 4)
                                 .fill(day.met
-                                      ? AnyShapeStyle(SoulTheme.Gradient.forest)
-                                      : AnyShapeStyle(SoulTheme.Palette.sand))
-                                .frame(height: 26)
+                                      ? AnyShapeStyle(SoulTheme.Gradient.flame)
+                                      : AnyShapeStyle(SoulTheme.Color.surfaceElevated))
+                                .frame(height: 24)
                             Text(day.date.formatted(.dateTime.weekday(.narrow)))
-                                .font(.system(size: 9, weight: .semibold))
+                                .font(.system(size: 9, weight: .bold))
                                 .foregroundStyle(day.isToday
                                                  ? SoulTheme.Color.primary
                                                  : SoulTheme.Color.textSecondary)

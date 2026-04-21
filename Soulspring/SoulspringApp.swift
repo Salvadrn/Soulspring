@@ -10,8 +10,8 @@ struct SoulspringApp: App {
             RootView()
                 .environmentObject(store)
                 .environmentObject(health)
-                .preferredColorScheme(.light)
                 .tint(SoulTheme.Color.primary)
+                .task { store.publishWidgetSnapshots() }
         }
     }
 }

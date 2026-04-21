@@ -1,5 +1,8 @@
 import Foundation
 import SwiftUI
+#if canImport(WidgetKit)
+import WidgetKit
+#endif
 
 /// Central store for user data, habits, reminders and orders. Persisted to
 /// UserDefaults as a lightweight MVP.
@@ -34,7 +37,10 @@ final class AppStore: ObservableObject {
         didSet { persist(profile, key: Keys.profile) }
     }
     @Published var habits: [Habit] {
-        didSet { persist(habits, key: Keys.habits) }
+        didSet {
+            persist(habits, key: Keys.habits)
+            publishRoutinesSnapshot()
+        }
     }
     @Published var reminders: [SoulReminder]
     @Published var orders: [RoomServiceOrder] = []
@@ -73,7 +79,10 @@ final class AppStore: ObservableObject {
     /// Personal finance ledger — income + expenses with optional link to
     /// the Soulspring object that originated the transaction.
     @Published var transactions: [FinanceTransaction] {
-        didSet { persist(transactions, key: Keys.finance) }
+        didSet {
+            persist(transactions, key: Keys.finance)
+            publishBudgetSnapshot()
+        }
     }
 
     /// Per-category monthly budget caps.
@@ -83,7 +92,10 @@ final class AppStore: ObservableObject {
 
     /// How many habits the user must complete each day to defend the racha.
     @Published var dailyGoalTarget: Int {
-        didSet { UserDefaults.standard.set(dailyGoalTarget, forKey: Keys.goal) }
+        didSet {
+            UserDefaults.standard.set(dailyGoalTarget, forKey: Keys.goal)
+            publishRoutinesSnapshot()
+        }
     }
 
     // MARK: Init
@@ -405,5 +417,76 @@ final class AppStore: ObservableObject {
     private static func load<T: Decodable>(_ type: T.Type, key: String) -> T? {
         guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
         return try? JSONDecoder().decode(T.self, from: data)
+    }
+
+    // MARK: - Widget snapshots
+
+    /// Recomputes both widget snapshots and writes them to the App Group.
+    /// Called on init and whenever the relevant state changes.
+    func publishWidgetSnapshots() {
+        publishBudgetSnapshot()
+        publishRoutinesSnapshot()
+    }
+
+    private func publishBudgetSnapshot() {
+        let month = FinanceReport.filter(transactions, in: Date())
+        let totals = FinanceReport.totals(month)
+
+        let df = DateFormatter()
+        df.locale = Locale(identifier: "es_MX")
+        df.dateFormat = "LLLL yyyy"
+        let label = df.string(from: Date()).capitalized
+
+        let expenseByCat = FinanceReport.byCategory(month, type: .expense)
+        let top = expenseByCat.prefix(3).map { (cat, amount) in
+            BudgetSnapshot.Category(
+                name: cat.rawValue,
+                iconSystemName: cat.icon,
+                tintHex: cat.tintHex,
+                amount: amount,
+                limit: budget.limit(for: cat)
+            )
+        }
+
+        let snapshot = BudgetSnapshot(
+            monthLabel: label,
+            income: totals.income,
+            expense: totals.expense,
+            balance: totals.income - totals.expense,
+            topCategories: Array(top),
+            updatedAt: Date()
+        )
+        SharedSnapshotStore.save(snapshot, key: SoulAppGroup.Keys.budget)
+        reloadWidgets()
+    }
+
+    private func publishRoutinesSnapshot() {
+        let engine = streak
+        let today = Calendar.current.startOfDay(for: Date())
+        let habitSnapshots = habits.prefix(6).map { habit in
+            RoutinesSnapshot.Habit(
+                title: habit.title,
+                iconSystemName: habit.icon,
+                tintHex: habit.colorHex,
+                done: habit.completedDates.contains {
+                    Calendar.current.isDate($0, inSameDayAs: today)
+                }
+            )
+        }
+        let snapshot = RoutinesSnapshot(
+            streakDays: engine.currentStreak,
+            completedToday: engine.completedToday,
+            goalTarget: dailyGoalTarget,
+            habits: Array(habitSnapshots),
+            updatedAt: Date()
+        )
+        SharedSnapshotStore.save(snapshot, key: SoulAppGroup.Keys.routines)
+        reloadWidgets()
+    }
+
+    private func reloadWidgets() {
+        #if canImport(WidgetKit)
+        WidgetCenter.shared.reloadAllTimelines()
+        #endif
     }
 }
