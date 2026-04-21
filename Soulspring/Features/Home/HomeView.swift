@@ -83,6 +83,11 @@ struct HomeView: View {
                 HydrationWidget()
             }
             .buttonStyle(.plain)
+
+            NavigationLink { FinancesView() } label: {
+                FinanceHomeWidget()
+            }
+            .buttonStyle(.plain)
         }
     }
 

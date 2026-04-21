@@ -70,6 +70,17 @@ final class AppStore: ObservableObject {
         didSet { persist(labReports, key: Keys.labs) }
     }
 
+    /// Personal finance ledger — income + expenses with optional link to
+    /// the Soulspring object that originated the transaction.
+    @Published var transactions: [FinanceTransaction] {
+        didSet { persist(transactions, key: Keys.finance) }
+    }
+
+    /// Per-category monthly budget caps.
+    @Published var budget: MonthlyBudget {
+        didSet { persist(budget, key: Keys.budget) }
+    }
+
     /// How many habits the user must complete each day to defend the racha.
     @Published var dailyGoalTarget: Int {
         didSet { UserDefaults.standard.set(dailyGoalTarget, forKey: Keys.goal) }
@@ -92,6 +103,9 @@ final class AppStore: ObservableObject {
             ?? MembershipWallet.make(for: UserProfile())
         self.bioAgeInputs = AppStore.load(BioAgeInputs.self, key: Keys.bioInputs) ?? BioAgeInputs()
         self.labReports = AppStore.load([LabReport].self, key: Keys.labs) ?? []
+        self.transactions = AppStore.load([FinanceTransaction].self, key: Keys.finance)
+            ?? FinanceReport.sampleTransactions()
+        self.budget = AppStore.load(MonthlyBudget.self, key: Keys.budget) ?? MonthlyBudget()
     }
 
     // Reset water log if the stored day is older than today.
@@ -164,7 +178,18 @@ final class AppStore: ObservableObject {
     // MARK: Room service
 
     func placeOrder(meal: Meal, at date: Date, notes: String) {
-        orders.append(RoomServiceOrder(meal: meal, scheduledFor: date, notes: notes))
+        let order = RoomServiceOrder(meal: meal, scheduledFor: date, notes: notes)
+        orders.append(order)
+        recordAuto(FinanceTransaction(
+            title: meal.name,
+            amountMXN: Double(meal.kcal) * 0.6 + 180, // mock price: base + by calories
+            type: .expense,
+            category: .comida,
+            date: Date(),
+            notes: "Room service",
+            source: .soulRoomService,
+            linkedObjectID: order.id
+        ))
     }
 
     // MARK: Derived
@@ -189,6 +214,41 @@ final class AppStore: ObservableObject {
         static let wallet    = "soul.wallet"
         static let bioInputs = "soul.bioInputs"
         static let labs      = "soul.labs"
+        static let finance   = "soul.finance"
+        static let budget    = "soul.budget"
+    }
+
+    // MARK: Finance actions
+
+    func addTransaction(_ tx: FinanceTransaction) {
+        transactions.insert(tx, at: 0)
+    }
+
+    func updateTransaction(_ tx: FinanceTransaction) {
+        guard let idx = transactions.firstIndex(where: { $0.id == tx.id }) else { return }
+        transactions[idx] = tx
+    }
+
+    func deleteTransaction(_ tx: FinanceTransaction) {
+        transactions.removeAll { $0.id == tx.id }
+    }
+
+    func setBudget(_ amount: Double?, for category: FinanceCategory) {
+        if let amount, amount > 0 {
+            budget.limits[category] = amount
+        } else {
+            budget.limits.removeValue(forKey: category)
+        }
+    }
+
+    /// Record an auto-generated transaction from a Soulspring flow. Keeps
+    /// the source + linkedObjectID so we never double-insert the same
+    /// stay / booking / gift card.
+    private func recordAuto(_ tx: FinanceTransaction) {
+        let alreadyThere = transactions.contains {
+            $0.source == tx.source && $0.linkedObjectID == tx.linkedObjectID
+        }
+        if !alreadyThere { transactions.insert(tx, at: 0) }
     }
 
     // MARK: Lab actions
@@ -237,6 +297,16 @@ final class AppStore: ObservableObject {
             confirmationCode: Booking.newCode()
         )
         bookings.append(b)
+        recordAuto(FinanceTransaction(
+            title: experience.name,
+            amountMXN: Double(experience.priceMXN),
+            type: .expense,
+            category: .bienestar,
+            date: Date(),
+            notes: "Reservación · \(b.confirmationCode)",
+            source: .soulExperience,
+            linkedObjectID: b.id
+        ))
         return b
     }
 
@@ -253,6 +323,16 @@ final class AppStore: ObservableObject {
         stays.append(s)
         profile.membershipTier = tier
         persist(profile, key: Keys.profile)
+        recordAuto(FinanceTransaction(
+            title: "Estancia \(tier.rawValue) · \(s.nights) \(s.nights == 1 ? "noche" : "noches")",
+            amountMXN: Double(s.totalMXN),
+            type: .expense,
+            category: .bienestar,
+            date: Date(),
+            notes: "Reservación · \(s.confirmationCode)",
+            source: .soulStay,
+            linkedObjectID: s.id
+        ))
         return s
     }
 
@@ -285,6 +365,16 @@ final class AppStore: ObservableObject {
             status: .sent
         )
         giftCards.append(card)
+        recordAuto(FinanceTransaction(
+            title: "Gift card para \(name)",
+            amountMXN: Double(amount),
+            type: .expense,
+            category: .giftOut,
+            date: Date(),
+            notes: "Código \(card.redeemCode)",
+            source: .soulGiftCard,
+            linkedObjectID: card.id
+        ))
         return card
     }
 

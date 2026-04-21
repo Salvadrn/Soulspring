@@ -6,6 +6,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F19615B523CF23A25309AF11 /* AddTransactionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371DDC2124904B84DCF5440C /* AddTransactionSheet.swift */; };
+		F7F21A0B4DFCE58A37F27300 /* BudgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2C3BACBBB684709E1F4F49 /* BudgetsView.swift */; };
+		BA54DCF12DEA72BCF4AA5CB8 /* FinanceHomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72723B333643B4E3F0A8C7 /* FinanceHomeWidget.swift */; };
+		1A02F4DAACDDED25C27831DE /* FinancesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B84F384EC63DF346DD1869 /* FinancesView.swift */; };
 		F7F0CEE7BEFA34F81AF5F3E7 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FE997D0A9A2428D3C06C72 /* HabitsView.swift */; };
 		8BD2C182E8481D22117DEF0A /* BiologicalAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2472ACAF23982A4E2ED4965 /* BiologicalAgeView.swift */; };
 		8B0F7136CAE2F4E261785BE3 /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2629A45B47139690E3BCC2 /* HeartRateView.swift */; };
@@ -27,6 +31,7 @@
 		841C40F047BF15F158AAD762 /* BiologicalAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216980DE84150EEFF3F6869 /* BiologicalAge.swift */; };
 		040A4692B5ACD21EDF0CC70B /* DailyMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7441E4B2A1A0487E52240D2D /* DailyMenu.swift */; };
 		923DC30A27CFC67DDF49EC49 /* ExperienceBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757B40715F4A2707A6B4835 /* ExperienceBooking.swift */; };
+		BB0CBB719983A7DCDE399316 /* Finance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6C9142465987274CB042F /* Finance.swift */; };
 		A85F7B3B49D820BEAC734BCA /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AF9D2D8D7B90CDB00B390 /* Habit.swift */; };
 		C394AFD2C04ACFA04A08CED4 /* LabReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4D7B586B99600E59BA242B /* LabReport.swift */; };
 		DC808B78BCC9161AF5AEC2E0 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178CC4AA70E1D25C9A1E67F /* Recommendation.swift */; };
@@ -50,6 +55,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		371DDC2124904B84DCF5440C /* AddTransactionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionSheet.swift; sourceTree = "<group>"; };
+		6A2C3BACBBB684709E1F4F49 /* BudgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetsView.swift; sourceTree = "<group>"; };
+		4B72723B333643B4E3F0A8C7 /* FinanceHomeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeWidget.swift; sourceTree = "<group>"; };
+		63B84F384EC63DF346DD1869 /* FinancesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesView.swift; sourceTree = "<group>"; };
 		14FE997D0A9A2428D3C06C72 /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
 		C2472ACAF23982A4E2ED4965 /* BiologicalAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeView.swift; sourceTree = "<group>"; };
 		0F2629A45B47139690E3BCC2 /* HeartRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
@@ -71,6 +80,7 @@
 		A216980DE84150EEFF3F6869 /* BiologicalAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAge.swift; sourceTree = "<group>"; };
 		7441E4B2A1A0487E52240D2D /* DailyMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMenu.swift; sourceTree = "<group>"; };
 		0757B40715F4A2707A6B4835 /* ExperienceBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceBooking.swift; sourceTree = "<group>"; };
+		39C6C9142465987274CB042F /* Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finance.swift; sourceTree = "<group>"; };
 		C99AF9D2D8D7B90CDB00B390 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		0F4D7B586B99600E59BA242B /* LabReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabReport.swift; sourceTree = "<group>"; };
 		2178CC4AA70E1D25C9A1E67F /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
@@ -149,6 +159,7 @@
 		A96DED6F8E9CED736CDA2AD8 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				734CA6133A23DC85684E2E82 /* Finance */,
 				2E8D2C7D001A2A26C0E428E1 /* Habits */,
 				55644DAF3DF424514334ADCB /* Heart */,
 				474E34065CC21053E84B95A2 /* Home */,
@@ -159,6 +170,17 @@
 				B3AD9A7BD09C6CD8EDE33B50 /* MainTabView.swift */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		734CA6133A23DC85684E2E82 /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				371DDC2124904B84DCF5440C /* AddTransactionSheet.swift */,
+				6A2C3BACBBB684709E1F4F49 /* BudgetsView.swift */,
+				4B72723B333643B4E3F0A8C7 /* FinanceHomeWidget.swift */,
+				63B84F384EC63DF346DD1869 /* FinancesView.swift */,
+			);
+			path = Finance;
 			sourceTree = "<group>";
 		};
 		2E8D2C7D001A2A26C0E428E1 /* Habits */ = {
@@ -233,6 +255,7 @@
 				A216980DE84150EEFF3F6869 /* BiologicalAge.swift */,
 				7441E4B2A1A0487E52240D2D /* DailyMenu.swift */,
 				0757B40715F4A2707A6B4835 /* ExperienceBooking.swift */,
+				39C6C9142465987274CB042F /* Finance.swift */,
 				C99AF9D2D8D7B90CDB00B390 /* Habit.swift */,
 				0F4D7B586B99600E59BA242B /* LabReport.swift */,
 				2178CC4AA70E1D25C9A1E67F /* Recommendation.swift */,
@@ -345,6 +368,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F19615B523CF23A25309AF11 /* AddTransactionSheet.swift in Sources */,
+				F7F21A0B4DFCE58A37F27300 /* BudgetsView.swift in Sources */,
+				BA54DCF12DEA72BCF4AA5CB8 /* FinanceHomeWidget.swift in Sources */,
+				1A02F4DAACDDED25C27831DE /* FinancesView.swift in Sources */,
 				F7F0CEE7BEFA34F81AF5F3E7 /* HabitsView.swift in Sources */,
 				8BD2C182E8481D22117DEF0A /* BiologicalAgeView.swift in Sources */,
 				8B0F7136CAE2F4E261785BE3 /* HeartRateView.swift in Sources */,
@@ -366,6 +393,7 @@
 				841C40F047BF15F158AAD762 /* BiologicalAge.swift in Sources */,
 				040A4692B5ACD21EDF0CC70B /* DailyMenu.swift in Sources */,
 				923DC30A27CFC67DDF49EC49 /* ExperienceBooking.swift in Sources */,
+				BB0CBB719983A7DCDE399316 /* Finance.swift in Sources */,
 				A85F7B3B49D820BEAC734BCA /* Habit.swift in Sources */,
 				C394AFD2C04ACFA04A08CED4 /* LabReport.swift in Sources */,
 				DC808B78BCC9161AF5AEC2E0 /* Recommendation.swift in Sources */,

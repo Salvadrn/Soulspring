@@ -186,6 +186,14 @@ struct ProfileView: View {
     private var actionsCard: some View {
         VStack(spacing: 10) {
             NavigationLink {
+                FinancesView()
+            } label: {
+                actionRow(icon: "chart.pie.fill",
+                          title: "Finanzas",
+                          subtitle: "Ingresos, egresos y presupuestos",
+                          tint: SoulTheme.Palette.moss)
+            }
+            NavigationLink {
                 GiftCardView()
             } label: {
                 actionRow(icon: "gift.fill",
