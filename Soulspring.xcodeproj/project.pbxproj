@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F7F0CEE7BEFA34F81AF5F3E7 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FE997D0A9A2428D3C06C72 /* HabitsView.swift */; };
+		8BD2C182E8481D22117DEF0A /* BiologicalAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2472ACAF23982A4E2ED4965 /* BiologicalAgeView.swift */; };
+		8B0F7136CAE2F4E261785BE3 /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2629A45B47139690E3BCC2 /* HeartRateView.swift */; };
+		0C8C3E8F6741073CE02711A6 /* LabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C05EF2D0BEA59F8FBE9265 /* LabsView.swift */; };
+		B71992EAD67F3EE089FA22F4 /* SleepDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D07D7BD8473451D74F30798 /* SleepDetailView.swift */; };
+		2490DE7585D56F4703FA195B /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD7F004E784EA729C505F57 /* WorkoutsView.swift */; };
+		95D68189C783BA0967F740CF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DD5B1156BAD1720ACCCBC7 /* HomeView.swift */; };
+		46A68B3E5C796239FF943FDE /* HydrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73D93A9E23562A0607A2A1 /* HydrationView.swift */; };
+		8E83546F059765B215668F36 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AD9A7BD09C6CD8EDE33B50 /* MainTabView.swift */; };
+		8B4C9D1BE41C7FC117B00726 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCE94E3C3A1A592B78240A2 /* LoginView.swift */; };
+		B64F54E42B41AE4E78ED8393 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71665AB5DB0850B9865A0D16 /* OnboardingView.swift */; };
+		07F6F5018DABC5C6AA337654 /* GiftCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8A105E566932A0D2E351C5 /* GiftCardView.swift */; };
+		10B1B0820B7D25DAEE0A1B28 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39002ED1BCCFC236AF743611 /* ProfileView.swift */; };
+		F59C23A7876D237DE11E9FE4 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED986DD24537703176DB0B4 /* WalletView.swift */; };
+		309DD3556C07BCC48995967D /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50906AF9A640EAF0411190 /* RecommendationsView.swift */; };
+		0F01094B1972741712D82411 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CC709F1BEE952B0BF8CCD4 /* BookingView.swift */; };
+		E847CE8ECA7E2C63BE945B57 /* DailyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30210700FA92F46C1D4D46ED /* DailyMenuView.swift */; };
+		DA80CF00176793769714084E /* SanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396AB1B1908ED0194C51B434 /* SanctuaryView.swift */; };
+		841C40F047BF15F158AAD762 /* BiologicalAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216980DE84150EEFF3F6869 /* BiologicalAge.swift */; };
+		040A4692B5ACD21EDF0CC70B /* DailyMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7441E4B2A1A0487E52240D2D /* DailyMenu.swift */; };
+		923DC30A27CFC67DDF49EC49 /* ExperienceBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757B40715F4A2707A6B4835 /* ExperienceBooking.swift */; };
+		A85F7B3B49D820BEAC734BCA /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AF9D2D8D7B90CDB00B390 /* Habit.swift */; };
+		C394AFD2C04ACFA04A08CED4 /* LabReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4D7B586B99600E59BA242B /* LabReport.swift */; };
+		DC808B78BCC9161AF5AEC2E0 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178CC4AA70E1D25C9A1E67F /* Recommendation.swift */; };
+		674466D04CB33A141EF0B714 /* SanctuaryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F467371B91C0D26CA7C68E9C /* SanctuaryModels.swift */; };
+		A213734F8A9BB8A28275A164 /* SharedStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8840B48148EB1CC3D55634 /* SharedStreak.swift */; };
+		249B83FCAD6AB72AF26D8D55 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E16FF03230FD2FE8E25EA4D /* UserProfile.swift */; };
+		DB7BF569C07A0A9745F39E6D /* WellnessExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1154D875DF0CC3D12B1452A /* WellnessExtras.swift */; };
+		37275DE166072D832CFA0A87 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A542CDC2ADFEE566EE3D4 /* AppStore.swift */; };
+		2A11DD42D636806B379C0745 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B606C37EAE8F220E2472F78 /* HealthKitManager.swift */; };
+		C9D0BA6E9C62A950D1ED0F1D /* LabAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14409495860CB27511D615B5 /* LabAIService.swift */; };
+		740DB63FB6A1402DF2EF25F0 /* LabParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCEF14AB8B43AB065E9013 /* LabParser.swift */; };
+		C5F710591E8548D419A6C646 /* SoulBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D36197321AB810C970777E /* SoulBackend.swift */; };
+		1C8931AB01CF691DCA4623A6 /* SoulLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */; };
+		B5799FD12D4C4B3CF6CF0B27 /* StreakEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A6E3E9E3BF86CE4664E20C /* StreakEngine.swift */; };
+		016D0D2E67E4CF0DDB3C0900 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404B7EB7A01DBA200426494 /* SupabaseConfig.swift */; };
+		E3D2CF77F1DF53BF6337ED7A /* SoulspringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */; };
+		EA2C77835DE08916C220E23F /* RachaFlame.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7913B35613362057CB2A8 /* RachaFlame.swift */; };
+		3FA4E5D40B197819127FE0F5 /* SoulComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF41B177CC2211EAC1BBBCE /* SoulComponents.swift */; };
+		B681C824A73D9FE98AC703E3 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D2866A6836E1B45738FF75 /* SoulTheme.swift */; };
+		3BFB75FF4F4C1476940752F3 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32073304AC31A933967C61E7 /* HealthKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		14FE997D0A9A2428D3C06C72 /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
+		C2472ACAF23982A4E2ED4965 /* BiologicalAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeView.swift; sourceTree = "<group>"; };
+		0F2629A45B47139690E3BCC2 /* HeartRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
+		B9C05EF2D0BEA59F8FBE9265 /* LabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsView.swift; sourceTree = "<group>"; };
+		5D07D7BD8473451D74F30798 /* SleepDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailView.swift; sourceTree = "<group>"; };
+		ABD7F004E784EA729C505F57 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
+		A1DD5B1156BAD1720ACCCBC7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FA73D93A9E23562A0607A2A1 /* HydrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrationView.swift; sourceTree = "<group>"; };
+		B3AD9A7BD09C6CD8EDE33B50 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		BDCE94E3C3A1A592B78240A2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		71665AB5DB0850B9865A0D16 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		FC8A105E566932A0D2E351C5 /* GiftCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardView.swift; sourceTree = "<group>"; };
+		39002ED1BCCFC236AF743611 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		BED986DD24537703176DB0B4 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		3E50906AF9A640EAF0411190 /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
+		F9CC709F1BEE952B0BF8CCD4 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
+		30210700FA92F46C1D4D46ED /* DailyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMenuView.swift; sourceTree = "<group>"; };
+		396AB1B1908ED0194C51B434 /* SanctuaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryView.swift; sourceTree = "<group>"; };
+		A216980DE84150EEFF3F6869 /* BiologicalAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAge.swift; sourceTree = "<group>"; };
+		7441E4B2A1A0487E52240D2D /* DailyMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMenu.swift; sourceTree = "<group>"; };
+		0757B40715F4A2707A6B4835 /* ExperienceBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceBooking.swift; sourceTree = "<group>"; };
+		C99AF9D2D8D7B90CDB00B390 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
+		0F4D7B586B99600E59BA242B /* LabReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabReport.swift; sourceTree = "<group>"; };
+		2178CC4AA70E1D25C9A1E67F /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
+		F467371B91C0D26CA7C68E9C /* SanctuaryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryModels.swift; sourceTree = "<group>"; };
+		5C8840B48148EB1CC3D55634 /* SharedStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStreak.swift; sourceTree = "<group>"; };
+		7E16FF03230FD2FE8E25EA4D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		F1154D875DF0CC3D12B1452A /* WellnessExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellnessExtras.swift; sourceTree = "<group>"; };
+		C42A542CDC2ADFEE566EE3D4 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
+		9B606C37EAE8F220E2472F78 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		14409495860CB27511D615B5 /* LabAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabAIService.swift; sourceTree = "<group>"; };
+		79DCEF14AB8B43AB065E9013 /* LabParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabParser.swift; sourceTree = "<group>"; };
+		82D36197321AB810C970777E /* SoulBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulBackend.swift; sourceTree = "<group>"; };
+		F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulLinks.swift; sourceTree = "<group>"; };
+		89A6E3E9E3BF86CE4664E20C /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
+		C404B7EB7A01DBA200426494 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulspringApp.swift; sourceTree = "<group>"; };
+		ACA7913B35613362057CB2A8 /* RachaFlame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RachaFlame.swift; sourceTree = "<group>"; };
+		8EF41B177CC2211EAC1BBBCE /* SoulComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulComponents.swift; sourceTree = "<group>"; };
+		B3D2866A6836E1B45738FF75 /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
+		5DA5E3218C9A49C88D267D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C8BEF1B3464864AA24FFB4B /* Soulspring.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Soulspring.entitlements; sourceTree = "<group>"; };
+		32073304AC31A933967C61E7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		C13732C8E715C9BEE4FA51C9 /* Soulspring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		69BE8A4D8E4D9DA4E7DB3928 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BFB75FF4F4C1476940752F3 /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E50290A24C49A459B43487C5 = {
+			isa = PBXGroup;
+			children = (
+				F4A2DE4743720CD42EF4FC18 /* Soulspring */,
+				328EC33DF3954DC9B83FA285 /* Products */,
+				AB5D76948E8B8022B6DC48C4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		328EC33DF3954DC9B83FA285 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C13732C8E715C9BEE4FA51C9 /* Soulspring.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB5D76948E8B8022B6DC48C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32073304AC31A933967C61E7 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4A2DE4743720CD42EF4FC18 /* Soulspring */ = {
+			isa = PBXGroup;
+			children = (
+				A96DED6F8E9CED736CDA2AD8 /* Features */,
+				6D58E86F0AEF5D375DAAC71B /* Models */,
+				3C1439383DCA3F927AFD6E39 /* Services */,
+				B6900194F4319481EBBB8E7F /* SupportingFiles */,
+				C6EA7C6CFE5FB98AD48CA229 /* Theme */,
+				903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */,
+			);
+			path = Soulspring;
+			sourceTree = "<group>";
+		};
+		A96DED6F8E9CED736CDA2AD8 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				2E8D2C7D001A2A26C0E428E1 /* Habits */,
+				55644DAF3DF424514334ADCB /* Heart */,
+				474E34065CC21053E84B95A2 /* Home */,
+				F5ABCB7E4F0E098012FD332F /* Onboarding */,
+				0CABF163A6802F29B123F6F0 /* Profile */,
+				ACF85EB865362D7535977710 /* Recommendations */,
+				514834C5CD5A7D693820B3DD /* Sanctuary */,
+				B3AD9A7BD09C6CD8EDE33B50 /* MainTabView.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		2E8D2C7D001A2A26C0E428E1 /* Habits */ = {
+			isa = PBXGroup;
+			children = (
+				14FE997D0A9A2428D3C06C72 /* HabitsView.swift */,
+			);
+			path = Habits;
+			sourceTree = "<group>";
+		};
+		55644DAF3DF424514334ADCB /* Heart */ = {
+			isa = PBXGroup;
+			children = (
+				C2472ACAF23982A4E2ED4965 /* BiologicalAgeView.swift */,
+				0F2629A45B47139690E3BCC2 /* HeartRateView.swift */,
+				B9C05EF2D0BEA59F8FBE9265 /* LabsView.swift */,
+				5D07D7BD8473451D74F30798 /* SleepDetailView.swift */,
+				ABD7F004E784EA729C505F57 /* WorkoutsView.swift */,
+			);
+			path = Heart;
+			sourceTree = "<group>";
+		};
+		474E34065CC21053E84B95A2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A1DD5B1156BAD1720ACCCBC7 /* HomeView.swift */,
+				FA73D93A9E23562A0607A2A1 /* HydrationView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F5ABCB7E4F0E098012FD332F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				BDCE94E3C3A1A592B78240A2 /* LoginView.swift */,
+				71665AB5DB0850B9865A0D16 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		0CABF163A6802F29B123F6F0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FC8A105E566932A0D2E351C5 /* GiftCardView.swift */,
+				39002ED1BCCFC236AF743611 /* ProfileView.swift */,
+				BED986DD24537703176DB0B4 /* WalletView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		ACF85EB865362D7535977710 /* Recommendations */ = {
+			isa = PBXGroup;
+			children = (
+				3E50906AF9A640EAF0411190 /* RecommendationsView.swift */,
+			);
+			path = Recommendations;
+			sourceTree = "<group>";
+		};
+		514834C5CD5A7D693820B3DD /* Sanctuary */ = {
+			isa = PBXGroup;
+			children = (
+				F9CC709F1BEE952B0BF8CCD4 /* BookingView.swift */,
+				30210700FA92F46C1D4D46ED /* DailyMenuView.swift */,
+				396AB1B1908ED0194C51B434 /* SanctuaryView.swift */,
+			);
+			path = Sanctuary;
+			sourceTree = "<group>";
+		};
+		6D58E86F0AEF5D375DAAC71B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A216980DE84150EEFF3F6869 /* BiologicalAge.swift */,
+				7441E4B2A1A0487E52240D2D /* DailyMenu.swift */,
+				0757B40715F4A2707A6B4835 /* ExperienceBooking.swift */,
+				C99AF9D2D8D7B90CDB00B390 /* Habit.swift */,
+				0F4D7B586B99600E59BA242B /* LabReport.swift */,
+				2178CC4AA70E1D25C9A1E67F /* Recommendation.swift */,
+				F467371B91C0D26CA7C68E9C /* SanctuaryModels.swift */,
+				5C8840B48148EB1CC3D55634 /* SharedStreak.swift */,
+				7E16FF03230FD2FE8E25EA4D /* UserProfile.swift */,
+				F1154D875DF0CC3D12B1452A /* WellnessExtras.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3C1439383DCA3F927AFD6E39 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C42A542CDC2ADFEE566EE3D4 /* AppStore.swift */,
+				9B606C37EAE8F220E2472F78 /* HealthKitManager.swift */,
+				14409495860CB27511D615B5 /* LabAIService.swift */,
+				79DCEF14AB8B43AB065E9013 /* LabParser.swift */,
+				82D36197321AB810C970777E /* SoulBackend.swift */,
+				F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */,
+				89A6E3E9E3BF86CE4664E20C /* StreakEngine.swift */,
+				C404B7EB7A01DBA200426494 /* SupabaseConfig.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C6EA7C6CFE5FB98AD48CA229 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				ACA7913B35613362057CB2A8 /* RachaFlame.swift */,
+				8EF41B177CC2211EAC1BBBCE /* SoulComponents.swift */,
+				B3D2866A6836E1B45738FF75 /* SoulTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		B6900194F4319481EBBB8E7F /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5E3218C9A49C88D267D59 /* Info.plist */,
+				8C8BEF1B3464864AA24FFB4B /* Soulspring.entitlements */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8A45469E17E92C07FA6DFDAF /* Soulspring */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5B252E79B5260B7FAA19738 /* Build configuration list for PBXNativeTarget "Soulspring" */;
+			buildPhases = (
+				4E57AE888889001C06A4F7E8 /* Sources */,
+				69BE8A4D8E4D9DA4E7DB3928 /* Frameworks */,
+				D6C9E8A172005E68A1DD674F /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = Soulspring;
+			productName = Soulspring;
+			productReference = C13732C8E715C9BEE4FA51C9 /* Soulspring.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98F54143AB4E86B28C3AFEE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					8A45469E17E92C07FA6DFDAF = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 60AA9EB27EE681A82A9AEC1A /* Build configuration list for PBXProject "Soulspring" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				es,
+			);
+			mainGroup = E50290A24C49A459B43487C5;
+			productRefGroup = 328EC33DF3954DC9B83FA285 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8A45469E17E92C07FA6DFDAF /* Soulspring */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D6C9E8A172005E68A1DD674F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4E57AE888889001C06A4F7E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7F0CEE7BEFA34F81AF5F3E7 /* HabitsView.swift in Sources */,
+				8BD2C182E8481D22117DEF0A /* BiologicalAgeView.swift in Sources */,
+				8B0F7136CAE2F4E261785BE3 /* HeartRateView.swift in Sources */,
+				0C8C3E8F6741073CE02711A6 /* LabsView.swift in Sources */,
+				B71992EAD67F3EE089FA22F4 /* SleepDetailView.swift in Sources */,
+				2490DE7585D56F4703FA195B /* WorkoutsView.swift in Sources */,
+				95D68189C783BA0967F740CF /* HomeView.swift in Sources */,
+				46A68B3E5C796239FF943FDE /* HydrationView.swift in Sources */,
+				8E83546F059765B215668F36 /* MainTabView.swift in Sources */,
+				8B4C9D1BE41C7FC117B00726 /* LoginView.swift in Sources */,
+				B64F54E42B41AE4E78ED8393 /* OnboardingView.swift in Sources */,
+				07F6F5018DABC5C6AA337654 /* GiftCardView.swift in Sources */,
+				10B1B0820B7D25DAEE0A1B28 /* ProfileView.swift in Sources */,
+				F59C23A7876D237DE11E9FE4 /* WalletView.swift in Sources */,
+				309DD3556C07BCC48995967D /* RecommendationsView.swift in Sources */,
+				0F01094B1972741712D82411 /* BookingView.swift in Sources */,
+				E847CE8ECA7E2C63BE945B57 /* DailyMenuView.swift in Sources */,
+				DA80CF00176793769714084E /* SanctuaryView.swift in Sources */,
+				841C40F047BF15F158AAD762 /* BiologicalAge.swift in Sources */,
+				040A4692B5ACD21EDF0CC70B /* DailyMenu.swift in Sources */,
+				923DC30A27CFC67DDF49EC49 /* ExperienceBooking.swift in Sources */,
+				A85F7B3B49D820BEAC734BCA /* Habit.swift in Sources */,
+				C394AFD2C04ACFA04A08CED4 /* LabReport.swift in Sources */,
+				DC808B78BCC9161AF5AEC2E0 /* Recommendation.swift in Sources */,
+				674466D04CB33A141EF0B714 /* SanctuaryModels.swift in Sources */,
+				A213734F8A9BB8A28275A164 /* SharedStreak.swift in Sources */,
+				249B83FCAD6AB72AF26D8D55 /* UserProfile.swift in Sources */,
+				DB7BF569C07A0A9745F39E6D /* WellnessExtras.swift in Sources */,
+				37275DE166072D832CFA0A87 /* AppStore.swift in Sources */,
+				2A11DD42D636806B379C0745 /* HealthKitManager.swift in Sources */,
+				C9D0BA6E9C62A950D1ED0F1D /* LabAIService.swift in Sources */,
+				740DB63FB6A1402DF2EF25F0 /* LabParser.swift in Sources */,
+				C5F710591E8548D419A6C646 /* SoulBackend.swift in Sources */,
+				1C8931AB01CF691DCA4623A6 /* SoulLinks.swift in Sources */,
+				B5799FD12D4C4B3CF6CF0B27 /* StreakEngine.swift in Sources */,
+				016D0D2E67E4CF0DDB3C0900 /* SupabaseConfig.swift in Sources */,
+				E3D2CF77F1DF53BF6337ED7A /* SoulspringApp.swift in Sources */,
+				EA2C77835DE08916C220E23F /* RachaFlame.swift in Sources */,
+				3FA4E5D40B197819127FE0F5 /* SoulComponents.swift in Sources */,
+				B681C824A73D9FE98AC703E3 /* SoulTheme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		86E136071AF750920A8D5DC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)");
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DD1E510DFD8486979D201345 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B9C3D9F7698D5A4A74B8CD8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Soulspring/SupportingFiles/Soulspring.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.soulspring.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1";
+			};
+			name = Debug;
+		};
+		9C26231157F80DE209CE8B3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Soulspring/SupportingFiles/Soulspring.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.soulspring.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60AA9EB27EE681A82A9AEC1A /* Build configuration list for PBXProject "Soulspring" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86E136071AF750920A8D5DC1 /* Debug */,
+				DD1E510DFD8486979D201345 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5B252E79B5260B7FAA19738 /* Build configuration list for PBXNativeTarget "Soulspring" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C3D9F7698D5A4A74B8CD8E /* Debug */,
+				9C26231157F80DE209CE8B3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+}

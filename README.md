@@ -143,13 +143,35 @@ todo corra sin cuenta.
 
 ## Cómo correrlo en Xcode
 
-1. Abre Xcode → *File → New → Project → App* (SwiftUI, iOS 17+).
-2. Nombra el proyecto **Soulspring** y borra los archivos generados.
-3. Arrastra la carpeta `Soulspring/` (este repo) al navegador del proyecto.
-4. Reemplaza el `Info.plist` generado por el de `SupportingFiles/`.
-5. En *Signing & Capabilities*, agrega **HealthKit**; Xcode usará el
-   `Soulspring.entitlements` incluido.
-6. Selecciona un simulador iPhone 15 (o device) y corre.
+El proyecto ya incluye `Soulspring.xcodeproj` listo para abrir:
 
-En el primer arranque verás la pantalla de login. Puedes presionar
+```bash
+git clone <repo>
+cd Soulspring
+open Soulspring.xcodeproj
+```
+
+En Xcode:
+
+1. Selecciona el target **Soulspring** → *Signing & Capabilities*.
+2. Elige tu **Development Team** (obligatorio para HealthKit). El bundle id
+   `mx.soulspring.app` se puede cambiar si ya está tomado.
+3. Selecciona un simulador (iPhone 15 Pro o superior) y corre con ⌘R.
+
+En el primer arranque verás la pantalla de login. Presiona
 **Ver sin cuenta** para recorrer todas las secciones con datos de ejemplo.
+
+### Regenerar el proyecto
+
+El `Soulspring.xcodeproj` se genera a partir del árbol de archivos y puede
+regenerarse cuando agregues o renombres archivos:
+
+```bash
+# Opción A — script sin dependencias
+python3 scripts/generate_xcodeproj.py
+
+# Opción B — XcodeGen (brew install xcodegen)
+xcodegen generate
+```
+
+Ambos caminos producen un proyecto equivalente. Usa el que prefieras.
