@@ -15,8 +15,8 @@ import Foundation
 ///
 /// Use Row Level Security with `user_id = auth.uid()` on every table.
 enum SupabaseConfig {
-    static let url: String      = "https://YOUR-PROJECT.supabase.co"
-    static let anonKey: String  = "YOUR-ANON-KEY"
+    static let url: String      = "https://wbemkfaacbainvxgtgte.supabase.co"
+    static let anonKey: String  = "sb_publishable_ufF49hUO-egjk6BQvZmhig_z6dgPn0k"
 
     static var isConfigured: Bool {
         !url.contains("YOUR-PROJECT") && !anonKey.contains("YOUR-ANON-KEY")

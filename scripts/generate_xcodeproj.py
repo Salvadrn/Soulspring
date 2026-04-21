@@ -33,16 +33,24 @@ def uid(tag: str) -> str:
 # ----- Collect files -------------------------------------------------------
 
 def collect():
-    swift_files, plist_files = [], []
+    swift_files, plist_files, asset_catalogs = [], [], []
+    # Asset catalogs are folders (treated as a single resource by Xcode).
+    for path in sorted(ROOT.rglob("*.xcassets")):
+        if path.is_dir():
+            asset_catalogs.append(path.relative_to(REPO))
     for path in sorted(ROOT.rglob("*")):
         if path.is_dir():
+            continue
+        # Skip anything inside an .xcassets bundle — the catalog itself is
+        # the resource, not the inner files.
+        if any(part.endswith(".xcassets") for part in path.parts):
             continue
         rel = path.relative_to(REPO)
         if path.suffix == ".swift":
             swift_files.append(rel)
         elif path.suffix in (".plist", ".entitlements"):
             plist_files.append(rel)
-    return swift_files, plist_files
+    return swift_files, plist_files, asset_catalogs
 
 # ----- Group tree ----------------------------------------------------------
 
@@ -72,11 +80,12 @@ def file_type(p: Path) -> str:
     if p.suffix == ".swift":        return "sourcecode.swift"
     if p.suffix == ".plist":        return "text.plist.xml"
     if p.suffix == ".entitlements": return "text.plist.entitlements"
+    if p.suffix == ".xcassets":     return "folder.assetcatalog"
     return "text"
 
 def generate():
-    swift, plists = collect()
-    all_files = swift + plists
+    swift, plists, assets = collect()
+    all_files = swift + plists + assets
     tree = build_tree(all_files)
 
     # IDs
@@ -100,11 +109,14 @@ def generate():
 
     # Per-file IDs
     file_refs = {}     # path -> file ref id
-    build_files = {}   # path -> build file id (only for swift)
+    build_files = {}   # path -> build file id (sources)
+    asset_build_files = {}  # path -> build file id (resources)
     for f in all_files:
         file_refs[f] = uid(f"fref:{f}")
     for f in swift:
         build_files[f] = uid(f"bfile:{f}")
+    for f in assets:
+        asset_build_files[f] = uid(f"resfile:{f}")
 
     lines = []
     w = lines.append
@@ -124,6 +136,11 @@ def generate():
         fr = file_refs[f]
         name = f.name
         w(f"\t\t{bf} /* {name} in Sources */ = {{isa = PBXBuildFile; fileRef = {fr} /* {name} */; }};")
+    for f in assets:
+        bf = asset_build_files[f]
+        fr = file_refs[f]
+        name = f.name
+        w(f"\t\t{bf} /* {name} in Resources */ = {{isa = PBXBuildFile; fileRef = {fr} /* {name} */; }};")
     w(f"\t\t{bf_healthkit} /* HealthKit.framework in Frameworks */ = {{isa = PBXBuildFile; fileRef = {fr_healthkit} /* HealthKit.framework */; }};")
     w("/* End PBXBuildFile section */")
 
@@ -271,6 +288,8 @@ def generate():
     w("\t\t\tisa = PBXResourcesBuildPhase;")
     w("\t\t\tbuildActionMask = 2147483647;")
     w("\t\t\tfiles = (")
+    for f in assets:
+        w(f"\t\t\t\t{asset_build_files[f]} /* {f.name} in Resources */,")
     w("\t\t\t);")
     w("\t\t\trunOnlyForDeploymentPostprocessing = 0;")
     w("\t\t};")

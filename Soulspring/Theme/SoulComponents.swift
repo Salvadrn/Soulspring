@@ -146,6 +146,9 @@ struct SoulPrimaryButtonStyle: ButtonStyle {
             .opacity(configuration.isPressed ? 0.82 : 1)
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
             .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
+            .onChange(of: configuration.isPressed) { _, isPressed in
+                if isPressed { SoulHaptics.tap() }
+            }
     }
 }
 
@@ -164,6 +167,9 @@ struct SoulSecondaryButtonStyle: ButtonStyle {
                     .background(Capsule().fill(SoulTheme.Color.surface))
             )
             .opacity(configuration.isPressed ? 0.75 : 1)
+            .onChange(of: configuration.isPressed) { _, isPressed in
+                if isPressed { SoulHaptics.tap() }
+            }
     }
 }
 

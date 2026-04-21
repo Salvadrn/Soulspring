@@ -12,6 +12,9 @@ struct LoginView: View {
     @State private var password: String = ""
     @State private var isCreatingAccount: Bool = true
     @State private var isShowingEmailForm: Bool = false
+    @State private var isWorking: Bool = false
+    @State private var authError: String? = nil
+    @State private var infoMessage: String? = nil
 
     var body: some View {
         ZStack {
@@ -49,15 +52,11 @@ struct LoginView: View {
 
     private var heroBlock: some View {
         VStack(spacing: 18) {
-            // Small mark
-            ZStack {
-                Circle()
-                    .fill(SoulTheme.Color.primary.opacity(0.18))
-                    .frame(width: 74, height: 74)
-                Image(systemName: "leaf.fill")
-                    .font(.system(size: 32, weight: .bold))
-                    .foregroundStyle(SoulTheme.Color.primary)
-            }
+            Image("BrandLogo")
+                .resizable()
+                .renderingMode(.original)
+                .scaledToFit()
+                .frame(width: 140, height: 140)
 
             VStack(spacing: 8) {
                 Text("Soulspring")
@@ -65,12 +64,17 @@ struct LoginView: View {
                     .tracking(3)
                     .foregroundStyle(SoulTheme.Color.primary)
 
+                Text("Beyond Wellness")
+                    .font(.system(size: 36, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+
                 Text(isCreatingAccount
                      ? "Crea tu perfil y empieza\ntu camino hacia adentro."
                      : "Bienvenido de vuelta.\nRespira, ya llegaste.")
-                    .font(.system(size: 28, weight: .bold))
+                    .font(SoulTheme.Font.bodyText)
                     .multilineTextAlignment(.center)
-                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
                     .lineSpacing(2)
             }
         }
@@ -160,18 +164,39 @@ struct LoginView: View {
             field(placeholder: "hola@soulspring.mx", text: $email, kb: .emailAddress)
             field(placeholder: "contraseña", text: $password, secure: true)
 
+            if let info = infoMessage {
+                Text(info)
+                    .font(SoulTheme.Font.caption)
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 4)
+            }
+            if let err = authError {
+                Text(err)
+                    .font(SoulTheme.Font.caption)
+                    .foregroundStyle(SoulTheme.Color.heart)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 4)
+            }
+
             Button {
-                let trimmed = email.trimmingCharacters(in: .whitespaces)
-                let finalEmail = trimmed.isEmpty ? "hola@soulspring.mx" : trimmed
-                withAnimation { store.signIn(email: finalEmail) }
+                Task { await submitEmailAuth() }
             } label: {
-                Text(isCreatingAccount ? "Comenzar" : "Entrar")
+                HStack(spacing: 8) {
+                    if isWorking { ProgressView().tint(SoulTheme.Color.onAccent) }
+                    Text(isCreatingAccount ? "Comenzar" : "Entrar")
+                }
             }
             .buttonStyle(SoulPrimaryButtonStyle())
+            .disabled(isWorking || email.isEmpty || password.isEmpty)
             .padding(.top, 4)
 
             Button {
-                withAnimation { isShowingEmailForm = false }
+                withAnimation {
+                    isShowingEmailForm = false
+                    authError = nil
+                    infoMessage = nil
+                }
             } label: {
                 Text("← Regresar")
                     .font(.system(size: 13, weight: .semibold))
@@ -179,6 +204,33 @@ struct LoginView: View {
             }
             .padding(.top, 4)
         }
+    }
+
+    private func submitEmailAuth() async {
+        let trimmed = email.trimmingCharacters(in: .whitespaces)
+        guard !trimmed.isEmpty, !password.isEmpty else { return }
+        await MainActor.run {
+            isWorking = true
+            authError = nil
+            infoMessage = nil
+        }
+        do {
+            if isCreatingAccount {
+                try await store.signUpWithSupabase(email: trimmed, password: password)
+                await MainActor.run {
+                    if !store.auth.isAuthorized {
+                        infoMessage = "Te enviamos un correo para confirmar tu cuenta. Cuando lo confirmes, regresa e inicia sesión."
+                    }
+                }
+            } else {
+                try await store.signInWithSupabase(email: trimmed, password: password)
+            }
+        } catch {
+            await MainActor.run {
+                authError = error.localizedDescription
+            }
+        }
+        await MainActor.run { isWorking = false }
     }
 
     private func field(placeholder: String,

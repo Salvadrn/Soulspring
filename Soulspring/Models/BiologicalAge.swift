@@ -9,8 +9,20 @@ struct BioAgeInputs: Codable, Equatable {
     var alcohol: AlcoholLevel = .light
     var stress: StressLevel = .medium
     var vo2Max: Double? = nil          // ml/kg/min — optional (Apple Watch VO2)
-    var bmi: Double? = nil             // optional
+    var heightCm: Double? = nil
+    var weightKg: Double? = nil
+    var bmi: Double? = nil             // legacy/manual override; prefer heightCm + weightKg
     var lastUpdated: Date = Date()
+
+    /// Prefers BMI derived from height + weight; falls back to the stored
+    /// override.
+    var effectiveBMI: Double? {
+        if let h = heightCm, let w = weightKg, h > 0 {
+            let meters = h / 100
+            return w / (meters * meters)
+        }
+        return bmi
+    }
 
     enum AlcoholLevel: String, Codable, CaseIterable, Identifiable {
         case none     = "Nada"
@@ -218,9 +230,9 @@ enum BioAgeCalculator {
                 valueLabel: String(format: "%.0f ml/kg·min", vo2)))
         }
 
-        // BMI (optional)
+        // BMI (optional) — prefer derived from height + weight.
         needed += 1
-        if let bmi = inputs.bmi {
+        if let bmi = inputs.effectiveBMI {
             available += 1
             let delta: Double
             switch bmi {

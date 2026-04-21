@@ -254,13 +254,21 @@ struct HeartRateView: View {
                 }
                 .padding(.vertical, 8)
 
-                Button {
-                    withAnimation { isBreathing.toggle() }
-                } label: {
-                    Text(isBreathing ? "Terminar" : "Empezar práctica de 5 min")
+                if isBreathing {
+                    Button {
+                        withAnimation { isBreathing.toggle() }
+                    } label: {
+                        Text("Terminar")
+                    }
+                    .buttonStyle(SoulSecondaryButtonStyle())
+                } else {
+                    Button {
+                        withAnimation { isBreathing.toggle() }
+                    } label: {
+                        Text("Empezar práctica de 5 min")
+                    }
+                    .buttonStyle(SoulPrimaryButtonStyle())
                 }
-                .buttonStyle(isBreathing ? AnyButtonStyleAdapter(style: SoulSecondaryButtonStyle())
-                                         : AnyButtonStyleAdapter(style: SoulPrimaryButtonStyle()))
             }
         }
     }

@@ -57,7 +57,7 @@ struct DailyMenu: Codable, Equatable {
 /// A tile displayed in the Instagram-like grid that previews Soul Kitchen's
 /// feed. Uses local gradients + emojis while Instagram content isn't pulled
 /// through an API. When real photos are available, drop URLs into `photoURL`.
-struct InstagramTile: Identifiable, Hashable {
+struct InstagramTile: Identifiable {
     let id = UUID()
     let caption: String
     let emoji: String

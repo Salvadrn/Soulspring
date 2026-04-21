@@ -51,7 +51,9 @@
 		E3D2CF77F1DF53BF6337ED7A /* SoulspringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */; };
 		EA2C77835DE08916C220E23F /* RachaFlame.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7913B35613362057CB2A8 /* RachaFlame.swift */; };
 		3FA4E5D40B197819127FE0F5 /* SoulComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF41B177CC2211EAC1BBBCE /* SoulComponents.swift */; };
+		8165CBB6D5C1031BABD74424 /* SoulHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68083DAEF936F8964E3412AF /* SoulHaptics.swift */; };
 		B681C824A73D9FE98AC703E3 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D2866A6836E1B45738FF75 /* SoulTheme.swift */; };
+		6C4ED3249B9D88327D9B41CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3590C1237112C7670AC7AD5D /* Assets.xcassets */; };
 		3BFB75FF4F4C1476940752F3 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32073304AC31A933967C61E7 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,9 +103,11 @@
 		903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulspringApp.swift; sourceTree = "<group>"; };
 		ACA7913B35613362057CB2A8 /* RachaFlame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RachaFlame.swift; sourceTree = "<group>"; };
 		8EF41B177CC2211EAC1BBBCE /* SoulComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulComponents.swift; sourceTree = "<group>"; };
+		68083DAEF936F8964E3412AF /* SoulHaptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulHaptics.swift; sourceTree = "<group>"; };
 		B3D2866A6836E1B45738FF75 /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
 		5DA5E3218C9A49C88D267D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C8BEF1B3464864AA24FFB4B /* Soulspring.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Soulspring.entitlements; sourceTree = "<group>"; };
+		3590C1237112C7670AC7AD5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32073304AC31A933967C61E7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C13732C8E715C9BEE4FA51C9 /* Soulspring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -154,6 +158,7 @@
 				B421D7D611A4AF9DAC417B98 /* Shared */,
 				B6900194F4319481EBBB8E7F /* SupportingFiles */,
 				C6EA7C6CFE5FB98AD48CA229 /* Theme */,
+				3590C1237112C7670AC7AD5D /* Assets.xcassets */,
 				903E176C59F2D9B95FC678E4 /* SoulspringApp.swift */,
 			);
 			path = Soulspring;
@@ -298,6 +303,7 @@
 			children = (
 				ACA7913B35613362057CB2A8 /* RachaFlame.swift */,
 				8EF41B177CC2211EAC1BBBCE /* SoulComponents.swift */,
+				68083DAEF936F8964E3412AF /* SoulHaptics.swift */,
 				B3D2866A6836E1B45738FF75 /* SoulTheme.swift */,
 			);
 			path = Theme;
@@ -369,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C4ED3249B9D88327D9B41CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +431,7 @@
 				E3D2CF77F1DF53BF6337ED7A /* SoulspringApp.swift in Sources */,
 				EA2C77835DE08916C220E23F /* RachaFlame.swift in Sources */,
 				3FA4E5D40B197819127FE0F5 /* SoulComponents.swift in Sources */,
+				8165CBB6D5C1031BABD74424 /* SoulHaptics.swift in Sources */,
 				B681C824A73D9FE98AC703E3 /* SoulTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

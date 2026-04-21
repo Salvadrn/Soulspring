@@ -15,36 +15,36 @@ enum SoulTheme {
 
     enum Palette {
         // Cream canvas family (used as light background + as dark text)
-        static let cream      = Color(hex: 0xF4EDE1)
-        static let mist       = Color(hex: 0xFAF7F0)
-        static let sand       = Color(hex: 0xE8D9C4)
+        static let cream      = SwiftUI.Color(hex: 0xF4EDE1)
+        static let mist       = SwiftUI.Color(hex: 0xFAF7F0)
+        static let sand       = SwiftUI.Color(hex: 0xE8D9C4)
 
         // Ink canvas family (used as dark background + as light text)
-        static let ink        = Color(hex: 0x14171A)
-        static let inkSoft    = Color(hex: 0x1E2320)
-        static let inkRaised  = Color(hex: 0x2A2F2C)
-        static let inkBorder  = Color(hex: 0x343A35)
+        static let ink        = SwiftUI.Color(hex: 0x14171A)
+        static let inkSoft    = SwiftUI.Color(hex: 0x1E2320)
+        static let inkRaised  = SwiftUI.Color(hex: 0x2A2F2C)
+        static let inkBorder  = SwiftUI.Color(hex: 0x343A35)
 
         // Muted text tones
-        static let muted      = Color(hex: 0x8B9689)
-        static let whisper    = Color(hex: 0x5A665D)
-        static let earthDark  = Color(hex: 0x6B4F3B)
+        static let muted      = SwiftUI.Color(hex: 0x8B9689)
+        static let whisper    = SwiftUI.Color(hex: 0x5A665D)
+        static let earthDark  = SwiftUI.Color(hex: 0x6B4F3B)
 
         // Accent tones — work in both modes
-        static let moss       = Color(hex: 0x4F6B57)   // primary on light
-        static let mossBright = Color(hex: 0xA8C3A0)   // primary on dark
-        static let sage       = Color(hex: 0x8FA189)
-        static let leaf       = Color(hex: 0xB9C4A8)
-        static let terracotta = Color(hex: 0xC68863)
-        static let terracottaBright = Color(hex: 0xE89B70)
-        static let gold       = Color(hex: 0xC9A66B)
-        static let goldBright = Color(hex: 0xE5C27A)
-        static let heart      = Color(hex: 0xD87373)
-        static let sky        = Color(hex: 0x9FB4B8)
-        static let lilac      = Color(hex: 0xB8A3D4)
+        static let moss       = SwiftUI.Color(hex: 0x4F6B57)   // primary on light
+        static let mossBright = SwiftUI.Color(hex: 0xA8C3A0)   // primary on dark
+        static let sage       = SwiftUI.Color(hex: 0x8FA189)
+        static let leaf       = SwiftUI.Color(hex: 0xB9C4A8)
+        static let terracotta = SwiftUI.Color(hex: 0xC68863)
+        static let terracottaBright = SwiftUI.Color(hex: 0xE89B70)
+        static let gold       = SwiftUI.Color(hex: 0xC9A66B)
+        static let goldBright = SwiftUI.Color(hex: 0xE5C27A)
+        static let heart      = SwiftUI.Color(hex: 0xD87373)
+        static let sky        = SwiftUI.Color(hex: 0x9FB4B8)
+        static let lilac      = SwiftUI.Color(hex: 0xB8A3D4)
 
         // Used inside the flame shape
-        static let earth      = Color(hex: 0x8B7A67)
+        static let earth      = SwiftUI.Color(hex: 0x8B7A67)
     }
 
     // MARK: Adaptive semantic colors (auto-switch with system appearance)

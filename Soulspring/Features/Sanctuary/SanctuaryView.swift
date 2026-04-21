@@ -215,7 +215,7 @@ struct FoodView: View {
                         title: "Soul Kitchen",
                         subtitle: "Síguenos en \(SoulLinks.foodHandle)",
                         icon: "camera.fill",
-                        gradient: SoulTheme.Gradient.sunset)
+                        tint: SoulTheme.Palette.terracotta)
                 }
 
                 ForEach(Meal.catalog) { meal in

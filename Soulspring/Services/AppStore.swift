@@ -11,7 +11,7 @@ final class AppStore: ObservableObject {
 
     // MARK: Auth state
 
-    enum AuthState: Equatable {
+    enum AuthState: Equatable, Codable {
         case signedOut
         case guest              // "Ver sin cuenta" — demo data
         case signedIn(email: String)
@@ -29,7 +29,9 @@ final class AppStore: ObservableObject {
         }
     }
 
-    @Published var auth: AuthState = .signedOut
+    @Published var auth: AuthState {
+        didSet { persist(auth, key: Keys.auth) }
+    }
 
     // MARK: Published state
 
@@ -118,6 +120,7 @@ final class AppStore: ObservableObject {
         self.transactions = AppStore.load([FinanceTransaction].self, key: Keys.finance)
             ?? FinanceReport.sampleTransactions()
         self.budget = AppStore.load(MonthlyBudget.self, key: Keys.budget) ?? MonthlyBudget()
+        self.auth = AppStore.load(AuthState.self, key: Keys.auth) ?? .signedOut
     }
 
     // Reset water log if the stored day is older than today.
@@ -132,8 +135,36 @@ final class AppStore: ObservableObject {
 
     // MARK: Auth actions
 
+    /// Backend handle. `SoulBackendResolver` returns `SupabaseBackend` when
+    /// `SupabaseConfig.isConfigured` is true, otherwise the local stub.
+    private let backend: SoulBackend = SoulBackendResolver.make()
+
+    /// Local-only sign-in shortcut (kept for backwards compatibility / guest).
     func signIn(email: String) {
         auth = .signedIn(email: email)
+    }
+
+    /// Real sign-in against Supabase GoTrue. Throws on bad credentials.
+    func signInWithSupabase(email: String, password: String) async throws {
+        let session = try await backend.signIn(email: email, password: password)
+        await MainActor.run {
+            self.auth = .signedIn(email: session.email)
+            self.profile.email = session.email
+        }
+    }
+
+    /// Sign-up against Supabase. Note: if email confirmation is enabled in
+    /// the Supabase dashboard, the user will need to confirm before they can
+    /// sign in. We optimistically log them in if the response contains a
+    /// session token.
+    func signUpWithSupabase(email: String, password: String) async throws {
+        let session = try await backend.signUp(email: email, password: password)
+        await MainActor.run {
+            if !session.accessToken.isEmpty {
+                self.auth = .signedIn(email: session.email.isEmpty ? email : session.email)
+            }
+            self.profile.email = email
+        }
     }
 
     func continueAsGuest() {
@@ -228,6 +259,7 @@ final class AppStore: ObservableObject {
         static let labs      = "soul.labs"
         static let finance   = "soul.finance"
         static let budget    = "soul.budget"
+        static let auth      = "soul.auth"
     }
 
     // MARK: Finance actions
