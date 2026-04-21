@@ -1,31 +1,87 @@
 import Foundation
 
-/// Wraps a call to Claude (or any LLM) to get a human-friendly summary of a
-/// lab report. Runs either:
-///   • **Live**, when `AIConfig.anthropicAPIKey` is filled in — hits the
-///     Anthropic Messages API directly.
-///   • **Local stub**, otherwise — produces a deterministic summary from
-///     the parsed biomarkers so the UI still renders something useful.
+/// Wraps a call to Claude to get a human-friendly summary of a lab report.
 ///
-/// Keep the API key **server-side** for production. The stub here is fine
-/// for development and demos.
+/// Three backends, in order of preference:
+///   1. **Supabase Edge Function** (recommended for production). The app
+///      calls your edge function `analyze-lab`, which holds the real
+///      Anthropic key server-side. Set `AIConfig.edgeFunctionURL` to enable.
+///   2. **Direct Anthropic** — only for local dev. Bundling the key in a
+///      shipped iOS app makes it extractable, so don't do this in prod.
+///   3. **Local stub** — deterministic summary from parsed biomarkers,
+///      ensures the UI always renders something useful.
+///
+/// There is NO way to reach the Claude CLI from a mobile app. The CLI is a
+/// developer tool that runs on a workstation; the network path the app
+/// speaks is always the HTTPS Messages API (directly or via your proxy).
 enum AIConfig {
-    static var anthropicAPIKey: String = ""   // fill in to enable live calls
+    /// Preferred path: your Supabase Edge Function URL.
+    /// Example: "https://YOUR-PROJECT.functions.supabase.co/analyze-lab"
+    static var edgeFunctionURL: String = ""
+
+    /// Dev only. Never ship with this set.
+    static var anthropicAPIKey: String = ""
+
     static let model: String = "claude-opus-4-7"
 }
 
 enum LabAIService {
 
     static func summarize(report: LabReport) async -> String {
-        if !AIConfig.anthropicAPIKey.isEmpty {
-            if let live = try? await callAnthropic(for: report) {
-                return live
-            }
+        if !AIConfig.edgeFunctionURL.isEmpty,
+           let live = try? await callEdgeFunction(for: report) {
+            return live
+        }
+        if !AIConfig.anthropicAPIKey.isEmpty,
+           let live = try? await callAnthropic(for: report) {
+            return live
         }
         return localSummary(for: report)
     }
 
-    // MARK: - Live Anthropic call
+    // MARK: - Supabase Edge Function (preferred)
+
+    /// POSTs `{report: {...}}` to the edge function; expects `{summary: "..."}`.
+    private static func callEdgeFunction(for report: LabReport) async throws -> String {
+        guard let url = URL(string: AIConfig.edgeFunctionURL) else {
+            throw URLError(.badURL)
+        }
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if SupabaseConfig.isConfigured {
+            req.setValue("Bearer \(SupabaseConfig.anonKey)",
+                         forHTTPHeaderField: "Authorization")
+            req.setValue(SupabaseConfig.anonKey,
+                         forHTTPHeaderField: "apikey")
+        }
+
+        let payload: [String: Any] = [
+            "title":       report.title,
+            "lab":         report.lab,
+            "reportedAt":  ISO8601DateFormatter().string(from: report.reportedAt),
+            "markers":     report.markers.map { marker -> [String: Any] in
+                [
+                    "name":  marker.name,
+                    "value": marker.value,
+                    "unit":  marker.unit,
+                    "status": marker.status.rawValue,
+                    "refLow":  marker.referenceLow as Any,
+                    "refHigh": marker.referenceHigh as Any,
+                ]
+            },
+            "rawText": report.rawText
+        ]
+        req.httpBody = try JSONSerialization.data(withJSONObject: payload)
+
+        let (data, _) = try await URLSession.shared.data(for: req)
+        let decoded = try JSONDecoder().decode(EdgeResponse.self, from: data)
+        return decoded.summary
+    }
+
+    private struct EdgeResponse: Decodable { let summary: String }
+
+    // MARK: - Direct Anthropic (dev only)
 
     private static func callAnthropic(for report: LabReport) async throws -> String {
         let url = URL(string: "https://api.anthropic.com/v1/messages")!
