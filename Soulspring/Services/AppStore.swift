@@ -174,14 +174,17 @@ final class AppStore: ObservableObject {
     /// Sign-up against Supabase. Note: if email confirmation is enabled in
     /// the Supabase dashboard, the user will need to confirm before they can
     /// sign in. We optimistically log them in if the response contains a
-    /// session token.
+    /// session token. New accounts always go through onboarding.
     func signUpWithSupabase(email: String, password: String) async throws {
         let session = try await backend.signUp(email: email, password: password)
         await MainActor.run {
+            // Fresh account → reset profile so the cuestionario fires.
+            var p = UserProfile()
+            p.email = email
+            self.profile = p
             if !session.accessToken.isEmpty {
                 self.auth = .signedIn(email: session.email.isEmpty ? email : session.email)
             }
-            self.profile.email = email
         }
     }
 

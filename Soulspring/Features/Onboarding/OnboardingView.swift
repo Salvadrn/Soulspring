@@ -12,7 +12,7 @@ struct OnboardingView: View {
 
     var body: some View {
         ZStack {
-            SoulTheme.Gradient.dawn.ignoresSafeArea()
+            SoulTheme.Color.background.ignoresSafeArea()
 
             VStack(spacing: 0) {
                 header
@@ -105,24 +105,26 @@ struct OnboardingView: View {
 
 private struct WelcomeStep: View {
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(alignment: .leading, spacing: 20) {
             Spacer()
-            Image("BrandLogo")
-                .resizable()
-                .renderingMode(.original)
-                .scaledToFit()
-                .frame(width: 160, height: 160)
+            HStack {
+                Image("BrandLogo")
+                    .resizable()
+                    .renderingMode(.original)
+                    .scaledToFit()
+                    .frame(width: 130, height: 130)
+                Spacer()
+            }
 
             Text("Respira.\nYa llegaste.")
                 .font(SoulTheme.Font.hero)
-                .multilineTextAlignment(.center)
+                .multilineTextAlignment(.leading)
                 .foregroundStyle(SoulTheme.Color.textPrimary)
 
             Text("Soulspring es tu compañero diario para cultivar hábitos saludables y conectar con tu cuerpo.")
                 .font(SoulTheme.Font.bodyText)
                 .foregroundStyle(SoulTheme.Color.textSecondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, SoulTheme.Spacing.lg)
+                .multilineTextAlignment(.leading)
 
             Spacer()
         }
@@ -481,12 +483,13 @@ private struct SelectRow: View {
                                      : SoulTheme.Color.textPrimary)
                 Spacer()
                 if isSelected {
-                    Image(systemName: "checkmark")
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 18, weight: .bold))
                         .foregroundStyle(SoulTheme.Color.onAccent)
                 }
             }
             .padding(.horizontal, 18)
-            .padding(.vertical, 14)
+            .padding(.vertical, 16)
             .background(
                 RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
                     .fill(isSelected
@@ -495,8 +498,13 @@ private struct SelectRow: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                    .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+                    .stroke(isSelected
+                            ? SoulTheme.Color.primary
+                            : SoulTheme.Palette.earth.opacity(0.25),
+                            lineWidth: isSelected ? 0 : 1)
             )
+            .shadow(color: .black.opacity(isSelected ? 0.08 : 0.04),
+                    radius: 6, y: 2)
         }
         .buttonStyle(.plain)
         .hapticOnTap()
@@ -511,18 +519,24 @@ private struct ToggleChip: View {
     var body: some View {
         Button(action: action) {
             Text(label)
-                .font(SoulTheme.Font.body(14, weight: .semibold))
+                .font(SoulTheme.Font.body(15, weight: .semibold))
                 .foregroundStyle(isSelected
                                  ? SoulTheme.Color.onAccent
                                  : SoulTheme.Color.textPrimary)
-                .padding(.horizontal, 18)
-                .padding(.vertical, 10)
+                .padding(.horizontal, 22)
+                .padding(.vertical, 12)
                 .background(
                     Capsule().fill(isSelected
                                    ? AnyShapeStyle(SoulTheme.Color.primary)
                                    : AnyShapeStyle(SoulTheme.Color.surface))
                 )
-                .overlay(Capsule().stroke(SoulTheme.Color.divider, lineWidth: 0.5))
+                .overlay(
+                    Capsule().stroke(isSelected
+                                     ? SoulTheme.Color.primary
+                                     : SoulTheme.Palette.earth.opacity(0.25),
+                                     lineWidth: isSelected ? 0 : 1)
+                )
+                .shadow(color: .black.opacity(0.05), radius: 5, y: 2)
         }
         .buttonStyle(.plain)
         .hapticOnTap()
@@ -566,8 +580,12 @@ private struct InterestCard: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                    .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+                    .stroke(isSelected
+                            ? SoulTheme.Color.primary
+                            : SoulTheme.Palette.earth.opacity(0.25),
+                            lineWidth: isSelected ? 0 : 1)
             )
+            .shadow(color: .black.opacity(0.06), radius: 8, y: 3)
         }
         .buttonStyle(.plain)
         .hapticOnTap()
@@ -606,8 +624,9 @@ private struct LabeledField: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                    .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+                    .stroke(SoulTheme.Palette.earth.opacity(0.25), lineWidth: 1)
             )
+            .shadow(color: .black.opacity(0.04), radius: 6, y: 2)
         }
     }
 }
@@ -636,8 +655,9 @@ private struct NumberField: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                    .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+                    .stroke(SoulTheme.Palette.earth.opacity(0.25), lineWidth: 1)
             )
+            .shadow(color: .black.opacity(0.04), radius: 6, y: 2)
         }
     }
 }
