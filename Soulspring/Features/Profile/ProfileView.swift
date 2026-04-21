@@ -219,13 +219,10 @@ struct ProfileView: View {
                           title: "Conectar Apple Health",
                           subtitle: health.isAuthorized ? "Sincronizado" : "Permitir acceso")
             }
-            Button {
-                store.isChef.toggle()
-            } label: {
-                actionRow(icon: store.isChef ? "fork.knife.circle.fill" : "fork.knife.circle",
-                          title: store.isChef ? "Modo Chef activo" : "Activar Modo Chef",
-                          subtitle: store.isChef ? "Puedes editar el Menú del día"
-                                                 : "Solo para el equipo de Soul Kitchen",
+            if store.isChef {
+                actionRow(icon: "fork.knife.circle.fill",
+                          title: "Modo Chef activo",
+                          subtitle: "Puedes editar el Menú del día",
                           tint: SoulTheme.Palette.terracotta)
             }
             Button {

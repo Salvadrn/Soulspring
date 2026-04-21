@@ -1,13 +1,14 @@
 import SwiftUI
 
 /// Multi-step "Formulario que te lleva a tus intereses de salud".
-/// Captures identity, activity level, selected interests, intention and
-/// daily racha target. When finished it marks the profile as onboarded.
+/// Captures everything Soulspring needs to personalize the experience and
+/// compute biological age from day one: identity, contact, emergency contact,
+/// body, lifestyle, interests and intention.
 struct OnboardingView: View {
     @EnvironmentObject private var store: AppStore
     @State private var step: Int = 0
 
-    private let totalSteps = 5
+    private let totalSteps = 7
 
     var body: some View {
         ZStack {
@@ -20,10 +21,12 @@ struct OnboardingView: View {
 
                 TabView(selection: $step) {
                     WelcomeStep().tag(0)
-                    NameStep().tag(1)
-                    ActivityStep().tag(2)
-                    InterestsStep().tag(3)
-                    GoalStep().tag(4)
+                    IdentityStep().tag(1)
+                    EmergencyStep().tag(2)
+                    BodyStep().tag(3)
+                    LifestyleStep().tag(4)
+                    InterestsStep().tag(5)
+                    GoalStep().tag(6)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.easeInOut, value: step)
@@ -92,27 +95,23 @@ struct OnboardingView: View {
     private var canAdvance: Bool {
         switch step {
         case 1: return !store.profile.name.trimmingCharacters(in: .whitespaces).isEmpty
-        case 3: return !store.profile.interests.isEmpty
+        case 5: return !store.profile.interests.isEmpty
         default: return true
         }
     }
 }
 
-// MARK: - Step 1 · Welcome
+// MARK: - Step 0 · Welcome
 
 private struct WelcomeStep: View {
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
-            ZStack {
-                Circle()
-                    .fill(SoulTheme.Gradient.forest)
-                    .frame(width: 140, height: 140)
-                    .shadow(color: SoulTheme.Palette.moss.opacity(0.3), radius: 24, y: 14)
-                Image(systemName: "leaf.fill")
-                    .font(.system(size: 54))
-                    .foregroundStyle(SoulTheme.Color.backgroundWarm)
-            }
+            Image("BrandLogo")
+                .resizable()
+                .renderingMode(.original)
+                .scaledToFit()
+                .frame(width: 160, height: 160)
 
             Text("Respira.\nYa llegaste.")
                 .font(SoulTheme.Font.hero)
@@ -131,86 +130,233 @@ private struct WelcomeStep: View {
     }
 }
 
-// MARK: - Step 2 · Name
+// MARK: - Step 1 · Identity (name, age, email, phone)
 
-private struct NameStep: View {
+private struct IdentityStep: View {
     @EnvironmentObject private var store: AppStore
 
     var body: some View {
-        VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
-            Spacer(minLength: 20)
-            SoulSectionHeader(
-                eyebrow: "Para conocerte",
-                title: "¿Cómo te llamas?",
-                subtitle: "Personalizamos tu experiencia desde el primer día."
-            )
-
-            VStack(alignment: .leading, spacing: 6) {
-                SoulEyebrow(text: "Tu nombre")
-                TextField("Ej. Ana", text: Binding(
-                    get: { store.profile.name },
-                    set: { store.profile.name = $0 }
-                ))
-                .font(SoulTheme.Font.title)
-                .foregroundStyle(SoulTheme.Color.textPrimary)
-                .padding(.vertical, 14)
-                .padding(.horizontal, 16)
-                .background(
-                    RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                        .fill(SoulTheme.Color.surface)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
+                SoulSectionHeader(
+                    eyebrow: "Para conocerte",
+                    title: "Cuéntanos de ti",
+                    subtitle: "Personalizamos tu experiencia desde el primer día."
                 )
-            }
 
-            SoulSectionHeader(
-                eyebrow: "Tu etapa",
-                title: "¿Cuál es tu rango de edad?",
-                subtitle: nil
-            )
+                LabeledField(label: "Tu nombre", placeholder: "Ej. Ana",
+                             text: bind(\.name))
 
-            VStack(spacing: 10) {
-                ForEach(AgeBracket.allCases) { bracket in
-                    SelectRow(
-                        title: bracket.rawValue,
-                        isSelected: store.profile.age == bracket
-                    ) { store.profile.age = bracket }
+                VStack(alignment: .leading, spacing: 8) {
+                    SoulEyebrow(text: "Tu rango de edad")
+                    VStack(spacing: 8) {
+                        ForEach(AgeBracket.allCases) { bracket in
+                            SelectRow(
+                                title: bracket.rawValue,
+                                isSelected: store.profile.age == bracket
+                            ) { store.profile.age = bracket }
+                        }
+                    }
                 }
-            }
 
-            Spacer()
+                LabeledField(label: "Correo de contacto",
+                             placeholder: "hola@soulspring.mx",
+                             text: bind(\.email),
+                             keyboard: .emailAddress)
+
+                LabeledField(label: "Teléfono",
+                             placeholder: "+52 ...",
+                             text: bind(\.phone),
+                             keyboard: .phonePad)
+            }
+            .padding(.horizontal, SoulTheme.Spacing.lg)
+            .padding(.bottom, 40)
         }
-        .padding(.horizontal, SoulTheme.Spacing.lg)
+    }
+
+    private func bind(_ keyPath: WritableKeyPath<UserProfile, String>) -> Binding<String> {
+        Binding(
+            get: { store.profile[keyPath: keyPath] },
+            set: { store.profile[keyPath: keyPath] = $0 }
+        )
     }
 }
 
-// MARK: - Step 3 · Activity
+// MARK: - Step 2 · Emergency contact
 
-private struct ActivityStep: View {
+private struct EmergencyStep: View {
     @EnvironmentObject private var store: AppStore
 
     var body: some View {
-        VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
-            Spacer(minLength: 20)
-            SoulSectionHeader(
-                eyebrow: "Tu ritmo",
-                title: "¿Qué tan activa es tu vida?",
-                subtitle: "Ajustamos recomendaciones e intensidades a tu día a día."
-            )
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
+                SoulSectionHeader(
+                    eyebrow: "Por si acaso",
+                    title: "Contacto de emergencia",
+                    subtitle: "Solo se usa si te necesitamos cuidar. Puedes editarlo después."
+                )
 
-            VStack(spacing: 10) {
-                ForEach(ActivityLevel.allCases) { level in
-                    SelectRow(
-                        title: level.rawValue,
-                        isSelected: store.profile.activity == level
-                    ) { store.profile.activity = level }
-                }
+                LabeledField(label: "Nombre",
+                             placeholder: "Ej. Mamá",
+                             text: bind(\.emergencyContactName))
+
+                LabeledField(label: "Teléfono",
+                             placeholder: "+52 ...",
+                             text: bind(\.emergencyContactPhone),
+                             keyboard: .phonePad)
+
+                LabeledField(label: "Alergias o consideraciones",
+                             placeholder: "Ej. mariscos, polen, ninguna",
+                             text: bind(\.allergies),
+                             multiline: true)
             }
-            Spacer()
+            .padding(.horizontal, SoulTheme.Spacing.lg)
+            .padding(.bottom, 40)
         }
-        .padding(.horizontal, SoulTheme.Spacing.lg)
+    }
+
+    private func bind(_ keyPath: WritableKeyPath<UserProfile, String>) -> Binding<String> {
+        Binding(
+            get: { store.profile[keyPath: keyPath] },
+            set: { store.profile[keyPath: keyPath] = $0 }
+        )
     }
 }
 
-// MARK: - Step 4 · Interests
+// MARK: - Step 3 · Body & Activity (height, weight, activity level)
+
+private struct BodyStep: View {
+    @EnvironmentObject private var store: AppStore
+    @State private var heightText: String = ""
+    @State private var weightText: String = ""
+
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
+                SoulSectionHeader(
+                    eyebrow: "Tu cuerpo",
+                    title: "Para calcular tu edad biológica",
+                    subtitle: "Estos datos alimentan el motor de BioAge. Opcionales pero recomendados."
+                )
+
+                HStack(spacing: 12) {
+                    NumberField(label: "Estatura", suffix: "cm", text: $heightText)
+                        .onChange(of: heightText) { _, new in
+                            store.bioAgeInputs.heightCm = Double(new.replacingOccurrences(of: ",", with: "."))
+                        }
+                    NumberField(label: "Peso", suffix: "kg", text: $weightText)
+                        .onChange(of: weightText) { _, new in
+                            store.bioAgeInputs.weightKg = Double(new.replacingOccurrences(of: ",", with: "."))
+                        }
+                }
+
+                if let bmi = store.bioAgeInputs.effectiveBMI {
+                    SoulCard(padding: 14) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                SoulEyebrow(text: "IMC calculado")
+                                Text(String(format: "%.1f", bmi))
+                                    .font(SoulTheme.Font.metric)
+                                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                            }
+                            Spacer()
+                            Text(bmi < 18.5 ? "Bajo"
+                                 : bmi < 25 ? "Saludable"
+                                 : bmi < 30 ? "Sobrepeso" : "Obesidad")
+                                .font(SoulTheme.Font.caption)
+                                .foregroundStyle(SoulTheme.Color.textSecondary)
+                        }
+                    }
+                }
+
+                SoulSectionHeader(
+                    eyebrow: "Tu ritmo",
+                    title: "¿Qué tan activa es tu vida?",
+                    subtitle: nil
+                )
+
+                VStack(spacing: 8) {
+                    ForEach(ActivityLevel.allCases) { level in
+                        SelectRow(
+                            title: level.rawValue,
+                            isSelected: store.profile.activity == level
+                        ) { store.profile.activity = level }
+                    }
+                }
+            }
+            .padding(.horizontal, SoulTheme.Spacing.lg)
+            .padding(.bottom, 40)
+        }
+        .onAppear {
+            if let h = store.bioAgeInputs.heightCm, heightText.isEmpty {
+                heightText = String(format: "%.0f", h)
+            }
+            if let w = store.bioAgeInputs.weightKg, weightText.isEmpty {
+                weightText = String(format: "%.0f", w)
+            }
+        }
+    }
+}
+
+// MARK: - Step 4 · Lifestyle (smokes, alcohol, stress)
+
+private struct LifestyleStep: View {
+    @EnvironmentObject private var store: AppStore
+
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
+                SoulSectionHeader(
+                    eyebrow: "Tu estilo",
+                    title: "Hábitos de vida",
+                    subtitle: "Honesto > perfecto. Esto solo lo ves tú."
+                )
+
+                VStack(alignment: .leading, spacing: 8) {
+                    SoulEyebrow(text: "¿Fumas?")
+                    HStack(spacing: 8) {
+                        ToggleChip(label: "No fumo",
+                                   isSelected: !store.bioAgeInputs.smokes) {
+                            store.bioAgeInputs.smokes = false
+                        }
+                        ToggleChip(label: "Sí",
+                                   isSelected: store.bioAgeInputs.smokes) {
+                            store.bioAgeInputs.smokes = true
+                        }
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    SoulEyebrow(text: "Alcohol")
+                    VStack(spacing: 8) {
+                        ForEach(BioAgeInputs.AlcoholLevel.allCases) { level in
+                            SelectRow(
+                                title: level.rawValue,
+                                isSelected: store.bioAgeInputs.alcohol == level
+                            ) { store.bioAgeInputs.alcohol = level }
+                        }
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    SoulEyebrow(text: "Nivel de estrés percibido")
+                    VStack(spacing: 8) {
+                        ForEach(BioAgeInputs.StressLevel.allCases) { level in
+                            SelectRow(
+                                title: level.rawValue,
+                                isSelected: store.bioAgeInputs.stress == level
+                            ) { store.bioAgeInputs.stress = level }
+                        }
+                    }
+                }
+            }
+            .padding(.horizontal, SoulTheme.Spacing.lg)
+            .padding(.bottom, 40)
+        }
+    }
+}
+
+// MARK: - Step 5 · Interests
 
 private struct InterestsStep: View {
     @EnvironmentObject private var store: AppStore
@@ -249,72 +395,72 @@ private struct InterestsStep: View {
     }
 }
 
-// MARK: - Step 5 · Goal + racha
+// MARK: - Step 6 · Goal + racha
 
 private struct GoalStep: View {
     @EnvironmentObject private var store: AppStore
 
     var body: some View {
-        VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
-            Spacer(minLength: 10)
-            SoulSectionHeader(
-                eyebrow: "Tu intención",
-                title: "¿Para qué estás aquí?",
-                subtitle: "Una frase clara: a qué te comprometes estos próximos 30 días."
-            )
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
+                SoulSectionHeader(
+                    eyebrow: "Tu intención",
+                    title: "¿Para qué estás aquí?",
+                    subtitle: "Una frase clara: a qué te comprometes estos próximos 30 días."
+                )
 
-            TextField("Ej. Dormir mejor y bajar mi ritmo cardíaco en reposo.",
-                      text: Binding(
-                        get: { store.profile.goal },
-                        set: { store.profile.goal = $0 }
-                      ),
-                      axis: .vertical)
-            .font(SoulTheme.Font.bodyText)
-            .foregroundStyle(SoulTheme.Color.textPrimary)
-            .lineLimit(3, reservesSpace: true)
-            .padding(14)
-            .background(
-                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                    .fill(SoulTheme.Color.surface)
-            )
+                TextField("Ej. Dormir mejor y bajar mi ritmo cardíaco en reposo.",
+                          text: Binding(
+                            get: { store.profile.goal },
+                            set: { store.profile.goal = $0 }
+                          ),
+                          axis: .vertical)
+                .font(SoulTheme.Font.bodyText)
+                .foregroundStyle(SoulTheme.Color.textPrimary)
+                .lineLimit(3, reservesSpace: true)
+                .padding(14)
+                .background(
+                    RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                        .fill(SoulTheme.Color.surface)
+                )
 
-            SoulSectionHeader(
-                eyebrow: "Tu racha",
-                title: "Meta diaria",
-                subtitle: "Cuántos hábitos debes cumplir cada día para mantener tu racha viva."
-            )
+                SoulSectionHeader(
+                    eyebrow: "Tu racha",
+                    title: "Meta diaria",
+                    subtitle: "Cuántos hábitos debes cumplir cada día para mantener tu racha viva."
+                )
 
-            SoulCard {
-                VStack(spacing: 16) {
-                    HStack {
-                        Text("\(store.dailyGoalTarget)")
-                            .font(SoulTheme.Font.display(56, weight: .semibold))
-                            .foregroundStyle(SoulTheme.Color.primary)
-                        VStack(alignment: .leading) {
-                            Text("hábitos al día")
-                                .font(SoulTheme.Font.card)
-                                .foregroundStyle(SoulTheme.Color.textPrimary)
-                            Text("Cumple este mínimo todos los días para no romper tu racha.")
+                SoulCard {
+                    VStack(spacing: 16) {
+                        HStack {
+                            Text("\(store.dailyGoalTarget)")
+                                .font(SoulTheme.Font.display(56, weight: .semibold))
+                                .foregroundStyle(SoulTheme.Color.primary)
+                            VStack(alignment: .leading) {
+                                Text("hábitos al día")
+                                    .font(SoulTheme.Font.card)
+                                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                                Text("Cumple este mínimo todos los días para no romper tu racha.")
+                                    .font(SoulTheme.Font.caption)
+                                    .foregroundStyle(SoulTheme.Color.textSecondary)
+                            }
+                            Spacer()
+                        }
+
+                        Stepper(value: Binding(
+                            get: { store.dailyGoalTarget },
+                            set: { store.dailyGoalTarget = $0 }
+                        ), in: 1...8) {
+                            Text("Ajustar meta")
                                 .font(SoulTheme.Font.caption)
                                 .foregroundStyle(SoulTheme.Color.textSecondary)
                         }
-                        Spacer()
-                    }
-
-                    Stepper(value: Binding(
-                        get: { store.dailyGoalTarget },
-                        set: { store.dailyGoalTarget = $0 }
-                    ), in: 1...8) {
-                        Text("Ajustar meta")
-                            .font(SoulTheme.Font.caption)
-                            .foregroundStyle(SoulTheme.Color.textSecondary)
                     }
                 }
             }
-
-            Spacer()
+            .padding(.horizontal, SoulTheme.Spacing.lg)
+            .padding(.bottom, 40)
         }
-        .padding(.horizontal, SoulTheme.Spacing.lg)
     }
 }
 
@@ -331,20 +477,20 @@ private struct SelectRow: View {
                 Text(title)
                     .font(SoulTheme.Font.card)
                     .foregroundStyle(isSelected
-                                     ? SoulTheme.Color.backgroundWarm
+                                     ? SoulTheme.Color.onAccent
                                      : SoulTheme.Color.textPrimary)
                 Spacer()
                 if isSelected {
                     Image(systemName: "checkmark")
-                        .foregroundStyle(SoulTheme.Color.backgroundWarm)
+                        .foregroundStyle(SoulTheme.Color.onAccent)
                 }
             }
             .padding(.horizontal, 18)
-            .padding(.vertical, 16)
+            .padding(.vertical, 14)
             .background(
                 RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
                     .fill(isSelected
-                          ? AnyShapeStyle(SoulTheme.Gradient.forest)
+                          ? AnyShapeStyle(SoulTheme.Color.primary)
                           : AnyShapeStyle(SoulTheme.Color.surface))
             )
             .overlay(
@@ -353,6 +499,33 @@ private struct SelectRow: View {
             )
         }
         .buttonStyle(.plain)
+        .hapticOnTap()
+    }
+}
+
+private struct ToggleChip: View {
+    let label: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(label)
+                .font(SoulTheme.Font.body(14, weight: .semibold))
+                .foregroundStyle(isSelected
+                                 ? SoulTheme.Color.onAccent
+                                 : SoulTheme.Color.textPrimary)
+                .padding(.horizontal, 18)
+                .padding(.vertical, 10)
+                .background(
+                    Capsule().fill(isSelected
+                                   ? AnyShapeStyle(SoulTheme.Color.primary)
+                                   : AnyShapeStyle(SoulTheme.Color.surface))
+                )
+                .overlay(Capsule().stroke(SoulTheme.Color.divider, lineWidth: 0.5))
+        }
+        .buttonStyle(.plain)
+        .hapticOnTap()
     }
 }
 
@@ -367,19 +540,19 @@ private struct InterestCard: View {
                 Image(systemName: interest.icon)
                     .font(.system(size: 22))
                     .foregroundStyle(isSelected
-                                     ? SoulTheme.Color.backgroundWarm
+                                     ? SoulTheme.Color.onAccent
                                      : SoulTheme.Color.primary)
                 Spacer(minLength: 6)
                 Text(interest.rawValue)
                     .font(SoulTheme.Font.card)
                     .foregroundStyle(isSelected
-                                     ? SoulTheme.Color.backgroundWarm
+                                     ? SoulTheme.Color.onAccent
                                      : SoulTheme.Color.textPrimary)
                     .multilineTextAlignment(.leading)
                 Text(interest.tagline)
                     .font(SoulTheme.Font.caption)
                     .foregroundStyle(isSelected
-                                     ? SoulTheme.Color.backgroundWarm.opacity(0.8)
+                                     ? SoulTheme.Color.onAccent.opacity(0.8)
                                      : SoulTheme.Color.textSecondary)
                     .multilineTextAlignment(.leading)
             }
@@ -388,7 +561,7 @@ private struct InterestCard: View {
             .background(
                 RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
                     .fill(isSelected
-                          ? AnyShapeStyle(SoulTheme.Gradient.forest)
+                          ? AnyShapeStyle(SoulTheme.Color.primary)
                           : AnyShapeStyle(SoulTheme.Color.surface))
             )
             .overlay(
@@ -397,5 +570,74 @@ private struct InterestCard: View {
             )
         }
         .buttonStyle(.plain)
+        .hapticOnTap()
+    }
+}
+
+// MARK: - Field components
+
+private struct LabeledField: View {
+    let label: String
+    let placeholder: String
+    let text: Binding<String>
+    var keyboard: UIKeyboardType = .default
+    var multiline: Bool = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            SoulEyebrow(text: label)
+            Group {
+                if multiline {
+                    TextField(placeholder, text: text, axis: .vertical)
+                        .lineLimit(2, reservesSpace: true)
+                } else {
+                    TextField(placeholder, text: text)
+                }
+            }
+            .keyboardType(keyboard)
+            .textInputAutocapitalization(keyboard == .emailAddress ? .never : .sentences)
+            .autocorrectionDisabled(keyboard == .emailAddress)
+            .font(SoulTheme.Font.body(16, weight: .medium))
+            .foregroundStyle(SoulTheme.Color.textPrimary)
+            .padding(14)
+            .background(
+                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                    .fill(SoulTheme.Color.surface)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                    .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+            )
+        }
+    }
+}
+
+private struct NumberField: View {
+    let label: String
+    let suffix: String
+    let text: Binding<String>
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            SoulEyebrow(text: label)
+            HStack(spacing: 4) {
+                TextField("—", text: text)
+                    .keyboardType(.decimalPad)
+                    .font(SoulTheme.Font.body(16, weight: .semibold))
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                Text(suffix)
+                    .font(SoulTheme.Font.caption)
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+            }
+            .padding(14)
+            .background(
+                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                    .fill(SoulTheme.Color.surface)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                    .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+            )
+        }
     }
 }

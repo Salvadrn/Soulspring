@@ -53,10 +53,10 @@ final class AppStore: ObservableObject {
         didSet { persist(dailyMenu, key: Keys.menu) }
     }
 
-    /// Whether this account can edit the Menú del día (chef role).
-    @Published var isChef: Bool {
-        didSet { UserDefaults.standard.set(isChef, forKey: Keys.chef) }
-    }
+    /// Whether this account can edit the Menú del día (chef role). Derived
+    /// from the server-controlled `profile.isChef` flag — there is no local
+    /// toggle, the chef role is granted in Supabase (`profiles.is_chef`).
+    var isChef: Bool { profile.isChef }
 
     /// In-app bookings (stays + add-on experiences) and gift cards.
     @Published var stays: [StayBooking] = []
@@ -109,7 +109,6 @@ final class AppStore: ObservableObject {
         let saved = UserDefaults.standard.integer(forKey: Keys.goal)
         self.dailyGoalTarget = saved == 0 ? 3 : saved
         self.dailyMenu = AppStore.load(DailyMenu.self, key: Keys.menu) ?? DailyMenu.sample
-        self.isChef = UserDefaults.standard.bool(forKey: Keys.chef)
 
         let loadedHydration = AppStore.load(HydrationLog.self, key: Keys.hydration)
         self.hydration = AppStore.refreshDayIfNeeded(loadedHydration) ?? HydrationLog.today()

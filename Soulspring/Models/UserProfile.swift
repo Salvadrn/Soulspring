@@ -78,6 +78,11 @@ struct UserProfile: Codable, Equatable {
     var allergies: String = ""
     var clinicalNotes: String = ""
 
+    /// Server-controlled role flag. Only the actual chef account has this set
+    /// to true (in Supabase: `profiles.is_chef`). Toggling locally is a no-op
+    /// for the data layer — the next sync wins.
+    var isChef: Bool = false
+
     var memberSince: Date = Date()
 }
 
