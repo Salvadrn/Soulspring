@@ -1,5 +1,4 @@
 import Foundation
-import CoreLocation
 
 // MARK: - Healthy meal (room service / comida saludable)
 
@@ -52,49 +51,106 @@ struct Meal: Identifiable, Hashable {
     ]
 }
 
-// MARK: - Map destinations (Sanctuary + partners)
+// MARK: - Spaces inside the resort
 
+/// A space inside the Soulspring Sanctuary. Lives in the "Lugares" section
+/// of the Santuario tab and lets the guest discover what the property holds.
 struct SoulPlace: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let kind: Kind
-    let address: String
-    let coordinate: Coordinate
+    let zone: String        // e.g. "Bosque", "Planta baja", "Ala norte"
+    let blurb: String       // one-line description shown in the row
+    let openHours: String   // e.g. "06:00 – 22:00"
     let openNow: Bool
 
     enum Kind: String {
-        case sanctuary = "Santuario"
-        case studio    = "Estudio"
-        case cafe      = "Café saludable"
-        case clinic    = "Clínica"
-    }
-
-    struct Coordinate: Hashable {
-        let latitude: Double
-        let longitude: Double
-        var cl: CLLocationCoordinate2D { .init(latitude: latitude, longitude: longitude) }
+        case spa        = "Spa"
+        case sauna      = "Sauna"
+        case pool       = "Alberca"
+        case coldPlunge = "Cold plunge"
+        case gym        = "Gym"
+        case yoga       = "Yoga & Meditación"
+        case kitchen    = "Soul Kitchen"
+        case garden     = "Jardín"
+        case sound      = "Sound healing"
+        case library    = "Biblioteca"
+        case clinic     = "Consultorio"
+        case lounge     = "Lounge"
     }
 
     static let catalog: [SoulPlace] = [
-        .init(name: "SoulSpring Sanctuary",
-              kind: .sanctuary,
-              address: "Cuernavaca, Morelos",
-              coordinate: .init(latitude: 18.9186, longitude: -99.2342),
+        .init(name: "Spa & tinas",
+              kind: .spa,
+              zone: "Ala oeste, planta baja",
+              blurb: "Hidroterapia, masajes y rituales bio-individualizados.",
+              openHours: "08:00 – 21:00",
               openNow: true),
-        .init(name: "SoulSpring Polanco",
-              kind: .studio,
-              address: "CDMX — Polanco",
-              coordinate: .init(latitude: 19.4335, longitude: -99.2005),
+        .init(name: "Sauna finlandesa",
+              kind: .sauna,
+              zone: "Spa, nivel 1",
+              blurb: "75 °C de calor seco para sostener tu sistema cardiovascular.",
+              openHours: "08:00 – 21:00",
               openNow: true),
-        .init(name: "Café Raíz",
-              kind: .cafe,
-              address: "Roma Norte, CDMX",
-              coordinate: .init(latitude: 19.4145, longitude: -99.1605),
+        .init(name: "Alberca de minerales",
+              kind: .pool,
+              zone: "Patio central",
+              blurb: "Agua templada con sal y magnesio. Carriles para nadar al amanecer.",
+              openHours: "06:00 – 21:00",
               openNow: true),
-        .init(name: "Clínica Longevidad Sur",
+        .init(name: "Cold plunge",
+              kind: .coldPlunge,
+              zone: "Junto al spa",
+              blurb: "5 °C controlados para tu sesión de exposición al frío.",
+              openHours: "06:00 – 22:00",
+              openNow: true),
+        .init(name: "Gym de fuerza",
+              kind: .gym,
+              zone: "Edificio anexo",
+              blurb: "Pesas libres, máquinas y rack. Coach disponible bajo cita.",
+              openHours: "05:30 – 22:00",
+              openNow: true),
+        .init(name: "Estudio de yoga",
+              kind: .yoga,
+              zone: "Pabellón del bosque",
+              blurb: "Clases de yoga, pranayama y meditación guiada todo el día.",
+              openHours: "07:00 – 20:00",
+              openNow: true),
+        .init(name: "Soul Kitchen",
+              kind: .kitchen,
+              zone: "Restaurante principal",
+              blurb: "Comida del chef con menú bio-individualizado.",
+              openHours: "07:00 – 21:30",
+              openNow: true),
+        .init(name: "Jardín comestible",
+              kind: .garden,
+              zone: "Bosque sur",
+              blurb: "Huerta orgánica donde se cosecha lo que cenas.",
+              openHours: "Abierto siempre",
+              openNow: true),
+        .init(name: "Sala de sound healing",
+              kind: .sound,
+              zone: "Pabellón del bosque",
+              blurb: "Cuencos de cuarzo y gongs para sesiones de sonoterapia.",
+              openHours: "Por cita",
+              openNow: true),
+        .init(name: "Biblioteca silenciosa",
+              kind: .library,
+              zone: "Casa principal",
+              blurb: "Lectura, té y una butaca. Sin teléfonos.",
+              openHours: "07:00 – 23:00",
+              openNow: true),
+        .init(name: "Consultorio médico",
               kind: .clinic,
-              address: "Tlalpan, CDMX",
-              coordinate: .init(latitude: 19.2934, longitude: -99.1686),
+              zone: "Ala norte",
+              blurb: "Diagnóstico funcional, biomarcadores y consultas.",
+              openHours: "09:00 – 18:00",
+              openNow: false),
+        .init(name: "Lounge de las brasas",
+              kind: .lounge,
+              zone: "Terraza superior",
+              blurb: "Fogata, mantas y conversación al atardecer.",
+              openHours: "17:00 – 23:00",
               openNow: false),
     ]
 }

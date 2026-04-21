@@ -6,6 +6,7 @@ import Charts
 /// and breath-coherence practice.
 struct HeartRateView: View {
     @EnvironmentObject private var health: HealthKitManager
+    @EnvironmentObject private var store: AppStore
     @State private var breatheTick: Double = 0
     @State private var isBreathing = false
 
@@ -256,6 +257,7 @@ struct HeartRateView: View {
 
                 if isBreathing {
                     Button {
+                        store.recordMindfulnessSession()
                         withAnimation { isBreathing.toggle() }
                     } label: {
                         Text("Terminar")

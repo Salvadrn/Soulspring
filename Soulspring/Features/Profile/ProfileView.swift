@@ -5,6 +5,9 @@ struct ProfileView: View {
     @EnvironmentObject private var health: HealthKitManager
     @State private var isShowingMembership = false
 
+    private var unlockedCount: Int { store.unlockedAchievements.count }
+    private var totalAchievements: Int { Achievement.catalog.count }
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -185,6 +188,14 @@ struct ProfileView: View {
 
     private var actionsCard: some View {
         VStack(spacing: 10) {
+            NavigationLink {
+                AchievementsView()
+            } label: {
+                actionRow(icon: "rosette",
+                          title: "Mis medallas",
+                          subtitle: "\(unlockedCount) de \(totalAchievements) desbloqueadas",
+                          tint: SoulTheme.Palette.gold)
+            }
             NavigationLink {
                 FinancesView()
             } label: {

@@ -92,6 +92,17 @@ final class AppStore: ObservableObject {
         didSet { persist(budget, key: Keys.budget) }
     }
 
+    /// Achievements: persisted "unlocked at" timestamps keyed by achievement id.
+    @Published var unlockedAchievements: [String: Date] {
+        didSet { persist(unlockedAchievements, key: Keys.achievements) }
+    }
+
+    /// Local counter of completed mindfulness / breath sessions. Bumped from
+    /// the breathwork view when the user finishes a session.
+    @Published var mindfulnessSessions: Int {
+        didSet { UserDefaults.standard.set(mindfulnessSessions, forKey: Keys.mind) }
+    }
+
     /// How many habits the user must complete each day to defend the racha.
     @Published var dailyGoalTarget: Int {
         didSet {
@@ -120,6 +131,8 @@ final class AppStore: ObservableObject {
             ?? FinanceReport.sampleTransactions()
         self.budget = AppStore.load(MonthlyBudget.self, key: Keys.budget) ?? MonthlyBudget()
         self.auth = AppStore.load(AuthState.self, key: Keys.auth) ?? .signedOut
+        self.unlockedAchievements = AppStore.load([String: Date].self, key: Keys.achievements) ?? [:]
+        self.mindfulnessSessions = UserDefaults.standard.integer(forKey: Keys.mind)
     }
 
     // Reset water log if the stored day is older than today.
@@ -258,7 +271,47 @@ final class AppStore: ObservableObject {
         static let labs      = "soul.labs"
         static let finance   = "soul.finance"
         static let budget    = "soul.budget"
-        static let auth      = "soul.auth"
+        static let auth         = "soul.auth"
+        static let achievements = "soul.achievements"
+        static let mind         = "soul.mind"
+    }
+
+    // MARK: Achievements
+
+    /// Compute progress for every achievement against current state.
+    var achievementProgress: [AchievementEngine.Progress] {
+        AchievementEngine.progress(
+            currentStreakDays: streak.currentStreak,
+            totalHabitChecks: habits.reduce(0) { $0 + $1.completedDates.count },
+            sanctuaryNights: stays
+                .filter { $0.status == .confirmed }
+                .reduce(0) { $0 + $1.nights },
+            mindfulnessSessions: mindfulnessSessions,
+            completedBookings: bookings.filter { $0.status == .confirmed }.count
+        )
+    }
+
+    /// Reconcile unlocked achievements with current progress. Called whenever
+    /// state that affects achievements changes. Returns the set of newly
+    /// unlocked achievements so the UI can fire celebrations.
+    @discardableResult
+    func reconcileAchievements() -> [Achievement] {
+        let now = Date()
+        var newlyUnlocked: [Achievement] = []
+        for p in achievementProgress where p.isUnlocked {
+            if unlockedAchievements[p.achievement.id] == nil {
+                unlockedAchievements[p.achievement.id] = now
+                newlyUnlocked.append(p.achievement)
+            }
+        }
+        return newlyUnlocked
+    }
+
+    /// Mark a mindfulness session as completed (e.g. finishing the breath
+    /// practice). Reconciles achievements automatically.
+    func recordMindfulnessSession() {
+        mindfulnessSessions += 1
+        reconcileAchievements()
     }
 
     // MARK: Finance actions

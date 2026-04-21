@@ -1,5 +1,4 @@
 import SwiftUI
-import MapKit
 
 struct SanctuaryView: View {
     enum Tab: Hashable { case reservar, menu, map, food, rooms, reminders }
@@ -79,48 +78,27 @@ struct SanctuaryView: View {
     }
 }
 
-// MARK: - Map
+// MARK: - Spaces inside the resort
 
 struct SanctuaryMapView: View {
-    @State private var position = MapCameraPosition.region(
-        MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 19.25, longitude: -99.18),
-            span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
-    )
     @State private var selected: SoulPlace? = nil
 
     var body: some View {
-        VStack(spacing: 0) {
-            Map(position: $position) {
-                ForEach(SoulPlace.catalog) { place in
-                    Annotation(place.name, coordinate: place.coordinate.cl) {
-                        Button { selected = place } label: {
-                            ZStack {
-                                Circle()
-                                    .fill(SoulTheme.Gradient.forest)
-                                    .frame(width: 34, height: 34)
-                                Image(systemName: iconFor(place.kind))
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .foregroundStyle(.white)
-                            }
-                            .shadow(color: SoulTheme.Palette.moss.opacity(0.3), radius: 6, y: 3)
-                        }
-                    }
-                }
-            }
-            .mapStyle(.standard(elevation: .realistic))
-            .frame(height: 320)
-            .padding(.horizontal, SoulTheme.Spacing.lg)
-            .clipShape(RoundedRectangle(cornerRadius: SoulTheme.Radius.lg))
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: SoulTheme.Spacing.md) {
+                SoulSectionHeader(
+                    eyebrow: "Lugares del Sanctuary",
+                    title: "Recorre la propiedad",
+                    subtitle: "Cada espacio dentro del Sanctuary, sus horarios y para qué sirve."
+                )
 
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 10) {
+                LazyVStack(spacing: 10) {
                     ForEach(SoulPlace.catalog) { place in
                         placeRow(place)
                     }
                 }
-                .padding(SoulTheme.Spacing.lg)
             }
+            .padding(SoulTheme.Spacing.lg)
         }
         .sheet(item: $selected) { place in
             PlaceDetailSheet(place: place)
@@ -140,9 +118,14 @@ struct SanctuaryMapView: View {
                     Text(place.name)
                         .font(SoulTheme.Font.card)
                         .foregroundStyle(SoulTheme.Color.textPrimary)
-                    Text("\(place.kind.rawValue) · \(place.address)")
+                    Text("\(place.kind.rawValue) · \(place.zone)")
                         .font(SoulTheme.Font.caption)
                         .foregroundStyle(SoulTheme.Color.textSecondary)
+                        .lineLimit(1)
+                    Text(place.blurb)
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(SoulTheme.Color.textSecondary.opacity(0.8))
+                        .lineLimit(2)
                 }
                 Spacer()
                 SoulChip(text: place.openNow ? "Abierto" : "Cerrado",
@@ -155,14 +138,23 @@ struct SanctuaryMapView: View {
                 .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
         }
         .buttonStyle(.plain)
+        .hapticOnTap()
     }
 
     private func iconFor(_ kind: SoulPlace.Kind) -> String {
         switch kind {
-        case .sanctuary: return "leaf.fill"
-        case .studio:    return "figure.mind.and.body"
-        case .cafe:      return "cup.and.saucer.fill"
-        case .clinic:    return "cross.case.fill"
+        case .spa:        return "drop.fill"
+        case .sauna:      return "flame.fill"
+        case .pool:       return "figure.pool.swim"
+        case .coldPlunge: return "snowflake"
+        case .gym:        return "dumbbell.fill"
+        case .yoga:       return "figure.mind.and.body"
+        case .kitchen:    return "fork.knife"
+        case .garden:     return "leaf.fill"
+        case .sound:      return "waveform"
+        case .library:    return "books.vertical.fill"
+        case .clinic:     return "cross.case.fill"
+        case .lounge:     return "sparkles"
         }
     }
 }
@@ -178,8 +170,11 @@ struct PlaceDetailSheet: View {
                 Text(place.name)
                     .font(SoulTheme.Font.title)
                     .foregroundStyle(SoulTheme.Color.textPrimary)
-                Text(place.address)
+                Text(place.blurb)
                     .font(SoulTheme.Font.bodyText)
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                Text("\(place.zone) · \(place.openHours)")
+                    .font(SoulTheme.Font.caption)
                     .foregroundStyle(SoulTheme.Color.textSecondary)
                 SoulChip(text: place.openNow ? "Abierto ahora" : "Cerrado por hoy",
                          tint: place.openNow ? SoulTheme.Palette.moss : SoulTheme.Palette.earth)
