@@ -60,6 +60,16 @@ final class AppStore: ObservableObject {
     @Published var wallet: MembershipWallet
     @Published var completedWorkouts: [UUID: Date] = [:]
 
+    /// Lifestyle inputs fed into the BioAge engine.
+    @Published var bioAgeInputs: BioAgeInputs {
+        didSet { persist(bioAgeInputs, key: Keys.bioInputs) }
+    }
+
+    /// Uploaded lab reports with parsed biomarkers + AI summary.
+    @Published var labReports: [LabReport] {
+        didSet { persist(labReports, key: Keys.labs) }
+    }
+
     /// How many habits the user must complete each day to defend the racha.
     @Published var dailyGoalTarget: Int {
         didSet { UserDefaults.standard.set(dailyGoalTarget, forKey: Keys.goal) }
@@ -80,6 +90,8 @@ final class AppStore: ObservableObject {
         self.hydration = AppStore.refreshDayIfNeeded(loadedHydration) ?? HydrationLog.today()
         self.wallet = AppStore.load(MembershipWallet.self, key: Keys.wallet)
             ?? MembershipWallet.make(for: UserProfile())
+        self.bioAgeInputs = AppStore.load(BioAgeInputs.self, key: Keys.bioInputs) ?? BioAgeInputs()
+        self.labReports = AppStore.load([LabReport].self, key: Keys.labs) ?? []
     }
 
     // Reset water log if the stored day is older than today.
@@ -175,6 +187,33 @@ final class AppStore: ObservableObject {
         static let chef      = "soul.chef"
         static let hydration = "soul.hydration"
         static let wallet    = "soul.wallet"
+        static let bioInputs = "soul.bioInputs"
+        static let labs      = "soul.labs"
+    }
+
+    // MARK: Lab actions
+
+    func importLab(pdfURL: URL, title: String, lab: String, reportedAt: Date) async -> LabReport? {
+        guard var report = LabParser.ingestPDF(at: pdfURL,
+                                                title: title,
+                                                lab: lab,
+                                                reportedAt: reportedAt) else {
+            return nil
+        }
+        labReports.insert(report, at: 0)
+        let summary = await LabAIService.summarize(report: report)
+        report.aiSummary = summary
+        if let idx = labReports.firstIndex(where: { $0.id == report.id }) {
+            labReports[idx] = report
+        }
+        return report
+    }
+
+    func deleteLab(_ report: LabReport) {
+        labReports.removeAll { $0.id == report.id }
+        if let name = report.localFileName, let url = LabParser.localURL(for: name) {
+            try? FileManager.default.removeItem(at: url)
+        }
     }
 
     // MARK: - New domain actions

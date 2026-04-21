@@ -61,24 +61,38 @@ struct HeartRateView: View {
     // MARK: Shortcuts to Sleep + Workouts
 
     private var shortcutsRow: some View {
-        HStack(spacing: 12) {
-            NavigationLink { SleepDetailView() } label: {
-                shortcut(icon: "moon.stars.fill",
-                         title: "Sueño",
-                         subtitle: String(format: "%.1f h", health.sleepHours),
-                         tint: SoulTheme.Palette.earth)
-            }
-            NavigationLink { WorkoutsView() } label: {
-                shortcut(icon: "figure.run",
-                         title: "Entrenamiento",
-                         subtitle: "\(Workout.catalog.count) rutinas",
-                         tint: SoulTheme.Palette.terracotta)
-            }
-            NavigationLink { HydrationView() } label: {
-                shortcut(icon: "drop.fill",
-                         title: "Agua",
-                         subtitle: "Hidrátate",
-                         tint: SoulTheme.Palette.sky)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                NavigationLink { BiologicalAgeView() } label: {
+                    shortcut(icon: "hourglass",
+                             title: "Edad biológica",
+                             subtitle: "Calcular",
+                             tint: SoulTheme.Palette.moss)
+                }
+                NavigationLink { LabsView() } label: {
+                    shortcut(icon: "doc.text.magnifyingglass",
+                             title: "Laboratorios",
+                             subtitle: "Subir PDF",
+                             tint: SoulTheme.Palette.gold)
+                }
+                NavigationLink { SleepDetailView() } label: {
+                    shortcut(icon: "moon.stars.fill",
+                             title: "Sueño",
+                             subtitle: String(format: "%.1f h", health.sleepHours),
+                             tint: SoulTheme.Palette.earth)
+                }
+                NavigationLink { WorkoutsView() } label: {
+                    shortcut(icon: "figure.run",
+                             title: "Entrenamiento",
+                             subtitle: "\(Workout.catalog.count) rutinas",
+                             tint: SoulTheme.Palette.terracotta)
+                }
+                NavigationLink { HydrationView() } label: {
+                    shortcut(icon: "drop.fill",
+                             title: "Agua",
+                             subtitle: "Hidrátate",
+                             tint: SoulTheme.Palette.sky)
+                }
             }
         }
     }
@@ -96,7 +110,7 @@ struct HeartRateView: View {
                 .font(SoulTheme.Font.caption)
                 .foregroundStyle(SoulTheme.Color.textSecondary)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(width: 140, alignment: .leading)
         .padding(14)
         .background(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
             .fill(SoulTheme.Color.surface))
