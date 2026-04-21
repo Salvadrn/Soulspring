@@ -189,12 +189,30 @@ struct ProfileView: View {
     private var actionsCard: some View {
         VStack(spacing: 10) {
             NavigationLink {
+                AudioLibraryView()
+            } label: {
+                actionRow(icon: "headphones",
+                          title: "Biblioteca de audios",
+                          subtitle: "Meditaciones, yoga nidra, breathwork",
+                          tint: SoulTheme.Palette.lilac)
+            }
+            NavigationLink {
                 AchievementsView()
             } label: {
                 actionRow(icon: "rosette",
                           title: "Mis medallas",
                           subtitle: "\(unlockedCount) de \(totalAchievements) desbloqueadas",
                           tint: SoulTheme.Palette.gold)
+            }
+            NavigationLink {
+                MoodPatternsView()
+            } label: {
+                actionRow(icon: "chart.line.uptrend.xyaxis",
+                          title: "Mood + patrones",
+                          subtitle: store.moodLog.isEmpty
+                            ? "Empieza tu primer check-in"
+                            : "\(store.moodLog.count) check-ins guardados",
+                          tint: SoulTheme.Palette.sky)
             }
             NavigationLink {
                 FinancesView()

@@ -92,6 +92,11 @@ final class AppStore: ObservableObject {
         didSet { persist(budget, key: Keys.budget) }
     }
 
+    /// Mood check-ins (most recent first).
+    @Published var moodLog: [MoodCheckin] {
+        didSet { persist(moodLog, key: Keys.mood) }
+    }
+
     /// Achievements: persisted "unlocked at" timestamps keyed by achievement id.
     @Published var unlockedAchievements: [String: Date] {
         didSet { persist(unlockedAchievements, key: Keys.achievements) }
@@ -133,6 +138,7 @@ final class AppStore: ObservableObject {
         self.auth = AppStore.load(AuthState.self, key: Keys.auth) ?? .signedOut
         self.unlockedAchievements = AppStore.load([String: Date].self, key: Keys.achievements) ?? [:]
         self.mindfulnessSessions = UserDefaults.standard.integer(forKey: Keys.mind)
+        self.moodLog = AppStore.load([MoodCheckin].self, key: Keys.mood) ?? []
     }
 
     // Reset water log if the stored day is older than today.
@@ -274,6 +280,27 @@ final class AppStore: ObservableObject {
         static let auth         = "soul.auth"
         static let achievements = "soul.achievements"
         static let mind         = "soul.mind"
+        static let mood         = "soul.mood"
+    }
+
+    // MARK: Mood
+
+    /// Add a check-in. Snapshots HRV/sleep/RHR from current HealthKit values
+    /// passed in by the caller (the view has the @EnvironmentObject for it).
+    func recordMood(emoji: String, score: Int, note: String,
+                    hrv: Double?, sleepHours: Double?, restingHR: Double?) {
+        let entry = MoodCheckin(emoji: emoji, score: score, note: note,
+                                hrv: hrv, sleepHours: sleepHours,
+                                restingHR: restingHR)
+        moodLog.insert(entry, at: 0)
+        // Trim to last 365 entries to keep UserDefaults light.
+        if moodLog.count > 365 { moodLog = Array(moodLog.prefix(365)) }
+    }
+
+    /// True if the user has already checked in today.
+    var hasCheckedInToday: Bool {
+        guard let last = moodLog.first else { return false }
+        return Calendar.current.isDateInToday(last.capturedAt)
     }
 
     // MARK: Achievements

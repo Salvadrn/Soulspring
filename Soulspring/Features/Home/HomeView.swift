@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var store: AppStore
     @EnvironmentObject private var health: HealthKitManager
+    @State private var isShowingMoodCheckin = false
 
     var body: some View {
         NavigationStack {
@@ -13,6 +14,7 @@ struct HomeView: View {
                     VStack(alignment: .leading, spacing: SoulTheme.Spacing.md) {
                         topBar
                         greeting
+                        moodPrompt
                         RachaHero()
                         quickActions
                         metricsGrid
@@ -26,7 +28,64 @@ struct HomeView: View {
             }
             .navigationBarHidden(true)
         }
+        .sheet(isPresented: $isShowingMoodCheckin) {
+            MoodCheckinView()
+                .presentationDetents([.medium, .large])
+        }
         .task { await health.refreshAll() }
+    }
+
+    // MARK: Mood prompt — only when not checked in today
+
+    @ViewBuilder
+    private var moodPrompt: some View {
+        if !store.hasCheckedInToday {
+            Button { isShowingMoodCheckin = true } label: {
+                HStack(spacing: 14) {
+                    Text("🪷").font(.system(size: 28))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("¿Cómo te sientes hoy?")
+                            .font(SoulTheme.Font.card)
+                            .foregroundStyle(SoulTheme.Color.textPrimary)
+                        Text("3 segundos. Lo cruzamos con tu HRV y sueño.")
+                            .font(SoulTheme.Font.caption)
+                            .foregroundStyle(SoulTheme.Color.textSecondary)
+                            .lineLimit(1)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundStyle(SoulTheme.Color.textSecondary)
+                }
+                .padding(14)
+                .background(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                    .fill(SoulTheme.Color.surface))
+                .overlay(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                    .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
+            }
+            .buttonStyle(.plain)
+            .hapticOnTap()
+        } else if let last = store.moodLog.first {
+            HStack(spacing: 12) {
+                Text(last.emoji).font(.system(size: 22))
+                Text("Check-in de hoy guardado.")
+                    .font(SoulTheme.Font.caption)
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+                Spacer()
+                NavigationLink {
+                    MoodPatternsView()
+                } label: {
+                    Text("Ver patrones")
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(SoulTheme.Color.primary)
+                }
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+            .background(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                .fill(SoulTheme.Color.surface))
+            .overlay(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
+        }
     }
 
     // MARK: Top bar — streak pill + energy lightning

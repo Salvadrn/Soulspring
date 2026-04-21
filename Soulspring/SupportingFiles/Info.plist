@@ -34,6 +34,12 @@
         <string>UIInterfaceOrientationPortrait</string>
     </array>
 
+    <!-- Background audio for the audio library (meditations, breathwork) -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>
+    </array>
+
     <!-- HealthKit usage strings -->
     <key>NSHealthShareUsageDescription</key>
     <string>Soulspring usa tus datos de ritmo cardíaco, actividad y sueño desde Apple Health para personalizar tu viaje de bienestar.</string>
