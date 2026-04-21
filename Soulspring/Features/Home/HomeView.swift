@@ -67,9 +67,9 @@ struct HomeView: View {
             }
             Link(destination: SoulLinks.foodInstagram) {
                 QuickActionTile(
-                    eyebrow: "Cocina",
-                    title: "Comida saludable",
-                    subtitle: "Síguenos en Instagram",
+                    eyebrow: "Soul Kitchen",
+                    title: "Menú del día",
+                    subtitle: SoulLinks.foodHandle,
                     icon: "fork.knife",
                     gradient: SoulTheme.Gradient.sunset
                 )

@@ -159,6 +159,15 @@ struct ProfileView: View {
                           subtitle: health.isAuthorized ? "Sincronizado" : "Permitir acceso")
             }
             Button {
+                store.isChef.toggle()
+            } label: {
+                actionRow(icon: store.isChef ? "fork.knife.circle.fill" : "fork.knife.circle",
+                          title: store.isChef ? "Modo Chef activo" : "Activar Modo Chef",
+                          subtitle: store.isChef ? "Puedes editar el Menú del día"
+                                                 : "Solo para el equipo de Soul Kitchen",
+                          tint: SoulTheme.Palette.terracotta)
+            }
+            Button {
                 store.signOut()
             } label: {
                 actionRow(icon: "arrow.right.square",

@@ -40,6 +40,16 @@ final class AppStore: ObservableObject {
     @Published var orders: [RoomServiceOrder] = []
     @Published var sharedStreaks: [SharedStreak] = SharedStreakEngine.samples
 
+    /// Today's curated menu from the Soul Kitchen chef.
+    @Published var dailyMenu: DailyMenu {
+        didSet { persist(dailyMenu, key: Keys.menu) }
+    }
+
+    /// Whether this account can edit the Menú del día (chef role).
+    @Published var isChef: Bool {
+        didSet { UserDefaults.standard.set(isChef, forKey: Keys.chef) }
+    }
+
     /// How many habits the user must complete each day to defend the racha.
     @Published var dailyGoalTarget: Int {
         didSet { UserDefaults.standard.set(dailyGoalTarget, forKey: Keys.goal) }
@@ -53,6 +63,8 @@ final class AppStore: ObservableObject {
         self.reminders = SoulReminder.defaults
         let saved = UserDefaults.standard.integer(forKey: Keys.goal)
         self.dailyGoalTarget = saved == 0 ? 3 : saved
+        self.dailyMenu = AppStore.load(DailyMenu.self, key: Keys.menu) ?? DailyMenu.sample
+        self.isChef = UserDefaults.standard.bool(forKey: Keys.chef)
     }
 
     // MARK: Auth actions
@@ -134,6 +146,8 @@ final class AppStore: ObservableObject {
         static let profile = "soul.profile"
         static let habits  = "soul.habits"
         static let goal    = "soul.goal"
+        static let menu    = "soul.menu"
+        static let chef    = "soul.chef"
     }
 
     private func persist<T: Encodable>(_ value: T, key: String) {

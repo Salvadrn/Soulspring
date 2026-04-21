@@ -2,10 +2,10 @@ import SwiftUI
 import MapKit
 
 struct SanctuaryView: View {
-    enum Tab: Hashable { case map, food, rooms, reminders }
+    enum Tab: Hashable { case menu, map, food, rooms, reminders }
 
     @State private var tab: Tab
-    init(initialTab: Tab = .map) {
+    init(initialTab: Tab = .menu) {
         _tab = State(initialValue: initialTab)
     }
 
@@ -16,18 +16,21 @@ struct SanctuaryView: View {
                 VStack(spacing: 0) {
                     header
 
-                    Picker("Sección", selection: $tab) {
-                        Text("Lugares").tag(Tab.map)
-                        Text("Cocina").tag(Tab.food)
-                        Text("Room").tag(Tab.rooms)
-                        Text("Rutina").tag(Tab.reminders)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            segment(title: "Menú",    tag: .menu)
+                            segment(title: "Lugares", tag: .map)
+                            segment(title: "Cocina",  tag: .food)
+                            segment(title: "Room",    tag: .rooms)
+                            segment(title: "Rutina",  tag: .reminders)
+                        }
+                        .padding(.horizontal, SoulTheme.Spacing.lg)
                     }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal, SoulTheme.Spacing.lg)
                     .padding(.bottom, 12)
 
                     Group {
                         switch tab {
+                        case .menu:      DailyMenuView()
                         case .map:       SanctuaryMapView()
                         case .food:      FoodView()
                         case .rooms:     RoomServiceView()
@@ -37,6 +40,26 @@ struct SanctuaryView: View {
                 }
             }
             .navigationBarHidden(true)
+        }
+    }
+
+    private func segment(title: String, tag: Tab) -> some View {
+        Button { withAnimation { tab = tag } } label: {
+            Text(title)
+                .font(SoulTheme.Font.caption)
+                .foregroundStyle(tab == tag
+                                 ? SoulTheme.Color.backgroundWarm
+                                 : SoulTheme.Color.textPrimary)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 9)
+                .background(
+                    Capsule().fill(tab == tag
+                                   ? AnyShapeStyle(SoulTheme.Gradient.forest)
+                                   : AnyShapeStyle(SoulTheme.Color.surface))
+                )
+                .overlay(
+                    Capsule().stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+                )
         }
     }
 
@@ -183,8 +206,8 @@ struct FoodView: View {
                 Link(destination: SoulLinks.foodInstagram) {
                     QuickActionTile(
                         eyebrow: "Instagram",
-                        title: "Inspiración diaria",
-                        subtitle: "Síguenos @soulspring.kitchen",
+                        title: "Soul Kitchen",
+                        subtitle: "Síguenos en \(SoulLinks.foodHandle)",
                         icon: "camera.fill",
                         gradient: SoulTheme.Gradient.sunset)
                 }

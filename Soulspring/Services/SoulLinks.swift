@@ -6,8 +6,12 @@ enum SoulLinks {
     /// Reservar cita / booking oficial.
     static let booking         = URL(string: "https://soulspring.me")!
 
-    /// Instagram del Sanctuary (donde se publica la cocina y la comida).
-    static let foodInstagram   = URL(string: "https://instagram.com/soulspring.sanctuary")!
+    /// Instagram de la cocina: Soul Kitchen by @soulspring.sanctuary.
+    static let foodInstagram   = URL(string: "https://instagram.com/soulkitchen.ss")!
+    static let foodHandle      = "@soulkitchen.ss"
+
+    /// Instagram del Sanctuary.
+    static let sanctuaryInstagram = URL(string: "https://instagram.com/soulspring.sanctuary")!
 
     /// Instagram corporativo de Soulspring México.
     static let mainInstagram   = URL(string: "https://instagram.com/soulspring_mx")!
