@@ -12,6 +12,7 @@ struct ProfileView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
                         identityCard
+                        walletShortcut
                         interestsCard
                         membershipCard
                         actionsCard
@@ -60,6 +61,44 @@ struct ProfileView: View {
         return (first + last).uppercased()
     }
 
+    // MARK: Wallet shortcut
+
+    private var walletShortcut: some View {
+        NavigationLink {
+            WalletView()
+        } label: {
+            ZStack(alignment: .topLeading) {
+                RoundedRectangle(cornerRadius: SoulTheme.Radius.lg)
+                    .fill(SoulTheme.Gradient.forest)
+                HStack {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("SOULSPRING").font(.system(size: 10, weight: .bold))
+                            .tracking(2.5).foregroundStyle(.white.opacity(0.85))
+                        Text("Wallet")
+                            .font(SoulTheme.Font.display(24, weight: .regular))
+                            .foregroundStyle(.white)
+                        Text("Tu membresía, perfil y QR de check-in.")
+                            .font(SoulTheme.Font.caption)
+                            .foregroundStyle(.white.opacity(0.85))
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: 6) {
+                        Image(systemName: "qrcode")
+                            .font(.system(size: 28))
+                            .foregroundStyle(.white)
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundStyle(.white.opacity(0.8))
+                    }
+                }
+                .padding(SoulTheme.Spacing.lg)
+            }
+            .frame(height: 128)
+            .shadow(color: SoulTheme.Palette.moss.opacity(0.3), radius: 14, y: 8)
+        }
+        .buttonStyle(.plain)
+    }
+
     // MARK: Interests
 
     private var interestsCard: some View {
@@ -105,7 +144,7 @@ struct ProfileView: View {
             SoulCard {
                 VStack(alignment: .leading, spacing: 14) {
                     HStack {
-                        SoulEyebrow(text: "Membresía")
+                        SoulEyebrow(text: "Plan de estancia")
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(.system(size: 13, weight: .semibold))
@@ -115,17 +154,20 @@ struct ProfileView: View {
                         .font(SoulTheme.Font.title)
                         .foregroundStyle(SoulTheme.Color.textPrimary)
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text("$\(tier.monthlyCostMXN)")
+                        Text("$\(tier.nightlyCostMXN)")
                             .font(SoulTheme.Font.display(34, weight: .semibold))
                             .foregroundStyle(SoulTheme.Color.primary)
-                        Text("MXN / mes")
+                        Text("MXN / noche")
                             .font(SoulTheme.Font.unit)
                             .foregroundStyle(SoulTheme.Color.textSecondary)
                     }
+                    Text(tier.tagline)
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(SoulTheme.Color.textSecondary)
                     VStack(alignment: .leading, spacing: 6) {
-                        ForEach(tier.perks, id: \.self) { perk in
+                        ForEach(tier.includes, id: \.self) { perk in
                             HStack(spacing: 8) {
-                                Image(systemName: "checkmark.seal.fill")
+                                Image(systemName: "leaf.fill")
                                     .foregroundStyle(SoulTheme.Palette.moss)
                                 Text(perk)
                                     .font(SoulTheme.Font.caption)
@@ -143,13 +185,24 @@ struct ProfileView: View {
 
     private var actionsCard: some View {
         VStack(spacing: 10) {
-            Link(destination: SoulLinks.booking) {
-                actionRow(icon: "calendar", title: "Agendar una cita",
-                          subtitle: "Clínica SoulSpring")
+            NavigationLink {
+                GiftCardView()
+            } label: {
+                actionRow(icon: "gift.fill",
+                          title: "Regalar Soulspring",
+                          subtitle: "Envía una tarjeta de regalo",
+                          tint: SoulTheme.Palette.terracotta)
+            }
+            NavigationLink {
+                MemberProfileEditor()
+            } label: {
+                actionRow(icon: "person.text.rectangle",
+                          title: "Editar mi perfil",
+                          subtitle: "Contacto, intereses, alergias")
             }
             Link(destination: SoulLinks.foodInstagram) {
-                actionRow(icon: "camera.fill", title: "Instagram de la cocina",
-                          subtitle: "Inspiración nutricional")
+                actionRow(icon: "camera.fill", title: "Instagram Soul Kitchen",
+                          subtitle: SoulLinks.foodHandle)
             }
             Button {
                 Task { await health.requestAuthorization() }
@@ -222,9 +275,9 @@ struct MembershipSheet: View {
                 SoulBackground()
                 ScrollView {
                     VStack(spacing: SoulTheme.Spacing.md) {
-                        SoulSectionHeader(eyebrow: "Financiera",
-                                          title: "Elige tu membresía",
-                                          subtitle: "Todos los planes incluyen tu app SoulSpring y HealthKit.")
+                        SoulSectionHeader(eyebrow: "Planes de estancia",
+                                          title: "Elige tu plan",
+                                          subtitle: "Precio por noche. Todos los planes incluyen la app.")
                         ForEach(MembershipTier.allCases) { tier in
                             TierCard(tier: tier,
                                      isCurrent: store.profile.membershipTier == tier) {
@@ -267,15 +320,18 @@ struct TierCard: View {
                         }
                     }
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text("$\(tier.monthlyCostMXN)")
+                        Text("$\(tier.nightlyCostMXN)")
                             .font(SoulTheme.Font.display(40, weight: .semibold))
                             .foregroundStyle(SoulTheme.Color.primary)
-                        Text("MXN / mes")
+                        Text("MXN / noche")
                             .font(SoulTheme.Font.unit)
                             .foregroundStyle(SoulTheme.Color.textSecondary)
                     }
+                    Text(tier.tagline)
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(SoulTheme.Color.textSecondary)
                     VStack(alignment: .leading, spacing: 8) {
-                        ForEach(tier.perks, id: \.self) { perk in
+                        ForEach(tier.includes, id: \.self) { perk in
                             HStack(spacing: 8) {
                                 Image(systemName: "leaf.fill")
                                     .foregroundStyle(SoulTheme.Palette.moss)

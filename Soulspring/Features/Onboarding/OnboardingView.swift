@@ -70,6 +70,7 @@ struct OnboardingView: View {
                 if step == totalSteps - 1 {
                     var p = store.profile
                     p.hasCompletedOnboarding = true
+                    if p.memberSince.timeIntervalSinceNow > -60 { p.memberSince = Date() }
                     store.profile = p
                 } else {
                     withAnimation { step += 1 }

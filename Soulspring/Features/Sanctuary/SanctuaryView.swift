@@ -2,10 +2,10 @@ import SwiftUI
 import MapKit
 
 struct SanctuaryView: View {
-    enum Tab: Hashable { case menu, map, food, rooms, reminders }
+    enum Tab: Hashable { case reservar, menu, map, food, rooms, reminders }
 
     @State private var tab: Tab
-    init(initialTab: Tab = .menu) {
+    init(initialTab: Tab = .reservar) {
         _tab = State(initialValue: initialTab)
     }
 
@@ -18,11 +18,12 @@ struct SanctuaryView: View {
 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
-                            segment(title: "Menú",    tag: .menu)
-                            segment(title: "Lugares", tag: .map)
-                            segment(title: "Cocina",  tag: .food)
-                            segment(title: "Room",    tag: .rooms)
-                            segment(title: "Rutina",  tag: .reminders)
+                            segment(title: "Reservar", tag: .reservar)
+                            segment(title: "Menú",     tag: .menu)
+                            segment(title: "Lugares",  tag: .map)
+                            segment(title: "Cocina",   tag: .food)
+                            segment(title: "Room",     tag: .rooms)
+                            segment(title: "Rutina",   tag: .reminders)
                         }
                         .padding(.horizontal, SoulTheme.Spacing.lg)
                     }
@@ -30,6 +31,7 @@ struct SanctuaryView: View {
 
                     Group {
                         switch tab {
+                        case .reservar:  BookingView()
                         case .menu:      DailyMenuView()
                         case .map:       SanctuaryMapView()
                         case .food:      FoodView()
@@ -182,8 +184,12 @@ struct PlaceDetailSheet: View {
                 SoulChip(text: place.openNow ? "Abierto ahora" : "Cerrado por hoy",
                          tint: place.openNow ? SoulTheme.Palette.moss : SoulTheme.Palette.earth)
                 Spacer()
-                Link(destination: SoulLinks.booking) {
-                    Text("Reservar cita")
+                NavigationLink {
+                    BookingView()
+                        .navigationTitle("Reservar")
+                        .navigationBarTitleDisplayMode(.inline)
+                } label: {
+                    Text("Reservar")
                 }
                 .buttonStyle(SoulPrimaryButtonStyle())
             }

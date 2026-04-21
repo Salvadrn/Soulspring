@@ -20,11 +20,27 @@ final class HealthKitManager: ObservableObject {
     @Published var activeEnergy: Double = 0      // kcal
     @Published var sleepHours: Double = 0
     @Published var heartRateSeries: [HeartSample] = []
+    @Published var sleepStages: SleepBreakdown = .empty
 
     struct HeartSample: Identifiable, Hashable {
         let id = UUID()
         let date: Date
         let bpm: Double
+    }
+
+    struct SleepBreakdown: Hashable {
+        var deepMinutes: Double
+        var remMinutes: Double
+        var coreMinutes: Double
+        var awakeMinutes: Double
+
+        var totalAsleep: Double { deepMinutes + remMinutes + coreMinutes }
+        var totalInBed: Double  { totalAsleep + awakeMinutes }
+        func share(_ minutes: Double) -> Double {
+            totalInBed > 0 ? minutes / totalInBed : 0
+        }
+        static let empty = SleepBreakdown(deepMinutes: 0, remMinutes: 0,
+                                          coreMinutes: 0, awakeMinutes: 0)
     }
 
     // MARK: Internals
@@ -70,10 +86,11 @@ final class HealthKitManager: ObservableObject {
         async let hrv  = latestQuantity(.heartRateVariabilitySDNN, unit: HKUnit.secondUnit(with: .milli))
         async let stp  = todaySumQuantity(.stepCount, unit: .count())
         async let kcal = todaySumQuantity(.activeEnergyBurned, unit: .kilocalorie())
-        async let sl   = todaySleepHours()
-        async let srs  = todayHeartRateSeries()
+        async let sl    = todaySleepHours()
+        async let srs   = todayHeartRateSeries()
+        async let stg   = todaySleepStages()
 
-        let (h, rr, v, s, k, sh, series) = await (hr, rhr, hrv, stp, kcal, sl, srs)
+        let (h, rr, v, s, k, sh, series, stages) = await (hr, rhr, hrv, stp, kcal, sl, srs, stg)
 
         self.heartRate        = h
         self.restingHeartRate = rr
@@ -82,6 +99,7 @@ final class HealthKitManager: ObservableObject {
         self.activeEnergy     = k ?? 0
         self.sleepHours       = sh
         self.heartRateSeries  = series
+        self.sleepStages      = stages
     }
 
     // MARK: Private query helpers
@@ -135,24 +153,38 @@ final class HealthKitManager: ObservableObject {
     }
 
     private func todaySleepHours() async -> Double {
-        guard let type = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else { return 0 }
+        let stages = await todaySleepStages()
+        return stages.totalAsleep / 60
+    }
+
+    private func todaySleepStages() async -> SleepBreakdown {
+        guard let type = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else {
+            return .empty
+        }
         let cal = Calendar.current
         let end = cal.startOfDay(for: Date())
         let start = cal.date(byAdding: .hour, value: -18, to: end) ?? end
         let predicate = HKQuery.predicateForSamples(withStart: start, end: Date())
+
         return await withCheckedContinuation { continuation in
             let q = HKSampleQuery(sampleType: type,
                                   predicate: predicate,
                                   limit: HKObjectQueryNoLimit,
                                   sortDescriptors: nil) { _, results, _ in
-                let samples = (results as? [HKCategorySample]) ?? []
-                let asleep = samples.filter { sample in
-                    HKCategoryValueSleepAnalysis.allAsleepValues.contains(
-                        HKCategoryValueSleepAnalysis(rawValue: sample.value) ?? .inBed
-                    )
+                var deep = 0.0, rem = 0.0, core = 0.0, awake = 0.0
+                for case let s as HKCategorySample in (results ?? []) {
+                    let minutes = s.endDate.timeIntervalSince(s.startDate) / 60
+                    switch HKCategoryValueSleepAnalysis(rawValue: s.value) {
+                    case .asleepDeep:            deep += minutes
+                    case .asleepREM:             rem  += minutes
+                    case .asleepCore, .asleep:   core += minutes
+                    case .awake:                 awake += minutes
+                    default:                     break
+                    }
                 }
-                let seconds = asleep.reduce(0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
-                continuation.resume(returning: seconds / 3_600)
+                continuation.resume(returning: SleepBreakdown(
+                    deepMinutes: deep, remMinutes: rem,
+                    coreMinutes: core, awakeMinutes: awake))
             }
             store.execute(q)
         }
@@ -168,6 +200,11 @@ final class HealthKitManager: ObservableObject {
         activeEnergy     = 412
         sleepHours       = 7.4
         heartRateSeries  = Self.makeMockSeries()
+        sleepStages      = SleepBreakdown(
+            deepMinutes: 92,
+            remMinutes: 108,
+            coreMinutes: 242,
+            awakeMinutes: 14)
         isAuthorized     = false
     }
 

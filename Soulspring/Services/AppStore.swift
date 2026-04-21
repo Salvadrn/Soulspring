@@ -50,6 +50,16 @@ final class AppStore: ObservableObject {
         didSet { UserDefaults.standard.set(isChef, forKey: Keys.chef) }
     }
 
+    /// In-app bookings (stays + add-on experiences) and gift cards.
+    @Published var stays: [StayBooking] = []
+    @Published var bookings: [Booking] = []
+    @Published var giftCards: [GiftCard] = []
+
+    /// Hydration + wallet + workouts log.
+    @Published var hydration: HydrationLog
+    @Published var wallet: MembershipWallet
+    @Published var completedWorkouts: [UUID: Date] = [:]
+
     /// How many habits the user must complete each day to defend the racha.
     @Published var dailyGoalTarget: Int {
         didSet { UserDefaults.standard.set(dailyGoalTarget, forKey: Keys.goal) }
@@ -65,6 +75,21 @@ final class AppStore: ObservableObject {
         self.dailyGoalTarget = saved == 0 ? 3 : saved
         self.dailyMenu = AppStore.load(DailyMenu.self, key: Keys.menu) ?? DailyMenu.sample
         self.isChef = UserDefaults.standard.bool(forKey: Keys.chef)
+
+        let loadedHydration = AppStore.load(HydrationLog.self, key: Keys.hydration)
+        self.hydration = AppStore.refreshDayIfNeeded(loadedHydration) ?? HydrationLog.today()
+        self.wallet = AppStore.load(MembershipWallet.self, key: Keys.wallet)
+            ?? MembershipWallet.make(for: UserProfile())
+    }
+
+    // Reset water log if the stored day is older than today.
+    private static func refreshDayIfNeeded(_ log: HydrationLog?) -> HydrationLog? {
+        guard let log else { return nil }
+        let today = Calendar.current.startOfDay(for: Date())
+        if Calendar.current.isDate(log.dayStart, inSameDayAs: today) {
+            return log
+        }
+        return HydrationLog.today(goal: log.goal)
     }
 
     // MARK: Auth actions
@@ -143,11 +168,103 @@ final class AppStore: ObservableObject {
     // MARK: Persistence
 
     private enum Keys {
-        static let profile = "soul.profile"
-        static let habits  = "soul.habits"
-        static let goal    = "soul.goal"
-        static let menu    = "soul.menu"
-        static let chef    = "soul.chef"
+        static let profile   = "soul.profile"
+        static let habits    = "soul.habits"
+        static let goal      = "soul.goal"
+        static let menu      = "soul.menu"
+        static let chef      = "soul.chef"
+        static let hydration = "soul.hydration"
+        static let wallet    = "soul.wallet"
+    }
+
+    // MARK: - New domain actions
+
+    func addWater() {
+        hydration.glasses = min(hydration.goal, hydration.glasses + 1)
+        persist(hydration, key: Keys.hydration)
+    }
+
+    func removeWater() {
+        hydration.glasses = max(0, hydration.glasses - 1)
+        persist(hydration, key: Keys.hydration)
+    }
+
+    func book(experience: Experience, at date: Date, notes: String) -> Booking {
+        let b = Booking(
+            experience: experience,
+            slotDate: date,
+            status: .confirmed,
+            notes: notes,
+            confirmationCode: Booking.newCode()
+        )
+        bookings.append(b)
+        return b
+    }
+
+    func bookStay(checkIn: Date, checkOut: Date, tier: MembershipTier, guests: Int) -> StayBooking {
+        let s = StayBooking(
+            checkIn: checkIn,
+            checkOut: checkOut,
+            tier: tier,
+            guests: guests,
+            addOns: [],
+            confirmationCode: Booking.newCode(),
+            status: .confirmed
+        )
+        stays.append(s)
+        profile.membershipTier = tier
+        persist(profile, key: Keys.profile)
+        return s
+    }
+
+    func cancelBooking(_ booking: Booking) {
+        if let idx = bookings.firstIndex(where: { $0.id == booking.id }) {
+            bookings[idx].status = .cancelled
+        }
+    }
+
+    func cancelStay(_ stay: StayBooking) {
+        if let idx = stays.firstIndex(where: { $0.id == stay.id }) {
+            stays[idx].status = .cancelled
+        }
+    }
+
+    func sendGiftCard(to name: String,
+                      email: String,
+                      amount: Int,
+                      message: String,
+                      design: GiftCard.Design) -> GiftCard {
+        let card = GiftCard(
+            recipientName: name,
+            recipientEmail: email,
+            senderName: profile.name.isEmpty ? "Soulspring" : profile.name,
+            message: message,
+            amountMXN: amount,
+            redeemCode: GiftCard.generateCode(),
+            issuedAt: Date(),
+            design: design,
+            status: .sent
+        )
+        giftCards.append(card)
+        return card
+    }
+
+    func attachPayment(_ method: PaymentMethod) {
+        wallet.paymentMethod = method
+        persist(wallet, key: Keys.wallet)
+    }
+
+    func markWorkoutDone(_ id: UUID) {
+        completedWorkouts[id] = Date()
+    }
+
+    /// Active stay today (for the wallet QR headline).
+    var activeStay: StayBooking? {
+        let now = Date()
+        return stays.first {
+            $0.status == .confirmed && $0.checkIn <= now && $0.checkOut >= now
+        } ?? stays.filter { $0.status == .confirmed && $0.checkIn > now }
+                  .sorted(by: { $0.checkIn < $1.checkIn }).first
     }
 
     private func persist<T: Encodable>(_ value: T, key: String) {

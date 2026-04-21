@@ -17,6 +17,7 @@ struct HeartRateView: View {
                     VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
                         header
                         liveCard
+                        shortcutsRow
                         chartCard
                         statsGrid
                         breathCard
@@ -55,6 +56,52 @@ struct HeartRateView: View {
                 .foregroundStyle(SoulTheme.Color.textSecondary)
         }
         .padding(.top, 8)
+    }
+
+    // MARK: Shortcuts to Sleep + Workouts
+
+    private var shortcutsRow: some View {
+        HStack(spacing: 12) {
+            NavigationLink { SleepDetailView() } label: {
+                shortcut(icon: "moon.stars.fill",
+                         title: "Sueño",
+                         subtitle: String(format: "%.1f h", health.sleepHours),
+                         tint: SoulTheme.Palette.earth)
+            }
+            NavigationLink { WorkoutsView() } label: {
+                shortcut(icon: "figure.run",
+                         title: "Entrenamiento",
+                         subtitle: "\(Workout.catalog.count) rutinas",
+                         tint: SoulTheme.Palette.terracotta)
+            }
+            NavigationLink { HydrationView() } label: {
+                shortcut(icon: "drop.fill",
+                         title: "Agua",
+                         subtitle: "Hidrátate",
+                         tint: SoulTheme.Palette.sky)
+            }
+        }
+    }
+
+    private func shortcut(icon: String, title: String, subtitle: String, tint: Color) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            ZStack {
+                Circle().fill(tint.opacity(0.15)).frame(width: 40, height: 40)
+                Image(systemName: icon).foregroundStyle(tint)
+            }
+            Text(title)
+                .font(SoulTheme.Font.card)
+                .foregroundStyle(SoulTheme.Color.textPrimary)
+            Text(subtitle)
+                .font(SoulTheme.Font.caption)
+                .foregroundStyle(SoulTheme.Color.textSecondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(14)
+        .background(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+            .fill(SoulTheme.Color.surface))
+        .overlay(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+            .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
     }
 
     // MARK: Live heart card

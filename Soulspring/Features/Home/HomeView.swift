@@ -55,25 +55,34 @@ struct HomeView: View {
     // MARK: Quick actions (external links)
 
     private var quickActions: some View {
-        HStack(spacing: 12) {
-            Link(destination: SoulLinks.booking) {
-                QuickActionTile(
-                    eyebrow: "Agenda",
-                    title: "Reservar cita",
-                    subtitle: "Clínica SoulSpring",
-                    icon: "calendar",
-                    gradient: SoulTheme.Gradient.forest
-                )
+        VStack(spacing: 12) {
+            HStack(spacing: 12) {
+                NavigationLink {
+                    BookingView()
+                        .navigationTitle("Reservar")
+                        .navigationBarTitleDisplayMode(.inline)
+                } label: {
+                    QuickActionTile(
+                        eyebrow: "Santuario",
+                        title: "Reservar estancia",
+                        subtitle: "Fechas disponibles ahora",
+                        icon: "calendar",
+                        gradient: SoulTheme.Gradient.forest)
+                }
+                Link(destination: SoulLinks.foodInstagram) {
+                    QuickActionTile(
+                        eyebrow: "Soul Kitchen",
+                        title: "Menú del día",
+                        subtitle: SoulLinks.foodHandle,
+                        icon: "fork.knife",
+                        gradient: SoulTheme.Gradient.sunset)
+                }
             }
-            Link(destination: SoulLinks.foodInstagram) {
-                QuickActionTile(
-                    eyebrow: "Soul Kitchen",
-                    title: "Menú del día",
-                    subtitle: SoulLinks.foodHandle,
-                    icon: "fork.knife",
-                    gradient: SoulTheme.Gradient.sunset
-                )
+
+            NavigationLink { HydrationView() } label: {
+                HydrationWidget()
             }
+            .buttonStyle(.plain)
         }
     }
 

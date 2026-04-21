@@ -61,14 +61,27 @@ enum ActivityLevel: String, CaseIterable, Identifiable, Codable {
 
 struct UserProfile: Codable, Equatable {
     var name: String = ""
+    var handle: String = ""
+    var email: String = ""
+    var phone: String = ""
     var age: AgeBracket = .mid
     var activity: ActivityLevel = .moderate
     var interests: Set<HealthInterest> = []
     var goal: String = ""
     var membershipTier: MembershipTier = .essential
     var hasCompletedOnboarding: Bool = false
+
+    // Clinical context — visible in the wallet so the practitioner can
+    // welcome the guest with full awareness at check-in.
+    var emergencyContactName: String = ""
+    var emergencyContactPhone: String = ""
+    var allergies: String = ""
+    var clinicalNotes: String = ""
+
+    var memberSince: Date = Date()
 }
 
+/// A stay plan at the Sanctuary. Priced per night, hotel-style.
 enum MembershipTier: String, CaseIterable, Codable, Identifiable {
     case essential = "Essential"
     case sanctuary = "Sanctuary"
@@ -76,30 +89,43 @@ enum MembershipTier: String, CaseIterable, Codable, Identifiable {
 
     var id: String { rawValue }
 
-    var monthlyCostMXN: Int {
+    /// Nightly rate in MXN. The Sanctuary is hotel-style: you book the
+    /// number of nights and pay per night.
+    var nightlyCostMXN: Int {
         switch self {
-        case .essential: return 500
-        case .sanctuary: return 1_800
-        case .longevity: return 4_200
+        case .essential: return 2_800
+        case .sanctuary: return 6_500
+        case .longevity: return 14_800
         }
     }
 
-    var perks: [String] {
+    var tagline: String {
+        switch self {
+        case .essential: return "Inmersión breve, esencial."
+        case .sanctuary: return "Plan bio-individualizado completo."
+        case .longevity: return "Protocolo clínico avanzado."
+        }
+    }
+
+    var includes: [String] {
         switch self {
         case .essential:
-            return ["Mide tu salud diaria",
-                    "Plan nutricional base",
-                    "Meditaciones guiadas"]
+            return ["Habitación Esencial",
+                    "3 comidas del chef",
+                    "1 experiencia grupal / día",
+                    "Acceso a sauna y tinas"]
         case .sanctuary:
-            return ["Todo Essential",
-                    "1 visita mensual al Santuario",
-                    "Plan bio-individualizado",
-                    "Room service saludable"]
+            return ["Habitación Sanctuary",
+                    "Menú bio-individualizado",
+                    "2 experiencias privadas / día",
+                    "Masaje de bienvenida",
+                    "Consulta nutricional"]
         case .longevity:
-            return ["Todo Sanctuary",
-                    "Estudios clínicos de longevidad",
-                    "Terapias regenerativas",
-                    "Concierge médico 24/7"]
+            return ["Suite Longevity",
+                    "Panel clínico de biomarcadores",
+                    "Protocolo médico personalizado",
+                    "Concierge médico 24/7",
+                    "Acceso a terapias regenerativas"]
         }
     }
 }
