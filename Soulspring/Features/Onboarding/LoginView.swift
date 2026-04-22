@@ -19,18 +19,17 @@ struct LoginView: View {
     @State private var isWorking: Bool = false
     @State private var authError: String? = nil
     @State private var infoMessage: String? = nil
+    @State private var isShowingOAuthSoon: Bool = false
 
     var body: some View {
         ZStack {
             SoulTheme.Color.background.ignoresSafeArea()
 
             VStack(spacing: 0) {
-                Spacer(minLength: 30)
+                Spacer(minLength: 20)
 
                 brandHero
                     .padding(.horizontal, SoulTheme.Spacing.lg)
-
-                Spacer(minLength: 16)
 
                 VStack(spacing: 14) {
                     if isShowingEmailForm {
@@ -43,6 +42,7 @@ struct LoginView: View {
                     }
                 }
                 .padding(.horizontal, SoulTheme.Spacing.lg)
+                .padding(.top, 24)
 
                 Spacer(minLength: 18)
 
@@ -50,13 +50,23 @@ struct LoginView: View {
                     .padding(.bottom, SoulTheme.Spacing.md)
             }
         }
+        .alert("Próximamente", isPresented: $isShowingOAuthSoon) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Inicio con Apple y Google se conectará en una siguiente versión. Por ahora usa tu correo.")
+        }
     }
 
-    // MARK: Brand hero — framed logo + Soulspring (big) + Beyond Wellness
+    // MARK: Brand hero — logo + Soulspring (big) + Beyond Wellness
 
     private var brandHero: some View {
-        VStack(spacing: 14) {
-            framedLogo
+        VStack(spacing: 12) {
+            Image("BrandLogo")
+                .resizable()
+                .renderingMode(.original)
+                .scaledToFit()
+                .frame(width: 170, height: 170)
+                .blendMode(.multiply)
 
             VStack(spacing: 6) {
                 Text("Soulspring")
@@ -77,24 +87,8 @@ struct LoginView: View {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(SoulTheme.Color.textSecondary)
                     .lineSpacing(2)
-                    .padding(.top, 6)
+                    .padding(.top, 4)
             }
-        }
-    }
-
-    private var framedLogo: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 36, style: .continuous)
-                .fill(SoulTheme.Color.surface)
-                .frame(width: 170, height: 170)
-                .shadow(color: .black.opacity(0.10), radius: 18, y: 8)
-                .shadow(color: .black.opacity(0.05), radius: 3, y: 1)
-            Image("BrandLogo")
-                .resizable()
-                .renderingMode(.original)
-                .scaledToFit()
-                .frame(width: 130, height: 130)
-                .blendMode(.multiply)
         }
     }
 
@@ -111,8 +105,9 @@ struct LoginView: View {
                             emoji: String? = nil,
                             fg: Color) -> some View {
         Button {
-            // Real Apple / Google auth not wired yet — placeholder loads guest.
-            store.continueAsGuest()
+            // Real Apple / Google auth not wired yet — show a friendly notice
+            // instead of silently logging in as guest.
+            isShowingOAuthSoon = true
         } label: {
             Group {
                 if let systemIcon {
