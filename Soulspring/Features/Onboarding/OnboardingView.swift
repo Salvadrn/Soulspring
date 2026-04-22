@@ -8,7 +8,7 @@ struct OnboardingView: View {
     @EnvironmentObject private var store: AppStore
     @State private var step: Int = 0
 
-    private let totalSteps = 7
+    private let totalSteps = 6
 
     var body: some View {
         ZStack {
@@ -20,13 +20,12 @@ struct OnboardingView: View {
                     .padding(.top, SoulTheme.Spacing.md)
 
                 TabView(selection: $step) {
-                    WelcomeStep().tag(0)
-                    IdentityStep().tag(1)
-                    EmergencyStep().tag(2)
-                    BodyStep().tag(3)
-                    LifestyleStep().tag(4)
-                    InterestsStep().tag(5)
-                    GoalStep().tag(6)
+                    IdentityStep().tag(0)
+                    EmergencyStep().tag(1)
+                    BodyStep().tag(2)
+                    LifestyleStep().tag(3)
+                    InterestsStep().tag(4)
+                    GoalStep().tag(5)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.easeInOut, value: step)
@@ -83,56 +82,19 @@ struct OnboardingView: View {
             .disabled(!canAdvance)
             .opacity(canAdvance ? 1 : 0.5)
 
-            if step == 0 {
-                Text("Diseñamos tu plan con base en lo que te importa a ti.")
-                    .font(SoulTheme.Font.caption)
-                    .foregroundStyle(SoulTheme.Color.textSecondary)
-                    .multilineTextAlignment(.center)
-            }
         }
     }
 
     private var canAdvance: Bool {
         switch step {
-        case 1: return !store.profile.name.trimmingCharacters(in: .whitespaces).isEmpty
-        case 5: return !store.profile.interests.isEmpty
+        case 0: return !store.profile.name.trimmingCharacters(in: .whitespaces).isEmpty
+        case 4: return !store.profile.interests.isEmpty
         default: return true
         }
     }
 }
 
-// MARK: - Step 0 · Welcome
-
-private struct WelcomeStep: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Spacer()
-            HStack {
-                Image("BrandLogo")
-                    .resizable()
-                    .renderingMode(.original)
-                    .scaledToFit()
-                    .frame(width: 130, height: 130)
-                Spacer()
-            }
-
-            Text("Respira.\nYa llegaste.")
-                .font(SoulTheme.Font.hero)
-                .multilineTextAlignment(.leading)
-                .foregroundStyle(SoulTheme.Color.textPrimary)
-
-            Text("Soulspring es tu compañero diario para cultivar hábitos saludables y conectar con tu cuerpo.")
-                .font(SoulTheme.Font.bodyText)
-                .foregroundStyle(SoulTheme.Color.textSecondary)
-                .multilineTextAlignment(.leading)
-
-            Spacer()
-        }
-        .padding(.horizontal, SoulTheme.Spacing.lg)
-    }
-}
-
-// MARK: - Step 1 · Identity (name, age, email, phone)
+// MARK: - Step 0 · Identity (name, age, email, phone)
 
 private struct IdentityStep: View {
     @EnvironmentObject private var store: AppStore

@@ -51,17 +51,15 @@ struct LoginView: View {
     // MARK: Hero
 
     private var heroBlock: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            HStack {
-                Image("BrandLogo")
-                    .resizable()
-                    .renderingMode(.original)
-                    .scaledToFit()
-                    .frame(width: 120, height: 120)
-                Spacer()
-            }
+        VStack(spacing: 18) {
+            Image("BrandLogo")
+                .resizable()
+                .renderingMode(.original)
+                .scaledToFit()
+                .frame(width: 130, height: 130)
+                .blendMode(.multiply)   // strips the white PNG background
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(spacing: 8) {
                 Text("Soulspring")
                     .font(.system(size: 13, weight: .bold))
                     .tracking(3)
@@ -69,18 +67,17 @@ struct LoginView: View {
 
                 Text("Beyond Wellness")
                     .font(.system(size: 36, weight: .bold))
-                    .multilineTextAlignment(.leading)
+                    .multilineTextAlignment(.center)
                     .foregroundStyle(SoulTheme.Color.textPrimary)
 
                 Text(isCreatingAccount
                      ? "Crea tu perfil y empieza\ntu camino hacia adentro."
                      : "Bienvenido de vuelta.\nRespira, ya llegaste.")
                     .font(SoulTheme.Font.bodyText)
-                    .multilineTextAlignment(.leading)
+                    .multilineTextAlignment(.center)
                     .foregroundStyle(SoulTheme.Color.textSecondary)
                     .lineSpacing(2)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 
