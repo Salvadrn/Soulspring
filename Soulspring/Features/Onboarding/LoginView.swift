@@ -12,6 +12,7 @@ import AuthenticationServices
 /// - Footer toggles between create-account and sign-in modes.
 struct LoginView: View {
     @EnvironmentObject private var store: AppStore
+    @Environment(\.colorScheme) private var colorScheme
 
     @State private var email: String = ""
     @State private var password: String = ""
@@ -64,32 +65,44 @@ struct LoginView: View {
 
     private var brandHero: some View {
         VStack(spacing: 12) {
-            Image("BrandLogo")
-                .resizable()
-                .renderingMode(.original)
-                .scaledToFit()
-                .frame(width: 170, height: 170)
+            ZStack {
+                // In dark mode the white parts that weren't fully cleaned out
+                // show as a faint halo — wrap the logo in a soft sage card so
+                // it reads as intentional instead of leaky.
+                if colorScheme == .dark {
+                    RoundedRectangle(cornerRadius: 36, style: .continuous)
+                        .fill(SoulTheme.Palette.moss.opacity(0.22))
+                        .frame(width: 200, height: 200)
+                }
+                Image("BrandLogo")
+                    .resizable()
+                    .renderingMode(.original)
+                    .scaledToFit()
+                    .frame(width: 170, height: 170)
+            }
 
-            VStack(spacing: 6) {
+            VStack(spacing: 8) {
                 Text("Soulspring")
-                    .font(.system(size: 42, weight: .bold))
+                    .font(SoulTheme.Font.display(46, weight: .regular))
                     .multilineTextAlignment(.center)
-                    .foregroundStyle(SoulTheme.Palette.ink)
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
 
-                Text("\u{201C}Beyond Wellness\u{201D}")
-                    .font(.system(size: 16, weight: .semibold))
-                    .tracking(2)
+                Text("Beyond Wellness")
+                    .font(SoulTheme.Font.display(20, weight: .regular))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(SoulTheme.Color.primary)
 
-                Text(isCreatingAccount
-                     ? "Crea tu perfil y empieza\ntu camino hacia adentro."
-                     : "Bienvenido de vuelta.\nRespira, ya llegaste.")
-                    .font(SoulTheme.Font.bodyText)
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(SoulTheme.Color.textSecondary)
-                    .lineSpacing(2)
-                    .padding(.top, 4)
+                VStack(spacing: 4) {
+                    SoulEyebrow(text: "Soulspring")
+                    Text(isCreatingAccount
+                         ? "Crea tu perfil y empieza\ntu camino hacia adentro."
+                         : "Bienvenido de vuelta.\nRespira, ya llegaste.")
+                        .font(SoulTheme.Font.bodyText)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(SoulTheme.Color.textSecondary)
+                        .lineSpacing(2)
+                }
+                .padding(.top, 8)
             }
         }
     }
