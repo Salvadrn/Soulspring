@@ -25,12 +25,12 @@ struct LoginView: View {
             SoulTheme.Color.background.ignoresSafeArea()
 
             VStack(spacing: 0) {
-                Spacer()
+                Spacer(minLength: 30)
 
                 brandHero
                     .padding(.horizontal, SoulTheme.Spacing.lg)
 
-                Spacer()
+                Spacer(minLength: 16)
 
                 VStack(spacing: 14) {
                     if isShowingEmailForm {
@@ -44,7 +44,7 @@ struct LoginView: View {
                 }
                 .padding(.horizontal, SoulTheme.Spacing.lg)
 
-                Spacer(minLength: 24)
+                Spacer(minLength: 18)
 
                 footerLink
                     .padding(.bottom, SoulTheme.Spacing.md)
@@ -52,27 +52,23 @@ struct LoginView: View {
         }
     }
 
-    // MARK: Brand hero — big logo + Soulspring + Beyond Wellness
+    // MARK: Brand hero — framed logo + Soulspring (big) + Beyond Wellness
 
     private var brandHero: some View {
-        VStack(spacing: 18) {
-            Image("BrandLogo")
-                .resizable()
-                .renderingMode(.original)
-                .scaledToFit()
-                .frame(width: 180, height: 180)
-                .blendMode(.multiply)
+        VStack(spacing: 14) {
+            framedLogo
 
             VStack(spacing: 6) {
                 Text("Soulspring")
-                    .font(.system(size: 13, weight: .bold))
-                    .tracking(4)
-                    .foregroundStyle(SoulTheme.Color.primary)
+                    .font(.system(size: 42, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(SoulTheme.Palette.ink)
 
                 Text("Beyond Wellness")
-                    .font(.system(size: 40, weight: .bold))
+                    .font(.system(size: 16, weight: .semibold))
+                    .tracking(2)
                     .multilineTextAlignment(.center)
-                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                    .foregroundStyle(SoulTheme.Color.primary)
 
                 Text(isCreatingAccount
                      ? "Crea tu perfil y empieza\ntu camino hacia adentro."
@@ -81,8 +77,24 @@ struct LoginView: View {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(SoulTheme.Color.textSecondary)
                     .lineSpacing(2)
-                    .padding(.top, 4)
+                    .padding(.top, 6)
             }
+        }
+    }
+
+    private var framedLogo: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 36, style: .continuous)
+                .fill(SoulTheme.Color.surface)
+                .frame(width: 170, height: 170)
+                .shadow(color: .black.opacity(0.10), radius: 18, y: 8)
+                .shadow(color: .black.opacity(0.05), radius: 3, y: 1)
+            Image("BrandLogo")
+                .resizable()
+                .renderingMode(.original)
+                .scaledToFit()
+                .frame(width: 130, height: 130)
+                .blendMode(.multiply)
         }
     }
 
