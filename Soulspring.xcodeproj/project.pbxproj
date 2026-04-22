@@ -15,6 +15,7 @@
 		1E857DC8F7A1A83AE07F5D95 /* BiologicalAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26530EB1413F58064A870AFE /* BiologicalAgeView.swift */; };
 		20ADBB62B276BE14E4B28902 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7810570A883B6BC5BD8385 /* AudioTrack.swift */; };
 		2118D7CEC57489975093927D /* SoulspringWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2829755636F734C5EC9D10AA /* mindfulness-45-15min.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBB4A7ED253A74343A1AAE9F /* mindfulness-45-15min.mp3 */; };
 		28DDFEEBE1193401C674E5E8 /* DailyMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941733A232EA4EF68BE25C0C /* DailyMenu.swift */; };
 		2B557F618CB4F75260D4BC4D /* SoulBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97FBE990E78774EF1D4A9E6 /* SoulBackend.swift */; };
 		2E13C160B3475B39CAFAAEB7 /* SoulspringWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D9666743A2BFE12798611 /* SoulspringWidgetsBundle.swift */; };
@@ -36,6 +37,7 @@
 		54900529242FC0E5D7E7BF65 /* StreakEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2B602A3143576B1ABAB0CD /* StreakEngine.swift */; };
 		54FEF6E3AC7BCFD51C0B57C8 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20A4091305BB22E126FA04 /* Recommendation.swift */; };
 		568B8AFE176819C951EF5C4E /* WellnessExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B395D8AAAB973EC59756A /* WellnessExtras.swift */; };
+		57EFA699B505DEC0E9BF8C4C /* bells-25.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B117BC579229E35928D00BD5 /* bells-25.mp3 */; };
 		57FC3F7F0FA1F4A1643118FD /* SoulChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BA56315FD923B3A7169DA /* SoulChatView.swift */; };
 		598DB24AAB5DB1DC55A6639D /* OAuthSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D340FD8702EB26E168D408 /* OAuthSignIn.swift */; };
 		59EA242D9871C01AECDFFD29 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FB655C1191FD800E78E66 /* HealthKitManager.swift */; };
@@ -52,10 +54,12 @@
 		80527C110594D385611E63CC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32373E095B5C2718418E74C2 /* LoginView.swift */; };
 		806D430F77D3808E727CAEE6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FA1ED2E2C76D1834F98746 /* SwiftUI.framework */; };
 		87136668FE724E6C70DA4461 /* Finance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2918512583E9203A3A5E6F8C /* Finance.swift */; };
+		89ED48AFFD9637FAB89644A0 /* bells-30.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B90E9B71B8991BF1C9E52349 /* bells-30.mp3 */; };
 		8A9FEA873BFB844D95966C6D /* SanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC32F9FEB91DC7907736AEF /* SanctuaryView.swift */; };
 		8DE071FBCC6506480B4855CC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A262EDAF46E9B8F6EFFD627 /* OnboardingView.swift */; };
 		90F7541E54BF500301C046C8 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20D6F38CB1D68BDFCB69E09 /* Habit.swift */; };
 		94FD3ACE1861F85CCFC40E4C /* SoulChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B08BF01955BF7AA0219751 /* SoulChatService.swift */; };
+		9B7CABE9CFB08AE30F0CD9FB /* mindfulness-45-5min.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF5DAFB1225EE054CF235E77 /* mindfulness-45-5min.mp3 */; };
 		9F6F5B6464696F515F5D68C4 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B33BF372D7E5D00EA9689 /* Achievement.swift */; };
 		AA20D099C12329773A794B87 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE1778FE54D1281289B5B2D /* AudioPlayer.swift */; };
 		AAD849F03E6B0CF411722380 /* AppleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC0F0692BFEA4B146823E38 /* AppleSignIn.swift */; };
@@ -77,6 +81,7 @@
 		DDEB069EEF2C7652DDDB89A3 /* SoulHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D74115B61BE013B253437A /* SoulHaptics.swift */; };
 		DFF855C04561F852B9458722 /* LabAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F7A1804B206FC942529B3 /* LabAIService.swift */; };
 		E26AE913ED611E4C71045148 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72DFA40AA6BD19A5ABDDDAB /* SoulTheme.swift */; };
+		E80D35FC6CADF384511498CF /* mindfulness-20.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B27EDFC64CAD353E2D9290E1 /* mindfulness-20.mp3 */; };
 		EF3C62DD24068411EF9ED940 /* RachaFlame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419470EE23F5FD867EB8DCC5 /* RachaFlame.swift */; };
 		EFE0EA669C9C369157E72B9B /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EA04BC44E1023F47FFEB61 /* AchievementsView.swift */; };
 		F724E4544D12D6606A8E01E0 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F14CE6103579EFC821BE93 /* UserProfile.swift */; };
@@ -121,7 +126,7 @@
 		26530EB1413F58064A870AFE /* BiologicalAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeView.swift; sourceTree = "<group>"; };
 		27E42316F6DC60B775B4F04D /* SleepDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailView.swift; sourceTree = "<group>"; };
 		2819E42AFF7091EB4565565A /* LabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsView.swift; sourceTree = "<group>"; };
-		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2886676E3A3F51EF9B8C3A25 /* AudioLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryView.swift; sourceTree = "<group>"; };
 		2918512583E9203A3A5E6F8C /* Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finance.swift; sourceTree = "<group>"; };
 		32373E095B5C2718418E74C2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -159,21 +164,26 @@
 		A3FD8610E86CE3DA65B43928 /* BiologicalAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAge.swift; sourceTree = "<group>"; };
 		A72DFA40AA6BD19A5ABDDDAB /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
 		ACC32F9FEB91DC7907736AEF /* SanctuaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryView.swift; sourceTree = "<group>"; };
+		B117BC579229E35928D00BD5 /* bells-25.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bells-25.mp3"; sourceTree = "<group>"; };
 		B13F7A1804B206FC942529B3 /* LabAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabAIService.swift; sourceTree = "<group>"; };
+		B27EDFC64CAD353E2D9290E1 /* mindfulness-20.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "mindfulness-20.mp3"; sourceTree = "<group>"; };
+		B90E9B71B8991BF1C9E52349 /* bells-30.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bells-30.mp3"; sourceTree = "<group>"; };
 		B9EFE5930F5ABDB6E474B3DD /* SoulComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulComponents.swift; sourceTree = "<group>"; };
 		BE7810570A883B6BC5BD8385 /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
+		BF5DAFB1225EE054CF235E77 /* mindfulness-45-5min.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "mindfulness-45-5min.mp3"; sourceTree = "<group>"; };
 		C34BA56315FD923B3A7169DA /* SoulChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulChatView.swift; sourceTree = "<group>"; };
 		C4744EDD0B53FD55C89D6527 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
 		C54C8F562697AF3D14B013F4 /* BudgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetsView.swift; sourceTree = "<group>"; };
 		C786927502FD0031EF8D8D0E /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
 		C97FBE990E78774EF1D4A9E6 /* SoulBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulBackend.swift; sourceTree = "<group>"; };
+		CBB4A7ED253A74343A1AAE9F /* mindfulness-45-15min.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "mindfulness-45-15min.mp3"; sourceTree = "<group>"; };
 		CC1AC86325463BEF69A89D18 /* FinanceTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTab.swift; sourceTree = "<group>"; };
 		D0E1AF5B498A74A24476E63B /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		D41B33BF372D7E5D00EA9689 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		D89389C9ED841ACA3245B875 /* GiftCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardView.swift; sourceTree = "<group>"; };
 		DA2B602A3143576B1ABAB0CD /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
 		DBE67FE4BC2E72761896EF86 /* CocinaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocinaView.swift; sourceTree = "<group>"; };
-		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeWidget.swift; sourceTree = "<group>"; };
 		E2A198D2278D4652A44BEB86 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E41A923CF769CB55806F5C31 /* BudgetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetWidget.swift; sourceTree = "<group>"; };
@@ -300,6 +310,7 @@
 		6F8BAE251DEE63BF57B3F87C = {
 			isa = PBXGroup;
 			children = (
+				E5BBB57CF18B2F273F9D7086 /* Resources */,
 				CF185000265FA52BE3DB720B /* Soulspring */,
 				C246C1B3F55FA22DB76D04F2 /* SoulspringWidgets */,
 				09DBC6880DFD1A4FE41F2CC2 /* Frameworks */,
@@ -334,6 +345,18 @@
 				729B24DFDEA21FD8D7DF13A0 /* RoutineView.swift */,
 			);
 			path = Routine;
+			sourceTree = "<group>";
+		};
+		888F1D13321611182CE22AAE /* Audios */ = {
+			isa = PBXGroup;
+			children = (
+				B117BC579229E35928D00BD5 /* bells-25.mp3 */,
+				B90E9B71B8991BF1C9E52349 /* bells-30.mp3 */,
+				B27EDFC64CAD353E2D9290E1 /* mindfulness-20.mp3 */,
+				BF5DAFB1225EE054CF235E77 /* mindfulness-45-5min.mp3 */,
+				CBB4A7ED253A74343A1AAE9F /* mindfulness-45-15min.mp3 */,
+			);
+			path = Audios;
 			sourceTree = "<group>";
 		};
 		8B1371FFA0895B9C60ACB887 /* Features */ = {
@@ -426,6 +449,15 @@
 				C500E67365A7FB33BF7ADC5B /* Theme */,
 			);
 			path = Soulspring;
+			sourceTree = "<group>";
+		};
+		E5BBB57CF18B2F273F9D7086 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				888F1D13321611182CE22AAE /* Audios */,
+			);
+			name = Resources;
+			path = Soulspring/Resources;
 			sourceTree = "<group>";
 		};
 		E9D08192E5CCBAEE9837BC01 /* SoulChat */ = {
@@ -550,6 +582,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D4D845F64874FA7C7E99230 /* Assets.xcassets in Resources */,
+				57EFA699B505DEC0E9BF8C4C /* bells-25.mp3 in Resources */,
+				89ED48AFFD9637FAB89644A0 /* bells-30.mp3 in Resources */,
+				E80D35FC6CADF384511498CF /* mindfulness-20.mp3 in Resources */,
+				2829755636F734C5EC9D10AA /* mindfulness-45-15min.mp3 in Resources */,
+				9B7CABE9CFB08AE30F0CD9FB /* mindfulness-45-5min.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +757,6 @@
 				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -744,7 +780,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -821,7 +856,6 @@
 				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -845,7 +879,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

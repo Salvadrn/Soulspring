@@ -31,6 +31,9 @@ targets:
         excludes:
           - "SupportingFiles/Info.plist"
           - "SupportingFiles/Soulspring.entitlements"
+          - "Resources/**"
+      - path: Soulspring/Resources
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: mx.soulspring.app
