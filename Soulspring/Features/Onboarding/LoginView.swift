@@ -25,12 +25,9 @@ struct LoginView: View {
             SoulTheme.Color.background.ignoresSafeArea()
 
             VStack(spacing: 0) {
-                brandMark
-                    .padding(.top, 30)
-
                 Spacer()
 
-                hero
+                brandHero
                     .padding(.horizontal, SoulTheme.Spacing.lg)
 
                 Spacer()
@@ -55,32 +52,38 @@ struct LoginView: View {
         }
     }
 
-    // MARK: Brand mark — logo + name (top)
+    // MARK: Brand hero — big logo + Soulspring + Beyond Wellness
 
-    private var brandMark: some View {
-        HStack(spacing: 10) {
+    private var brandHero: some View {
+        VStack(spacing: 18) {
             Image("BrandLogo")
                 .resizable()
                 .renderingMode(.original)
                 .scaledToFit()
-                .frame(width: 36, height: 36)
+                .frame(width: 180, height: 180)
                 .blendMode(.multiply)
-            Text("Soulspring")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(SoulTheme.Color.textPrimary)
+
+            VStack(spacing: 6) {
+                Text("Soulspring")
+                    .font(.system(size: 13, weight: .bold))
+                    .tracking(4)
+                    .foregroundStyle(SoulTheme.Color.primary)
+
+                Text("Beyond Wellness")
+                    .font(.system(size: 40, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+
+                Text(isCreatingAccount
+                     ? "Crea tu perfil y empieza\ntu camino hacia adentro."
+                     : "Bienvenido de vuelta.\nRespira, ya llegaste.")
+                    .font(SoulTheme.Font.bodyText)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+                    .lineSpacing(2)
+                    .padding(.top, 4)
+            }
         }
-    }
-
-    // MARK: Hero text
-
-    private var hero: some View {
-        Text(isCreatingAccount
-             ? "Crea tu perfil para descubrir tu camino de bienestar."
-             : "Bienvenido de vuelta.\nRespira, ya llegaste.")
-            .font(.system(size: 30, weight: .bold))
-            .multilineTextAlignment(.center)
-            .foregroundStyle(SoulTheme.Color.textPrimary)
-            .lineSpacing(4)
     }
 
     // MARK: Social buttons (Apple + Google as outlined chips, side by side)
