@@ -49,6 +49,10 @@ struct OnboardingView: View {
                     Button("Atrás") { withAnimation { step -= 1 } }
                         .font(SoulTheme.Font.caption)
                         .foregroundStyle(SoulTheme.Color.textSecondary)
+                } else {
+                    Button("Cerrar sesión") { store.signOut() }
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(SoulTheme.Color.textSecondary)
                 }
             }
 
@@ -107,6 +111,7 @@ private struct WelcomeStep: View {
                 .scaledToFit()
                 .frame(width: 150, height: 150)
                 .blendMode(.multiply)
+                .offset(x: -18)   // nudge slightly left for a balanced look
 
             Text("Respira.\nYa llegaste.")
                 .font(SoulTheme.Font.hero)
