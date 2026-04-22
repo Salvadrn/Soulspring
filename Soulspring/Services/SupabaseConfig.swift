@@ -16,7 +16,9 @@ import Foundation
 /// Use Row Level Security with `user_id = auth.uid()` on every table.
 enum SupabaseConfig {
     static let url: String      = "https://wbemkfaacbainvxgtgte.supabase.co"
-    static let anonKey: String  = "sb_publishable_ufF49hUO-egjk6BQvZmhig_z6dgPn0k"
+    /// Legacy JWT-format anon key. Required for Edge Functions with verify_jwt=true
+    /// (the modern publishable key sb_publishable_... is not a JWT and fails JWT validation).
+    static let anonKey: String  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiZW1rZmFhY2JhaW52eGd0Z3RlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3OTEyODAsImV4cCI6MjA5MjM2NzI4MH0.wRdCLttYe7inaCWhngNR4cRaXZkBa1VQ4l8tfXUdarE"
 
     static var isConfigured: Bool {
         !url.contains("YOUR-PROJECT") && !anonKey.contains("YOUR-ANON-KEY")
