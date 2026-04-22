@@ -52,6 +52,7 @@ final class OAuthSignInCoordinator: NSObject, ObservableObject {
             return
         }
 
+        print("🔐 OAuth start URL: \(url.absoluteString)")
         let session = ASWebAuthenticationSession(
             url: url,
             callbackURLScheme: Self.redirectScheme
@@ -60,12 +61,14 @@ final class OAuthSignInCoordinator: NSObject, ObservableObject {
                 guard let self else { return }
                 if let error {
                     let nsErr = error as NSError
+                    print("🔐 OAuth error code=\(nsErr.code) domain=\(nsErr.domain) desc=\(nsErr.localizedDescription)")
                     if nsErr.code == ASWebAuthenticationSessionError.canceledLogin.rawValue {
                         return  // user cancelled — silent
                     }
                     completion(.failure(error))
                     return
                 }
+                print("🔐 OAuth callback URL: \(callback?.absoluteString ?? "nil")")
                 guard let callback,
                       let parsed = self.parse(callback: callback) else {
                     completion(.failure(OAuthError.missingTokens))
