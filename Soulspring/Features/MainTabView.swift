@@ -66,23 +66,30 @@ struct FloatingTabBar: View {
     @Binding var selection: MainTabView.Tab
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 4) {
-                ForEach(MainTabView.Tab.allCases, id: \.self) { tab in
-                    tabItem(tab)
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 4) {
+                    ForEach(MainTabView.Tab.allCases, id: \.self) { tab in
+                        tabItem(tab).id(tab)
+                    }
+                }
+                .padding(6)
+            }
+            .background(
+                Capsule(style: .continuous)
+                    .fill(SoulTheme.Color.surface)
+                    .overlay(
+                        Capsule(style: .continuous)
+                            .stroke(SoulTheme.Color.divider, lineWidth: 1)
+                    )
+            )
+            .clipShape(Capsule(style: .continuous))
+            .onChange(of: selection) { _, new in
+                withAnimation(.easeOut(duration: 0.25)) {
+                    proxy.scrollTo(new, anchor: .center)
                 }
             }
-            .padding(6)
         }
-        .scrollClipDisabled()
-        .background(
-            Capsule(style: .continuous)
-                .fill(SoulTheme.Color.surface)
-                .overlay(
-                    Capsule(style: .continuous)
-                        .stroke(SoulTheme.Color.divider, lineWidth: 1)
-                )
-        )
     }
 
     private func tabItem(_ tab: MainTabView.Tab) -> some View {
