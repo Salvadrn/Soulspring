@@ -7,6 +7,7 @@ import Foundation
 protocol SoulBackend {
     func signIn(email: String, password: String) async throws -> AuthSession
     func signUp(email: String, password: String) async throws -> AuthSession
+    func signInWithApple(idToken: String, nonce: String) async throws -> AuthSession
     func signOut() async throws
 
     func fetchProfile() async throws -> UserProfile?
@@ -46,6 +47,9 @@ final class LocalBackend: SoulBackend {
     func signUp(email: String, password: String) async throws -> AuthSession {
         AuthSession(userId: UUID().uuidString, email: email, accessToken: "local")
     }
+    func signInWithApple(idToken: String, nonce: String) async throws -> AuthSession {
+        AuthSession(userId: UUID().uuidString, email: "", accessToken: "local")
+    }
     func signOut() async throws {}
     func fetchProfile() async throws -> UserProfile? { nil }
     func saveProfile(_ profile: UserProfile) async throws {}
@@ -81,6 +85,11 @@ final class SupabaseBackend: SoulBackend {
     func signUp(email: String, password: String) async throws -> AuthSession {
         try await auth(path: "/auth/v1/signup",
                        body: ["email": email, "password": password])
+    }
+
+    func signInWithApple(idToken: String, nonce: String) async throws -> AuthSession {
+        try await auth(path: "/auth/v1/token?grant_type=id_token",
+                       body: ["provider": "apple", "id_token": idToken, "nonce": nonce])
     }
 
     func signOut() async throws {

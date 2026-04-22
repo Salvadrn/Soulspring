@@ -1,4 +1,5 @@
 import SwiftUI
+import AuthenticationServices
 
 /// Login / sign-up. Mimo-style layout:
 /// - Brand mark (logo + "Soulspring") at the top
@@ -20,6 +21,7 @@ struct LoginView: View {
     @State private var authError: String? = nil
     @State private var infoMessage: String? = nil
     @State private var isShowingOAuthSoon: Bool = false
+    @StateObject private var appleSignIn = AppleSignInCoordinator()
 
     var body: some View {
         ZStack {
@@ -74,7 +76,7 @@ struct LoginView: View {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(SoulTheme.Palette.ink)
 
-                Text("Beyond Wellness")
+                Text("\u{201C}Beyond Wellness\u{201D}")
                     .font(.system(size: 16, weight: .semibold))
                     .tracking(2)
                     .multilineTextAlignment(.center)
@@ -96,19 +98,64 @@ struct LoginView: View {
 
     private var socialButtons: some View {
         HStack(spacing: 12) {
-            socialPill(systemIcon: "applelogo", fg: SoulTheme.Color.textPrimary)
-            socialPill(emoji: "G", fg: SoulTheme.Color.textPrimary)
+            applePill
+            socialPill(emoji: "G", fg: SoulTheme.Color.textPrimary, action: {
+                isShowingOAuthSoon = true
+            })
+        }
+    }
+
+    private var applePill: some View {
+        Button {
+            startAppleSignIn()
+        } label: {
+            Image(systemName: "applelogo")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundStyle(SoulTheme.Color.textPrimary)
+                .frame(maxWidth: .infinity, minHeight: 58)
+                .background(Capsule().fill(SoulTheme.Color.surface))
+                .overlay(Capsule().stroke(SoulTheme.Palette.earth.opacity(0.25), lineWidth: 1))
+                .shadow(color: .black.opacity(0.18), radius: 10, y: 5)
+                .shadow(color: .black.opacity(0.06), radius: 2, y: 1)
+        }
+        .buttonStyle(.plain)
+        .hapticOnTap()
+    }
+
+    private func startAppleSignIn() {
+        appleSignIn.start { result in
+            Task { @MainActor in
+                isWorking = true
+                authError = nil
+                defer { isWorking = false }
+                switch result {
+                case .success(let r):
+                    do {
+                        try await store.signInWithApple(
+                            idToken: r.identityToken,
+                            nonce: r.rawNonce,
+                            appleEmail: r.email,
+                            appleFullName: r.fullName
+                        )
+                    } catch {
+                        authError = error.localizedDescription
+                    }
+                case .failure(let err):
+                    let nsErr = err as NSError
+                    // Silently ignore user cancellation.
+                    if nsErr.code != ASAuthorizationError.canceled.rawValue {
+                        authError = err.localizedDescription
+                    }
+                }
+            }
         }
     }
 
     private func socialPill(systemIcon: String? = nil,
                             emoji: String? = nil,
-                            fg: Color) -> some View {
-        Button {
-            // Real Apple / Google auth not wired yet — show a friendly notice
-            // instead of silently logging in as guest.
-            isShowingOAuthSoon = true
-        } label: {
+                            fg: Color,
+                            action: @escaping () -> Void = {}) -> some View {
+        Button(action: action) {
             Group {
                 if let systemIcon {
                     Image(systemName: systemIcon)

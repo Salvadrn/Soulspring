@@ -171,6 +171,27 @@ final class AppStore: ObservableObject {
         }
     }
 
+    /// Native Sign in with Apple → Supabase. The id token from
+    /// `ASAuthorizationAppleIDCredential` is exchanged for a Supabase session
+    /// via the GoTrue id_token grant. Apple-issued names/emails (only sent
+    /// on first sign-in) are merged into the local profile.
+    func signInWithApple(idToken: String,
+                         nonce: String,
+                         appleEmail: String?,
+                         appleFullName: String?) async throws {
+        let session = try await backend.signInWithApple(idToken: idToken, nonce: nonce)
+        await MainActor.run {
+            self.auth = .signedIn(email: session.email.isEmpty
+                                  ? (appleEmail ?? "")
+                                  : session.email)
+            if !session.email.isEmpty { self.profile.email = session.email }
+            else if let e = appleEmail, !e.isEmpty { self.profile.email = e }
+            if let name = appleFullName, !name.isEmpty, profile.name.isEmpty {
+                self.profile.name = name
+            }
+        }
+    }
+
     /// Sign-up against Supabase. Note: if email confirmation is enabled in
     /// the Supabase dashboard, the user will need to confirm before they can
     /// sign in. We optimistically log them in if the response contains a
