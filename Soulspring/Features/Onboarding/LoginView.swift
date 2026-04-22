@@ -22,6 +22,7 @@ struct LoginView: View {
     @State private var infoMessage: String? = nil
     @State private var isShowingOAuthSoon: Bool = false
     @StateObject private var appleSignIn = AppleSignInCoordinator()
+    @StateObject private var oauthSignIn = OAuthSignInCoordinator()
 
     var body: some View {
         ZStack {
@@ -100,8 +101,24 @@ struct LoginView: View {
         HStack(spacing: 12) {
             applePill
             socialPill(emoji: "G", fg: SoulTheme.Color.textPrimary, action: {
-                isShowingOAuthSoon = true
+                startGoogleSignIn()
             })
+        }
+    }
+
+    private func startGoogleSignIn() {
+        oauthSignIn.start(provider: .google) { result in
+            Task { @MainActor in
+                isWorking = true
+                authError = nil
+                defer { isWorking = false }
+                switch result {
+                case .success(let session):
+                    store.signInWithOAuth(session: session, providerLabel: "google")
+                case .failure(let err):
+                    authError = err.localizedDescription
+                }
+            }
         }
     }
 

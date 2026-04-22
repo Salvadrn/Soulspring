@@ -171,6 +171,16 @@ final class AppStore: ObservableObject {
         }
     }
 
+    /// OAuth sign-in via Supabase + ASWebAuthenticationSession. The session
+    /// already comes signed by Supabase, so we just promote auth state.
+    func signInWithOAuth(session: OAuthSignInCoordinator.OAuthSession,
+                         providerLabel: String) {
+        // We don't get the email back in the URL fragment, so we leave
+        // it blank for now — it'll get filled when we sync the profile
+        // from Supabase or when the user fills the cuestionario.
+        self.auth = .signedIn(email: providerLabel)
+    }
+
     /// Native Sign in with Apple → Supabase. The id token from
     /// `ASAuthorizationAppleIDCredential` is exchanged for a Supabase session
     /// via the GoTrue id_token grant. Apple-issued names/emails (only sent

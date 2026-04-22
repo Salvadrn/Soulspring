@@ -40,6 +40,21 @@
         <string>audio</string>
     </array>
 
+    <!-- OAuth callback URL scheme (Supabase Google / GitHub / etc.) -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>mx.soulspring.app.oauth</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>mx.soulspring.app</string>
+            </array>
+        </dict>
+    </array>
+
     <!-- HealthKit usage strings -->
     <key>NSHealthShareUsageDescription</key>
     <string>Soulspring usa tus datos de ritmo cardíaco, actividad y sueño desde Apple Health para personalizar tu viaje de bienestar.</string>

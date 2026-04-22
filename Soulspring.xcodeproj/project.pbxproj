@@ -52,6 +52,7 @@
 		2A11DD42D636806B379C0745 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B606C37EAE8F220E2472F78 /* HealthKitManager.swift */; };
 		C9D0BA6E9C62A950D1ED0F1D /* LabAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14409495860CB27511D615B5 /* LabAIService.swift */; };
 		740DB63FB6A1402DF2EF25F0 /* LabParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCEF14AB8B43AB065E9013 /* LabParser.swift */; };
+		D284C467B27D5CC46564F57A /* OAuthSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7BCE1B3AB958936612DEE /* OAuthSignIn.swift */; };
 		C5F710591E8548D419A6C646 /* SoulBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D36197321AB810C970777E /* SoulBackend.swift */; };
 		2F8E01D07B3325C15A9332F9 /* SoulChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787B000F29B91A706521535 /* SoulChatService.swift */; };
 		1C8931AB01CF691DCA4623A6 /* SoulLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */; };
@@ -114,6 +115,7 @@
 		9B606C37EAE8F220E2472F78 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		14409495860CB27511D615B5 /* LabAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabAIService.swift; sourceTree = "<group>"; };
 		79DCEF14AB8B43AB065E9013 /* LabParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabParser.swift; sourceTree = "<group>"; };
+		C6F7BCE1B3AB958936612DEE /* OAuthSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthSignIn.swift; sourceTree = "<group>"; };
 		82D36197321AB810C970777E /* SoulBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulBackend.swift; sourceTree = "<group>"; };
 		7787B000F29B91A706521535 /* SoulChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulChatService.swift; sourceTree = "<group>"; };
 		F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulLinks.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				9B606C37EAE8F220E2472F78 /* HealthKitManager.swift */,
 				14409495860CB27511D615B5 /* LabAIService.swift */,
 				79DCEF14AB8B43AB065E9013 /* LabParser.swift */,
+				C6F7BCE1B3AB958936612DEE /* OAuthSignIn.swift */,
 				82D36197321AB810C970777E /* SoulBackend.swift */,
 				7787B000F29B91A706521535 /* SoulChatService.swift */,
 				F99EDE84A2A4C7C95A093FB0 /* SoulLinks.swift */,
@@ -494,6 +497,7 @@
 				2A11DD42D636806B379C0745 /* HealthKitManager.swift in Sources */,
 				C9D0BA6E9C62A950D1ED0F1D /* LabAIService.swift in Sources */,
 				740DB63FB6A1402DF2EF25F0 /* LabParser.swift in Sources */,
+				D284C467B27D5CC46564F57A /* OAuthSignIn.swift in Sources */,
 				C5F710591E8548D419A6C646 /* SoulBackend.swift in Sources */,
 				2F8E01D07B3325C15A9332F9 /* SoulChatService.swift in Sources */,
 				1C8931AB01CF691DCA4623A6 /* SoulLinks.swift in Sources */,
