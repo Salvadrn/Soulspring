@@ -11,12 +11,14 @@ import UIKit
 struct WalletView: View {
     @EnvironmentObject private var store: AppStore
     @State private var isShowingPayment = false
+    @State private var isShowingPassNotice = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: SoulTheme.Spacing.md) {
                 header
                 membershipCard
+                appleWalletButton
                 profilePanel
                 upcomingCard
                 paymentCard
@@ -34,6 +36,45 @@ struct WalletView: View {
             }
         }
         .sheet(isPresented: $isShowingPayment) { PaymentSheet() }
+        .alert("Apple Wallet", isPresented: $isShowingPassNotice) {
+            Button("Entendido", role: .cancel) {}
+        } message: {
+            Text("Para agregar tu pase a Apple Wallet necesitamos tu Pass Type ID Certificate de Apple Developer (pass.mx.soulspring.app). Una vez configurado, generamos el .pkpass firmado en el servidor y lo agregamos automáticamente.")
+        }
+    }
+
+    // MARK: Apple Wallet CTA
+
+    private var appleWalletButton: some View {
+        Button {
+            isShowingPassNotice = true
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: "wallet.bifold.fill")
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundStyle(.white)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Agregar al Apple Wallet")
+                        .font(SoulTheme.Font.body(15, weight: .bold))
+                        .foregroundStyle(.white)
+                    Text("Tu pase Soulspring siempre a la mano")
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(.white.opacity(0.85))
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(.white.opacity(0.85))
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity)
+            .background(
+                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                    .fill(Color.black)
+            )
+        }
+        .buttonStyle(.plain)
+        .hapticOnTap()
     }
 
     // MARK: Header
