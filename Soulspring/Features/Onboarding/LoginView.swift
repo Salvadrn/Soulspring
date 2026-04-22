@@ -112,11 +112,16 @@ struct LoginView: View {
                 }
             }
             .foregroundStyle(fg)
-            .frame(maxWidth: .infinity, minHeight: 56)
+            .frame(maxWidth: .infinity, minHeight: 58)
             .background(
-                Capsule()
-                    .stroke(SoulTheme.Palette.earth.opacity(0.3), lineWidth: 1)
+                Capsule().fill(SoulTheme.Color.surface)
             )
+            .overlay(
+                Capsule()
+                    .stroke(SoulTheme.Palette.earth.opacity(0.25), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.18), radius: 10, y: 5)
+            .shadow(color: .black.opacity(0.06), radius: 2, y: 1)
         }
         .buttonStyle(.plain)
         .hapticOnTap()
@@ -149,9 +154,10 @@ struct LoginView: View {
             Text("Continuar con correo")
                 .font(.system(size: 17, weight: .bold))
                 .foregroundStyle(SoulTheme.Palette.ink)
-                .frame(maxWidth: .infinity, minHeight: 58)
+                .frame(maxWidth: .infinity, minHeight: 60)
                 .background(Capsule().fill(SoulTheme.Palette.cream))
-                .shadow(color: .black.opacity(0.1), radius: 8, y: 3)
+                .shadow(color: .black.opacity(0.28), radius: 14, y: 8)
+                .shadow(color: .black.opacity(0.10), radius: 3, y: 2)
         }
         .buttonStyle(.plain)
         .hapticOnTap()
