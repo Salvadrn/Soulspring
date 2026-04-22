@@ -117,7 +117,7 @@
 		26530EB1413F58064A870AFE /* BiologicalAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeView.swift; sourceTree = "<group>"; };
 		27E42316F6DC60B775B4F04D /* SleepDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailView.swift; sourceTree = "<group>"; };
 		2819E42AFF7091EB4565565A /* LabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsView.swift; sourceTree = "<group>"; };
-		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2886676E3A3F51EF9B8C3A25 /* AudioLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryView.swift; sourceTree = "<group>"; };
 		2918512583E9203A3A5E6F8C /* Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finance.swift; sourceTree = "<group>"; };
 		32373E095B5C2718418E74C2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		D41B33BF372D7E5D00EA9689 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		D89389C9ED841ACA3245B875 /* GiftCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardView.swift; sourceTree = "<group>"; };
 		DA2B602A3143576B1ABAB0CD /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
-		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeWidget.swift; sourceTree = "<group>"; };
 		E2A198D2278D4652A44BEB86 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E41A923CF769CB55806F5C31 /* BudgetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetWidget.swift; sourceTree = "<group>"; };
@@ -688,6 +688,7 @@
 				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -711,6 +712,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -787,6 +789,7 @@
 				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -810,6 +813,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

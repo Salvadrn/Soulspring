@@ -23,6 +23,9 @@ targets:
   Soulspring:
     type: application
     platform: iOS
+    scheme:
+      testTargets: []
+      gatherCoverageData: false
     sources:
       - path: Soulspring
         excludes:
