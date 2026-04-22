@@ -122,7 +122,6 @@ private struct WelcomeStep: View {
                 .renderingMode(.original)
                 .scaledToFit()
                 .frame(width: 150, height: 150)
-                .blendMode(.multiply)
                 .offset(x: -18)   // nudge slightly left for a balanced look
 
             Text("Respira.\nYa llegaste.")

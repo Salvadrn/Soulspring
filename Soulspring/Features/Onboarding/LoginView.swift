@@ -69,7 +69,6 @@ struct LoginView: View {
                 .renderingMode(.original)
                 .scaledToFit()
                 .frame(width: 170, height: 170)
-                .blendMode(.multiply)
 
             VStack(spacing: 6) {
                 Text("Soulspring")
