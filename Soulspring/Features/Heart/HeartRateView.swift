@@ -19,6 +19,7 @@ struct HeartRateView: View {
                         header
                         liveCard
                         shortcutsRow
+                        wellnessShortcuts
                         chartCard
                         statsGrid
                         breathCard
@@ -42,6 +43,76 @@ struct HeartRateView: View {
             }
         }
         .task { await health.refreshAll() }
+    }
+
+    // MARK: Wellness shortcuts (mood + audios)
+
+    private var wellnessShortcuts: some View {
+        HStack(spacing: 12) {
+            NavigationLink {
+                MoodPatternsView()
+            } label: {
+                shortcutTile(
+                    eyebrow: "Mood",
+                    title: "Patrones",
+                    subtitle: store.moodLog.isEmpty
+                        ? "Empieza tu check-in"
+                        : "\(store.moodLog.count) check-ins",
+                    icon: "chart.line.uptrend.xyaxis",
+                    tint: SoulTheme.Palette.sky
+                )
+            }
+            .buttonStyle(.plain)
+            .hapticOnTap()
+
+            NavigationLink {
+                AudioLibraryView()
+            } label: {
+                shortcutTile(
+                    eyebrow: "Audios",
+                    title: "Biblioteca",
+                    subtitle: "Meditación · breath",
+                    icon: "headphones",
+                    tint: SoulTheme.Palette.lilac
+                )
+            }
+            .buttonStyle(.plain)
+            .hapticOnTap()
+        }
+    }
+
+    private func shortcutTile(eyebrow: String, title: String,
+                              subtitle: String, icon: String,
+                              tint: Color) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            ZStack {
+                Circle().fill(tint.opacity(0.18))
+                    .frame(width: 38, height: 38)
+                Image(systemName: icon)
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundStyle(tint)
+            }
+            VStack(alignment: .leading, spacing: 2) {
+                SoulEyebrow(text: eyebrow, color: tint)
+                Text(title)
+                    .font(SoulTheme.Font.card)
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                Text(subtitle)
+                    .font(SoulTheme.Font.caption)
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+                    .lineLimit(1)
+            }
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, minHeight: 110, alignment: .topLeading)
+        .background(
+            RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                .fill(SoulTheme.Color.surface)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
+        )
     }
 
     // MARK: Header

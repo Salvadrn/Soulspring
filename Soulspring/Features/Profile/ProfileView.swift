@@ -191,72 +191,25 @@ struct ProfileView: View {
     private var actionsCard: some View {
         VStack(spacing: 10) {
             NavigationLink {
-                SoulChatView()
-            } label: {
-                actionRow(icon: "sparkles",
-                          title: "Chat con Soul",
-                          subtitle: "Tu coach de bienestar",
-                          tint: SoulTheme.Palette.terracotta)
-            }
-            NavigationLink {
-                AudioLibraryView()
-            } label: {
-                actionRow(icon: "headphones",
-                          title: "Biblioteca de audios",
-                          subtitle: "Meditaciones, yoga nidra, breathwork",
-                          tint: SoulTheme.Palette.lilac)
-            }
-            NavigationLink {
-                AchievementsView()
-            } label: {
-                actionRow(icon: "rosette",
-                          title: "Mis medallas",
-                          subtitle: "\(unlockedCount) de \(totalAchievements) desbloqueadas",
-                          tint: SoulTheme.Palette.gold)
-            }
-            NavigationLink {
-                MoodPatternsView()
-            } label: {
-                actionRow(icon: "chart.line.uptrend.xyaxis",
-                          title: "Mood + patrones",
-                          subtitle: store.moodLog.isEmpty
-                            ? "Empieza tu primer check-in"
-                            : "\(store.moodLog.count) check-ins guardados",
-                          tint: SoulTheme.Palette.sky)
-            }
-            NavigationLink {
-                FinancesView()
-            } label: {
-                actionRow(icon: "chart.pie.fill",
-                          title: "Finanzas",
-                          subtitle: "Ingresos, egresos y presupuestos",
-                          tint: SoulTheme.Palette.moss)
-            }
-            NavigationLink {
-                GiftCardView()
-            } label: {
-                actionRow(icon: "gift.fill",
-                          title: "Regalar Soulspring",
-                          subtitle: "Envía una tarjeta de regalo",
-                          tint: SoulTheme.Palette.terracotta)
-            }
-            NavigationLink {
                 MemberProfileEditor()
             } label: {
-                actionRow(icon: "person.text.rectangle",
-                          title: "Editar mi perfil",
-                          subtitle: "Contacto, intereses, alergias")
+                actionRow(icon: "gearshape.fill",
+                          title: "Configuración de perfil",
+                          subtitle: "Contacto, intereses, alergias y privacidad",
+                          tint: SoulTheme.Palette.sage)
             }
             Link(destination: SoulLinks.foodInstagram) {
                 actionRow(icon: "camera.fill", title: "Instagram Soul Kitchen",
                           subtitle: SoulLinks.foodHandle)
             }
-            Button {
-                Task { await health.requestAuthorization() }
-            } label: {
-                actionRow(icon: "heart.text.square",
-                          title: "Conectar Apple Health",
-                          subtitle: health.isAuthorized ? "Sincronizado" : "Permitir acceso")
+            if !health.isAuthorized {
+                Button {
+                    Task { await health.requestAuthorization() }
+                } label: {
+                    actionRow(icon: "heart.text.square",
+                              title: "Conectar Apple Health",
+                              subtitle: "Permitir acceso")
+                }
             }
             if store.isChef {
                 actionRow(icon: "fork.knife.circle.fill",

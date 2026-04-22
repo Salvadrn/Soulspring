@@ -19,6 +19,10 @@ struct HabitsView: View {
 
                         sharedStreaksSection
 
+                        achievementsCallout
+
+                        giftCardCallout
+
                         habitsSection
                     }
                     .padding(.horizontal, SoulTheme.Spacing.lg)
@@ -119,6 +123,111 @@ struct HabitsView: View {
                 .padding(.trailing, 4)
             }
         }
+    }
+
+    // MARK: Achievements callout
+
+    private var achievementsCallout: some View {
+        let unlocked = store.unlockedAchievements.count
+        let total = Achievement.catalog.count
+        return NavigationLink {
+            AchievementsView()
+        } label: {
+            HStack(spacing: 14) {
+                ZStack {
+                    Circle()
+                        .stroke(SoulTheme.Color.divider, lineWidth: 4)
+                        .frame(width: 50, height: 50)
+                    Circle()
+                        .trim(from: 0, to: total == 0 ? 0 : Double(unlocked) / Double(total))
+                        .stroke(SoulTheme.Palette.gold,
+                                style: .init(lineWidth: 4, lineCap: .round))
+                        .rotationEffect(.degrees(-90))
+                        .frame(width: 50, height: 50)
+                    Image(systemName: "rosette")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundStyle(SoulTheme.Palette.gold)
+                }
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Mis medallas")
+                        .font(SoulTheme.Font.card)
+                        .foregroundStyle(SoulTheme.Color.textPrimary)
+                    Text("\(unlocked) de \(total) desbloqueadas")
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(SoulTheme.Color.textSecondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(SoulTheme.Color.textSecondary)
+            }
+            .padding(14)
+            .background(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                .fill(SoulTheme.Color.surface))
+            .overlay(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
+        }
+        .buttonStyle(.plain)
+        .hapticOnTap()
+    }
+
+    // MARK: Gift card callout
+
+    private var giftCardCallout: some View {
+        NavigationLink {
+            GiftCardView()
+        } label: {
+            ZStack(alignment: .bottomLeading) {
+                // Gift card body
+                RoundedRectangle(cornerRadius: SoulTheme.Radius.lg, style: .continuous)
+                    .fill(SoulTheme.Gradient.sunset)
+
+                // Subtle texture lines
+                ForEach(0..<5, id: \.self) { i in
+                    Rectangle()
+                        .fill(Color.white.opacity(0.06))
+                        .frame(height: 1)
+                        .offset(y: CGFloat(i) * 18 - 35)
+                }
+
+                // Ribbon decoration
+                ZStack {
+                    Circle()
+                        .fill(Color.white.opacity(0.18))
+                        .frame(width: 110, height: 110)
+                        .offset(x: 70, y: -30)
+                    Image(systemName: "gift.fill")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundStyle(.white)
+                        .offset(x: 70, y: -30)
+                }
+
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        SoulEyebrow(text: "Para alguien que quieres",
+                                    color: .white.opacity(0.85))
+                        Text("Regala\nSoulspring")
+                            .font(SoulTheme.Font.display(28, weight: .bold))
+                            .foregroundStyle(.white)
+                            .lineSpacing(2)
+                        Text("Una estancia, una experiencia, un día completo.")
+                            .font(SoulTheme.Font.caption)
+                            .foregroundStyle(.white.opacity(0.85))
+                            .lineLimit(2)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(.white.opacity(0.85))
+                }
+                .padding(SoulTheme.Spacing.lg)
+            }
+            .frame(height: 165)
+            .clipShape(RoundedRectangle(cornerRadius: SoulTheme.Radius.lg, style: .continuous))
+            .shadow(color: SoulTheme.Palette.terracotta.opacity(0.35), radius: 16, y: 10)
+        }
+        .buttonStyle(.plain)
+        .hapticOnTap()
     }
 
     // MARK: Habits list

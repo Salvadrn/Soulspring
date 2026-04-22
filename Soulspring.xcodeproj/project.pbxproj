@@ -20,6 +20,7 @@
 		2E13C160B3475B39CAFAAEB7 /* SoulspringWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D9666743A2BFE12798611 /* SoulspringWidgetsBundle.swift */; };
 		3376F088581A040EA2E7FD79 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C749759042A5976450E9CC2 /* MainTabView.swift */; };
 		3B1C19E2C586E32F47FB4E49 /* BiologicalAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FD8610E86CE3DA65B43928 /* BiologicalAge.swift */; };
+		3D59EA3094FEDD758BE2469A /* SoulAITab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E6045A46363F091846763 /* SoulAITab.swift */; };
 		3DA68E4877BC62D321557FB5 /* LabReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3888A82C2DED46D72906CD /* LabReport.swift */; };
 		3DC86E38549B953B3ACFADC0 /* BudgetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41A923CF769CB55806F5C31 /* BudgetWidget.swift */; };
 		3E2D872ADBDD894116623134 /* ExperienceBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4FE4EFFCE193411F433CCD /* ExperienceBooking.swift */; };
@@ -67,6 +68,7 @@
 		BC14018CAF213331AC0D6CFF /* RachaFlame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419470EE23F5FD867EB8DCC5 /* RachaFlame.swift */; };
 		C4B435A969EF6D0DB45ACB1B /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F6CDD3DCEFD887AE0EC83 /* WorkoutsView.swift */; };
 		CA17D4C2B57BE12FB261B9E3 /* FinancesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A42C14B36CF794038EB44 /* FinancesView.swift */; };
+		D1698518AA692F6ECDDFEDC0 /* FinanceTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1AC86325463BEF69A89D18 /* FinanceTab.swift */; };
 		D238C7C0FB50CE8F36A20B5F /* HydrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE67EF80F7DBC0B9AAD9C32 /* HydrationView.swift */; };
 		D2AE3508FB3CDE24293D3DB4 /* SoulComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EFE5930F5ABDB6E474B3DD /* SoulComponents.swift */; };
 		D48DACC1451E29F8EA1E1D23 /* SoulLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD6D169C57767D9342752AF /* SoulLinks.swift */; };
@@ -119,7 +121,7 @@
 		26530EB1413F58064A870AFE /* BiologicalAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeView.swift; sourceTree = "<group>"; };
 		27E42316F6DC60B775B4F04D /* SleepDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailView.swift; sourceTree = "<group>"; };
 		2819E42AFF7091EB4565565A /* LabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsView.swift; sourceTree = "<group>"; };
-		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2886676E3A3F51EF9B8C3A25 /* AudioLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryView.swift; sourceTree = "<group>"; };
 		2918512583E9203A3A5E6F8C /* Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finance.swift; sourceTree = "<group>"; };
 		32373E095B5C2718418E74C2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		9A20A4091305BB22E126FA04 /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		9C018CB86C4EBC8B8AA5F24E /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
 		9E0540E68BB6ACABF9910C59 /* RoutinesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesWidget.swift; sourceTree = "<group>"; };
+		9E0E6045A46363F091846763 /* SoulAITab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulAITab.swift; sourceTree = "<group>"; };
 		A20D6F38CB1D68BDFCB69E09 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		A3FD8610E86CE3DA65B43928 /* BiologicalAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAge.swift; sourceTree = "<group>"; };
 		A72DFA40AA6BD19A5ABDDDAB /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
@@ -164,12 +167,13 @@
 		C54C8F562697AF3D14B013F4 /* BudgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetsView.swift; sourceTree = "<group>"; };
 		C786927502FD0031EF8D8D0E /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
 		C97FBE990E78774EF1D4A9E6 /* SoulBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulBackend.swift; sourceTree = "<group>"; };
+		CC1AC86325463BEF69A89D18 /* FinanceTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTab.swift; sourceTree = "<group>"; };
 		D0E1AF5B498A74A24476E63B /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		D41B33BF372D7E5D00EA9689 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		D89389C9ED841ACA3245B875 /* GiftCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardView.swift; sourceTree = "<group>"; };
 		DA2B602A3143576B1ABAB0CD /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
 		DBE67FE4BC2E72761896EF86 /* CocinaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocinaView.swift; sourceTree = "<group>"; };
-		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeWidget.swift; sourceTree = "<group>"; };
 		E2A198D2278D4652A44BEB86 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E41A923CF769CB55806F5C31 /* BudgetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetWidget.swift; sourceTree = "<group>"; };
@@ -427,6 +431,7 @@
 		E9D08192E5CCBAEE9837BC01 /* SoulChat */ = {
 			isa = PBXGroup;
 			children = (
+				9E0E6045A46363F091846763 /* SoulAITab.swift */,
 				C34BA56315FD923B3A7169DA /* SoulChatView.swift */,
 			);
 			path = SoulChat;
@@ -455,6 +460,7 @@
 				C54C8F562697AF3D14B013F4 /* BudgetsView.swift */,
 				E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */,
 				F01A42C14B36CF794038EB44 /* FinancesView.swift */,
+				CC1AC86325463BEF69A89D18 /* FinanceTab.swift */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -585,6 +591,7 @@
 				3E2D872ADBDD894116623134 /* ExperienceBooking.swift in Sources */,
 				87136668FE724E6C70DA4461 /* Finance.swift in Sources */,
 				028EAA70B45FDEDC5B0B9766 /* FinanceHomeWidget.swift in Sources */,
+				D1698518AA692F6ECDDFEDC0 /* FinanceTab.swift in Sources */,
 				CA17D4C2B57BE12FB261B9E3 /* FinancesView.swift in Sources */,
 				ABDCC218D5ED435E0CB08DC7 /* GiftCardView.swift in Sources */,
 				90F7541E54BF500301C046C8 /* Habit.swift in Sources */,
@@ -612,6 +619,7 @@
 				8A9FEA873BFB844D95966C6D /* SanctuaryView.swift in Sources */,
 				5412A5623D45BEBDAE36C952 /* SharedStreak.swift in Sources */,
 				10496A3811672A7C2E888F5E /* SleepDetailView.swift in Sources */,
+				3D59EA3094FEDD758BE2469A /* SoulAITab.swift in Sources */,
 				2B557F618CB4F75260D4BC4D /* SoulBackend.swift in Sources */,
 				94FD3ACE1861F85CCFC40E4C /* SoulChatService.swift in Sources */,
 				57FC3F7F0FA1F4A1643118FD /* SoulChatView.swift in Sources */,
@@ -712,7 +720,6 @@
 				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -736,7 +743,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -813,7 +819,6 @@
 				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -837,7 +842,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
