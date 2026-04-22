@@ -84,6 +84,11 @@ struct UserProfile: Codable, Equatable {
     var isChef: Bool = false
 
     var memberSince: Date = Date()
+
+    /// Terms & Conditions acceptance — version + timestamp so we can re-prompt
+    /// when the policy changes.
+    var acceptedTermsVersion: String? = nil
+    var acceptedTermsAt: Date? = nil
 }
 
 /// A stay plan at the Sanctuary. Priced per night, hotel-style.

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		028EAA70B45FDEDC5B0B9766 /* FinanceHomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */; };
 		10496A3811672A7C2E888F5E /* SleepDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E42316F6DC60B775B4F04D /* SleepDetailView.swift */; };
+		1B03571CF29B032FECD6BFE0 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8A6D9CF2309466C6B5F34 /* TermsView.swift */; };
 		1B5ED598308B95DC7F8054B5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865873E3ABD06A116E7809AA /* WidgetKit.framework */; };
 		1E857DC8F7A1A83AE07F5D95 /* BiologicalAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26530EB1413F58064A870AFE /* BiologicalAgeView.swift */; };
 		20ADBB62B276BE14E4B28902 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7810570A883B6BC5BD8385 /* AudioTrack.swift */; };
@@ -134,6 +135,7 @@
 		67A310AA145322CD9A1703A3 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		6829D4238F6FF5BE7739724E /* DailyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMenuView.swift; sourceTree = "<group>"; };
 		6D3888A82C2DED46D72906CD /* LabReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabReport.swift; sourceTree = "<group>"; };
+		71F8A6D9CF2309466C6B5F34 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
 		7821FCC1B83A61013EDC1CE1 /* HeartRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
 		7E53F6878E4648B9E13D341F /* SoulspringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulspringApp.swift; sourceTree = "<group>"; };
 		818F613DC46AE52C39AA64B3 /* LabParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabParser.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			children = (
 				32373E095B5C2718418E74C2 /* LoginView.swift */,
 				8A262EDAF46E9B8F6EFFD627 /* OnboardingView.swift */,
+				71F8A6D9CF2309466C6B5F34 /* TermsView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				D89C31BDB87E280795095D9D /* SoulspringApp.swift in Sources */,
 				54900529242FC0E5D7E7BF65 /* StreakEngine.swift in Sources */,
 				B0BF2154899D53B5BB7589D0 /* SupabaseConfig.swift in Sources */,
+				1B03571CF29B032FECD6BFE0 /* TermsView.swift in Sources */,
 				F724E4544D12D6606A8E01E0 /* UserProfile.swift in Sources */,
 				5A4A0D2EA9EA3A4E5031C854 /* WalletView.swift in Sources */,
 				568B8AFE176819C951EF5C4E /* WellnessExtras.swift in Sources */,

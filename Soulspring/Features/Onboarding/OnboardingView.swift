@@ -7,6 +7,7 @@ import SwiftUI
 struct OnboardingView: View {
     @EnvironmentObject private var store: AppStore
     @State private var step: Int = 0
+    @State private var isShowingTerms: Bool = false
 
     private let totalSteps = 7
 
@@ -36,6 +37,20 @@ struct OnboardingView: View {
                     .padding(.bottom, SoulTheme.Spacing.lg)
             }
         }
+        .sheet(isPresented: $isShowingTerms) {
+            TermsView {
+                completeOnboarding()
+                isShowingTerms = false
+            }
+            .interactiveDismissDisabled(true)
+        }
+    }
+
+    private func completeOnboarding() {
+        var p = store.profile
+        p.hasCompletedOnboarding = true
+        if p.memberSince.timeIntervalSinceNow > -60 { p.memberSince = Date() }
+        store.profile = p
     }
 
     // MARK: Header
@@ -75,10 +90,7 @@ struct OnboardingView: View {
         VStack(spacing: 10) {
             Button(step == totalSteps - 1 ? "Comenzar mi camino" : "Continuar") {
                 if step == totalSteps - 1 {
-                    var p = store.profile
-                    p.hasCompletedOnboarding = true
-                    if p.memberSince.timeIntervalSinceNow > -60 { p.memberSince = Date() }
-                    store.profile = p
+                    isShowingTerms = true
                 } else {
                     withAnimation { step += 1 }
                 }
@@ -187,6 +199,12 @@ private struct IdentityStep: View {
 private struct EmergencyStep: View {
     @EnvironmentObject private var store: AppStore
 
+    private static let commonAllergies = [
+        "Polen", "Mariscos", "Lácteos", "Gluten", "Frutos secos",
+        "Huevo", "Soya", "Picadura de abeja", "Penicilina", "Aspirina",
+        "Látex", "Maní", "Pescado", "Cacahuate"
+    ]
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: SoulTheme.Spacing.lg) {
@@ -205,10 +223,34 @@ private struct EmergencyStep: View {
                              text: bind(\.emergencyContactPhone),
                              keyboard: .phonePad)
 
-                LabeledField(label: "Alergias o consideraciones",
-                             placeholder: "Ej. mariscos, polen, ninguna",
-                             text: bind(\.allergies),
-                             multiline: true)
+                VStack(alignment: .leading, spacing: 10) {
+                    SoulEyebrow(text: "Alergias o consideraciones")
+                    Text("Toca las que apliquen, o escribe abajo otras.")
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(SoulTheme.Color.textSecondary)
+
+                    FlowChips(
+                        items: Self.commonAllergies,
+                        isSelected: { contains($0) },
+                        toggle: { toggle($0) }
+                    )
+
+                    TextField("Otras alergias",
+                              text: bind(\.allergies),
+                              axis: .vertical)
+                    .lineLimit(2, reservesSpace: true)
+                    .font(SoulTheme.Font.bodyText)
+                    .foregroundStyle(SoulTheme.Color.textPrimary)
+                    .padding(14)
+                    .background(
+                        RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                            .fill(SoulTheme.Color.surface)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                            .stroke(SoulTheme.Palette.earth.opacity(0.25), lineWidth: 1)
+                    )
+                }
             }
             .padding(.horizontal, SoulTheme.Spacing.lg)
             .padding(.bottom, 40)
@@ -220,6 +262,142 @@ private struct EmergencyStep: View {
             get: { store.profile[keyPath: keyPath] },
             set: { store.profile[keyPath: keyPath] = $0 }
         )
+    }
+
+    private func contains(_ allergy: String) -> Bool {
+        let parts = store.profile.allergies
+            .split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespaces).lowercased() }
+        return parts.contains(allergy.lowercased())
+    }
+
+    private func toggle(_ allergy: String) {
+        var parts = store.profile.allergies
+            .split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
+        if let idx = parts.firstIndex(where: { $0.lowercased() == allergy.lowercased() }) {
+            parts.remove(at: idx)
+        } else {
+            parts.append(allergy)
+        }
+        store.profile.allergies = parts.joined(separator: ", ")
+        SoulHaptics.select()
+    }
+}
+
+/// Wrapping flow of toggle chips. SwiftUI doesn't ship a flow layout out of
+/// the box at the deployment target so we build a simple one with
+/// GeometryReader-free chunking.
+private struct FlowChips: View {
+    let items: [String]
+    let isSelected: (String) -> Bool
+    let toggle: (String) -> Void
+
+    var body: some View {
+        FlexibleView(data: items, spacing: 8, alignment: .leading) { item in
+            Button { toggle(item) } label: {
+                Text(item)
+                    .font(SoulTheme.Font.body(13, weight: .semibold))
+                    .foregroundStyle(isSelected(item)
+                                     ? SoulTheme.Color.onAccent
+                                     : SoulTheme.Color.textPrimary)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 9)
+                    .background(
+                        Capsule().fill(isSelected(item)
+                                       ? AnyShapeStyle(SoulTheme.Color.primary)
+                                       : AnyShapeStyle(SoulTheme.Color.surface))
+                    )
+                    .overlay(
+                        Capsule().stroke(isSelected(item)
+                                         ? SoulTheme.Color.primary
+                                         : SoulTheme.Palette.earth.opacity(0.25),
+                                         lineWidth: 1)
+                    )
+            }
+            .buttonStyle(.plain)
+        }
+    }
+}
+
+/// Wrapping flow layout — measures item widths via PreferenceKey so chips
+/// reflow into rows like a tag cloud.
+private struct FlexibleView<Data: Hashable, Content: View>: View {
+    let data: [Data]
+    let spacing: CGFloat
+    let alignment: HorizontalAlignment
+    let content: (Data) -> Content
+
+    @State private var availableWidth: CGFloat = 0
+
+    var body: some View {
+        ZStack(alignment: Alignment(horizontal: alignment, vertical: .center)) {
+            Color.clear
+                .frame(height: 1)
+                .readSize { availableWidth = $0.width }
+
+            FlowStack(width: availableWidth, spacing: spacing, items: data, content: content)
+        }
+    }
+}
+
+private struct FlowStack<Data: Hashable, Content: View>: View {
+    let width: CGFloat
+    let spacing: CGFloat
+    let items: [Data]
+    let content: (Data) -> Content
+
+    var body: some View {
+        var currentRowWidth: CGFloat = 0
+        var rows: [[Data]] = [[]]
+        for item in items {
+            let estimated = estimatedWidth(item)
+            if currentRowWidth + estimated + spacing > width && !rows[rows.count - 1].isEmpty {
+                rows.append([item])
+                currentRowWidth = estimated + spacing
+            } else {
+                rows[rows.count - 1].append(item)
+                currentRowWidth += estimated + spacing
+            }
+        }
+        return VStack(alignment: .leading, spacing: spacing) {
+            ForEach(rows.indices, id: \.self) { row in
+                HStack(spacing: spacing) {
+                    ForEach(rows[row], id: \.self) { item in
+                        content(item)
+                    }
+                }
+            }
+        }
+    }
+
+    /// Rough estimate good enough for chip widths (~7pt per char + padding).
+    private func estimatedWidth(_ item: Data) -> CGFloat {
+        let s = (item as? String) ?? "\(item)"
+        return CGFloat(s.count) * 8 + 28
+    }
+}
+
+private struct SizeReader: View {
+    let onChange: (CGSize) -> Void
+    var body: some View {
+        GeometryReader { geo in
+            Color.clear
+                .preference(key: SizePreferenceKey.self, value: geo.size)
+        }
+        .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
+    }
+}
+
+private struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) { value = nextValue() }
+}
+
+private extension View {
+    func readSize(_ onChange: @escaping (CGSize) -> Void) -> some View {
+        background(SizeReader(onChange: onChange))
     }
 }
 
