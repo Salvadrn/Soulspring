@@ -7,7 +7,7 @@ struct MainTabView: View {
     @State private var selection: Tab = .home
 
     enum Tab: Hashable, CaseIterable {
-        case home, heart, habits, soul, cocina, routine, sanctuary, finance, profile
+        case home, heart, habits, soul, cocina, sanctuary, finance, profile
 
         var title: String {
             switch self {
@@ -16,7 +16,6 @@ struct MainTabView: View {
             case .habits:    return "Rachas"
             case .soul:      return "Soul AI"
             case .cocina:    return "Cocina"
-            case .routine:   return "Rutina"
             case .sanctuary: return "Santuario"
             case .finance:   return "Finanzas"
             case .profile:   return "Yo"
@@ -30,7 +29,6 @@ struct MainTabView: View {
             case .habits:    return "flame.fill"
             case .soul:      return "sparkles"
             case .cocina:    return "fork.knife"
-            case .routine:   return "checkmark.circle.fill"
             case .sanctuary: return "leaf.fill"
             case .finance:   return "chart.pie.fill"
             case .profile:   return "person.fill"
@@ -48,7 +46,6 @@ struct MainTabView: View {
                 case .habits:    HabitsView()
                 case .soul:      SoulAITab()
                 case .cocina:    CocinaView()
-                case .routine:   RoutineView()
                 case .sanctuary: SanctuaryView()
                 case .finance:   FinanceTab()
                 case .profile:   ProfileView()

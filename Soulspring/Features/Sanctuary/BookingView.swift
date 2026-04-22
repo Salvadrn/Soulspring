@@ -254,7 +254,7 @@ struct ExperienceRow: View {
                     .lineLimit(2)
                 HStack(spacing: 6) {
                     SoulChip(text: "\(exp.durationMinutes) min", tint: SoulTheme.Palette.earth)
-                    SoulChip(text: "Posible costo extra · ~$\(exp.priceMXN) MXN",
+                    SoulChip(text: "Posible costo extra",
                              tint: SoulTheme.Palette.terracotta)
                 }
             }
@@ -453,7 +453,7 @@ struct ExperienceBookingSheet: View {
             let booking = store.book(experience: experience, at: slot.date, notes: notes)
             confirmed = booking
         } label: {
-            Text(selectedSlot == nil ? "Selecciona una hora" : "Reservar · $\(experience.priceMXN) MXN")
+            Text(selectedSlot == nil ? "Selecciona una hora" : "Reservar")
         }
         .buttonStyle(SoulPrimaryButtonStyle())
         .disabled(selectedSlot == nil)

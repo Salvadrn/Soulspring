@@ -48,32 +48,73 @@ struct HeartRateView: View {
     // MARK: Wellness shortcuts (mood + audios)
 
     private var wellnessShortcuts: some View {
-        HStack(spacing: 12) {
-            NavigationLink {
-                MoodPatternsView()
-            } label: {
-                shortcutTile(
-                    eyebrow: "Mood",
-                    title: "Patrones",
-                    subtitle: store.moodLog.isEmpty
-                        ? "Empieza tu check-in"
-                        : "\(store.moodLog.count) check-ins",
-                    icon: "chart.line.uptrend.xyaxis",
-                    tint: SoulTheme.Palette.sky
-                )
+        VStack(spacing: 12) {
+            HStack(spacing: 12) {
+                NavigationLink {
+                    MoodPatternsView()
+                } label: {
+                    shortcutTile(
+                        eyebrow: "Mood",
+                        title: "Patrones",
+                        subtitle: store.moodLog.isEmpty
+                            ? "Empieza tu check-in"
+                            : "\(store.moodLog.count) check-ins",
+                        icon: "chart.line.uptrend.xyaxis",
+                        tint: SoulTheme.Palette.sky
+                    )
+                }
+                .buttonStyle(.plain)
+                .hapticOnTap()
+
+                NavigationLink {
+                    AudioLibraryView()
+                } label: {
+                    shortcutTile(
+                        eyebrow: "Audios",
+                        title: "Biblioteca",
+                        subtitle: "Meditación · breath",
+                        icon: "headphones",
+                        tint: SoulTheme.Palette.lilac
+                    )
+                }
+                .buttonStyle(.plain)
+                .hapticOnTap()
             }
-            .buttonStyle(.plain)
-            .hapticOnTap()
 
             NavigationLink {
-                AudioLibraryView()
+                RoutineView()
             } label: {
-                shortcutTile(
-                    eyebrow: "Audios",
-                    title: "Biblioteca",
-                    subtitle: "Meditación · breath",
-                    icon: "headphones",
-                    tint: SoulTheme.Palette.lilac
+                HStack(spacing: 14) {
+                    ZStack {
+                        Circle().fill(SoulTheme.Palette.moss.opacity(0.18))
+                            .frame(width: 38, height: 38)
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundStyle(SoulTheme.Palette.moss)
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        SoulEyebrow(text: "Tu día", color: SoulTheme.Palette.moss)
+                        Text("Rutina diaria")
+                            .font(SoulTheme.Font.card)
+                            .foregroundStyle(SoulTheme.Color.textPrimary)
+                        Text("Recordatorios y rituales")
+                            .font(SoulTheme.Font.caption)
+                            .foregroundStyle(SoulTheme.Color.textSecondary)
+                            .lineLimit(1)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(SoulTheme.Color.textSecondary)
+                }
+                .padding(14)
+                .background(
+                    RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                        .fill(SoulTheme.Color.surface)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
+                        .stroke(SoulTheme.Color.divider, lineWidth: 0.5)
                 )
             }
             .buttonStyle(.plain)
