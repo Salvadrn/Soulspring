@@ -83,7 +83,7 @@ struct LoginView: View {
 
             VStack(spacing: 8) {
                 Text("Soulspring")
-                    .font(SoulTheme.Font.display(46, weight: .regular))
+                    .font(SoulTheme.Font.display(46, weight: .bold))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(SoulTheme.Color.textPrimary)
 
