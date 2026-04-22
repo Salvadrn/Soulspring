@@ -1,10 +1,14 @@
 import SwiftUI
 
-/// Login / sign-up in the Mimo-inspired dark aesthetic.
-/// - Hero title up top, big pill CTAs (Apple / Google / Email).
-/// - "Ver sin cuenta" lives as a distinct third option that loads the
-///   sample data guest mode.
-/// - Bottom link for existing users.
+/// Login / sign-up. Mimo-style layout:
+/// - Brand mark (logo + "Soulspring") at the top
+/// - Hero headline in the middle inviting the user to create their profile
+/// - Apple / Google as outlined pill chips
+/// - "Continuar con correo" as the big primary pill — opens the email form
+///   (email + password) which on submit kicks off Supabase signup/signin and
+///   then drops the user into the cuestionario.
+/// - "Ver sin cuenta" tucked just under the email button as a quiet escape.
+/// - Footer toggles between create-account and sign-in modes.
 struct LoginView: View {
     @EnvironmentObject private var store: AppStore
 
@@ -21,14 +25,17 @@ struct LoginView: View {
             SoulTheme.Color.background.ignoresSafeArea()
 
             VStack(spacing: 0) {
+                brandMark
+                    .padding(.top, 30)
+
                 Spacer()
 
-                heroBlock
+                hero
                     .padding(.horizontal, SoulTheme.Spacing.lg)
 
                 Spacer()
 
-                VStack(spacing: 12) {
+                VStack(spacing: 14) {
                     if isShowingEmailForm {
                         emailForm
                     } else {
@@ -40,7 +47,7 @@ struct LoginView: View {
                 }
                 .padding(.horizontal, SoulTheme.Spacing.lg)
 
-                Spacer(minLength: 20)
+                Spacer(minLength: 24)
 
                 footerLink
                     .padding(.bottom, SoulTheme.Spacing.md)
@@ -48,100 +55,103 @@ struct LoginView: View {
         }
     }
 
-    // MARK: Hero
+    // MARK: Brand mark — logo + name (top)
 
-    private var heroBlock: some View {
-        VStack(spacing: 18) {
+    private var brandMark: some View {
+        HStack(spacing: 10) {
             Image("BrandLogo")
                 .resizable()
                 .renderingMode(.original)
                 .scaledToFit()
-                .frame(width: 130, height: 130)
-                .blendMode(.multiply)   // strips the white PNG background
-
-            VStack(spacing: 8) {
-                Text("Soulspring")
-                    .font(.system(size: 13, weight: .bold))
-                    .tracking(3)
-                    .foregroundStyle(SoulTheme.Color.primary)
-
-                Text("Beyond Wellness")
-                    .font(.system(size: 36, weight: .bold))
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(SoulTheme.Color.textPrimary)
-
-                Text(isCreatingAccount
-                     ? "Crea tu perfil y empieza\ntu camino hacia adentro."
-                     : "Bienvenido de vuelta.\nRespira, ya llegaste.")
-                    .font(SoulTheme.Font.bodyText)
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(SoulTheme.Color.textSecondary)
-                    .lineSpacing(2)
-            }
+                .frame(width: 36, height: 36)
+                .blendMode(.multiply)
+            Text("Soulspring")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundStyle(SoulTheme.Color.textPrimary)
         }
     }
 
-    // MARK: Social buttons
+    // MARK: Hero text
+
+    private var hero: some View {
+        Text(isCreatingAccount
+             ? "Crea tu perfil para descubrir tu camino de bienestar."
+             : "Bienvenido de vuelta.\nRespira, ya llegaste.")
+            .font(.system(size: 30, weight: .bold))
+            .multilineTextAlignment(.center)
+            .foregroundStyle(SoulTheme.Color.textPrimary)
+            .lineSpacing(4)
+    }
+
+    // MARK: Social buttons (Apple + Google as outlined chips, side by side)
 
     private var socialButtons: some View {
-        HStack(spacing: 10) {
-            socialButton(icon: "applelogo", bg: Color.white, fg: Color.black)
-            socialButton(systemIcon: false, emoji: "G", bg: Color.white, fg: Color.black)
+        HStack(spacing: 12) {
+            socialPill(systemIcon: "applelogo", fg: SoulTheme.Color.textPrimary)
+            socialPill(emoji: "G", fg: SoulTheme.Color.textPrimary)
         }
     }
 
-    private func socialButton(icon: String? = nil,
-                              systemIcon: Bool = true,
-                              emoji: String = "",
-                              bg: Color,
-                              fg: Color) -> some View {
+    private func socialPill(systemIcon: String? = nil,
+                            emoji: String? = nil,
+                            fg: Color) -> some View {
         Button {
-            // hook up real auth later — for now, same as email
-            store.signIn(email: "hola@soulspring.mx")
+            // Real Apple / Google auth not wired yet — placeholder loads guest.
+            store.continueAsGuest()
         } label: {
             Group {
-                if systemIcon, let icon {
-                    Image(systemName: icon).font(.system(size: 20, weight: .bold))
-                } else {
-                    Text(emoji).font(.system(size: 20, weight: .heavy, design: .rounded))
+                if let systemIcon {
+                    Image(systemName: systemIcon)
+                        .font(.system(size: 22, weight: .bold))
+                } else if let emoji {
+                    Text(emoji)
+                        .font(.system(size: 20, weight: .heavy, design: .rounded))
                 }
             }
             .foregroundStyle(fg)
-            .frame(maxWidth: .infinity, minHeight: 54)
+            .frame(maxWidth: .infinity, minHeight: 56)
             .background(
-                Capsule().fill(bg)
+                Capsule()
+                    .stroke(SoulTheme.Palette.earth.opacity(0.3), lineWidth: 1)
             )
         }
         .buttonStyle(.plain)
+        .hapticOnTap()
     }
 
     // MARK: OR divider
 
     private var orDivider: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 12) {
             Rectangle()
-                .fill(SoulTheme.Color.divider)
+                .fill(SoulTheme.Palette.earth.opacity(0.2))
                 .frame(height: 1)
             Text("O")
                 .font(.system(size: 11, weight: .bold))
                 .tracking(2)
                 .foregroundStyle(SoulTheme.Color.textSecondary)
             Rectangle()
-                .fill(SoulTheme.Color.divider)
+                .fill(SoulTheme.Palette.earth.opacity(0.2))
                 .frame(height: 1)
         }
         .padding(.vertical, 4)
     }
 
-    // MARK: Email primary (shows form when tapped)
+    // MARK: Email primary
 
     private var emailPrimaryButton: some View {
         Button {
             withAnimation { isShowingEmailForm = true }
         } label: {
             Text("Continuar con correo")
+                .font(.system(size: 17, weight: .bold))
+                .foregroundStyle(SoulTheme.Palette.ink)
+                .frame(maxWidth: .infinity, minHeight: 58)
+                .background(Capsule().fill(SoulTheme.Palette.cream))
+                .shadow(color: .black.opacity(0.1), radius: 8, y: 3)
         }
-        .buttonStyle(SoulPrimaryButtonStyle())
+        .buttonStyle(.plain)
+        .hapticOnTap()
     }
 
     // MARK: Guest
@@ -150,12 +160,14 @@ struct LoginView: View {
         Button {
             withAnimation { store.continueAsGuest() }
         } label: {
-            HStack(spacing: 6) {
-                Image(systemName: "eye")
-                Text("Ver sin cuenta")
-            }
+            Text("Ver sin cuenta")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(SoulTheme.Color.textSecondary)
+                .underline()
         }
-        .buttonStyle(SoulSecondaryButtonStyle())
+        .buttonStyle(.plain)
+        .hapticOnTap()
+        .padding(.top, 4)
     }
 
     // MARK: Email form
@@ -250,10 +262,10 @@ struct LoginView: View {
         .autocorrectionDisabled()
         .font(SoulTheme.Font.body(16, weight: .medium))
         .foregroundStyle(SoulTheme.Color.textPrimary)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 16)
+        .padding(.horizontal, 22)
+        .padding(.vertical, 18)
         .background(Capsule().fill(SoulTheme.Color.surface))
-        .overlay(Capsule().stroke(SoulTheme.Color.divider, lineWidth: 1))
+        .overlay(Capsule().stroke(SoulTheme.Palette.earth.opacity(0.25), lineWidth: 1))
     }
 
     // MARK: Footer
@@ -264,13 +276,19 @@ struct LoginView: View {
                 .font(.system(size: 14, weight: .medium))
                 .foregroundStyle(SoulTheme.Color.textSecondary)
             Button {
-                withAnimation { isCreatingAccount.toggle() }
+                withAnimation {
+                    isCreatingAccount.toggle()
+                    isShowingEmailForm = false
+                    authError = nil
+                    infoMessage = nil
+                }
             } label: {
                 Text(isCreatingAccount ? "Inicia sesión" : "Crea una cuenta")
                     .font(.system(size: 14, weight: .bold))
                     .foregroundStyle(SoulTheme.Color.textPrimary)
                     .underline()
             }
+            .hapticOnTap()
         }
     }
 }
