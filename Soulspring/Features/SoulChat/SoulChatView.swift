@@ -190,7 +190,7 @@ struct SoulChatView: View {
             .hapticOnTap()
         }
         .padding(.horizontal, SoulTheme.Spacing.lg)
-        .padding(.bottom, 12)
+        .padding(.bottom, 110)   // clear the floating tab bar
         .padding(.top, 8)
         .background(SoulTheme.Color.background)
     }

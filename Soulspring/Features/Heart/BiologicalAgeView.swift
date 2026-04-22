@@ -31,7 +31,7 @@ struct BiologicalAgeView: View {
             .padding(SoulTheme.Spacing.lg)
         }
         .background(SoulBackground())
-        .navigationTitle("Edad biológica")
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isEditingInputs) { BioAgeInputSheet() }
         .task { await health.refreshAll() }
