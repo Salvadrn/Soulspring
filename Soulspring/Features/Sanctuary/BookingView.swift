@@ -105,12 +105,13 @@ struct StayBookingCard: View {
     }
 
     private func dateColumn(label: String, date: Binding<Date>) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 6) {
             SoulEyebrow(text: label)
             DatePicker("", selection: date, in: Date()..., displayedComponents: .date)
                 .labelsHidden()
                 .datePickerStyle(.compact)
                 .tint(SoulTheme.Color.primary)
+                .environment(\.font, SoulTheme.Font.body(14, weight: .semibold))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -253,7 +254,8 @@ struct ExperienceRow: View {
                     .lineLimit(2)
                 HStack(spacing: 6) {
                     SoulChip(text: "\(exp.durationMinutes) min", tint: SoulTheme.Palette.earth)
-                    SoulChip(text: "$\(exp.priceMXN) MXN", tint: SoulTheme.Palette.terracotta)
+                    SoulChip(text: "Posible costo extra · ~$\(exp.priceMXN) MXN",
+                             tint: SoulTheme.Palette.terracotta)
                 }
             }
             Spacer()

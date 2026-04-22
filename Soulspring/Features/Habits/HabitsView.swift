@@ -177,53 +177,37 @@ struct HabitsView: View {
         NavigationLink {
             GiftCardView()
         } label: {
-            ZStack(alignment: .bottomLeading) {
-                // Gift card body
-                RoundedRectangle(cornerRadius: SoulTheme.Radius.lg, style: .continuous)
-                    .fill(SoulTheme.Gradient.sunset)
-
-                // Subtle texture lines
-                ForEach(0..<5, id: \.self) { i in
-                    Rectangle()
-                        .fill(Color.white.opacity(0.06))
-                        .frame(height: 1)
-                        .offset(y: CGFloat(i) * 18 - 35)
+            HStack(alignment: .center, spacing: 16) {
+                VStack(alignment: .leading, spacing: 6) {
+                    SoulEyebrow(text: "Para alguien que quieres",
+                                color: .white.opacity(0.85))
+                    Text("Regala Soulspring")
+                        .font(SoulTheme.Font.display(24, weight: .bold))
+                        .foregroundStyle(.white)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+                    Text("Una estancia, una experiencia, un día completo.")
+                        .font(SoulTheme.Font.caption)
+                        .foregroundStyle(.white.opacity(0.85))
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
                 }
-
-                // Ribbon decoration
+                Spacer(minLength: 8)
                 ZStack {
                     Circle()
-                        .fill(Color.white.opacity(0.18))
-                        .frame(width: 110, height: 110)
-                        .offset(x: 70, y: -30)
+                        .fill(Color.white.opacity(0.22))
+                        .frame(width: 64, height: 64)
                     Image(systemName: "gift.fill")
-                        .font(.system(size: 28, weight: .bold))
+                        .font(.system(size: 26, weight: .bold))
                         .foregroundStyle(.white)
-                        .offset(x: 70, y: -30)
                 }
-
-                HStack(alignment: .bottom) {
-                    VStack(alignment: .leading, spacing: 6) {
-                        SoulEyebrow(text: "Para alguien que quieres",
-                                    color: .white.opacity(0.85))
-                        Text("Regala\nSoulspring")
-                            .font(SoulTheme.Font.display(28, weight: .bold))
-                            .foregroundStyle(.white)
-                            .lineSpacing(2)
-                        Text("Una estancia, una experiencia, un día completo.")
-                            .font(SoulTheme.Font.caption)
-                            .foregroundStyle(.white.opacity(0.85))
-                            .lineLimit(2)
-                    }
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(.white.opacity(0.85))
-                }
-                .padding(SoulTheme.Spacing.lg)
             }
-            .frame(height: 165)
-            .clipShape(RoundedRectangle(cornerRadius: SoulTheme.Radius.lg, style: .continuous))
+            .padding(SoulTheme.Spacing.lg)
+            .frame(maxWidth: .infinity, minHeight: 140)
+            .background(
+                RoundedRectangle(cornerRadius: SoulTheme.Radius.lg, style: .continuous)
+                    .fill(SoulTheme.Gradient.sunset)
+            )
             .shadow(color: SoulTheme.Palette.terracotta.opacity(0.35), radius: 16, y: 10)
         }
         .buttonStyle(.plain)

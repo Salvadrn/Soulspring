@@ -10,6 +10,18 @@ struct Meal: Identifiable, Hashable {
     let macros: Macros
     let tags: [String]
     let emoji: String
+    let photoURL: URL?
+
+    init(name: String, subtitle: String, kcal: Int, macros: Macros,
+         tags: [String], emoji: String, photoURL: URL? = nil) {
+        self.name = name
+        self.subtitle = subtitle
+        self.kcal = kcal
+        self.macros = macros
+        self.tags = tags
+        self.emoji = emoji
+        self.photoURL = photoURL
+    }
 
     struct Macros: Hashable {
         let protein: Int
@@ -17,37 +29,44 @@ struct Meal: Identifiable, Hashable {
         let fats: Int
     }
 
+    /// Real-photo URLs from Unsplash (free, commercial use). Replace with your
+    /// own Soul Kitchen photos uploaded to Supabase Storage when ready.
     static let catalog: [Meal] = [
         .init(name: "Bowl de amanecer",
               subtitle: "Chía, frutos del bosque y almendras activadas",
               kcal: 420,
               macros: .init(protein: 14, carbs: 52, fats: 18),
               tags: ["Vegano", "Sin gluten"],
-              emoji: "🥣"),
+              emoji: "🥣",
+              photoURL: URL(string: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80")),
         .init(name: "Salmón en cama de hierbas",
               subtitle: "Salmón salvaje, quelites y quinoa roja",
               kcal: 540,
               macros: .init(protein: 38, carbs: 40, fats: 24),
               tags: ["Omega-3", "Alta proteína"],
-              emoji: "🐟"),
+              emoji: "🐟",
+              photoURL: URL(string: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80")),
         .init(name: "Caldo regenerador",
               subtitle: "Hueso de pastoreo, cúrcuma, jengibre y apio",
               kcal: 180,
               macros: .init(protein: 22, carbs: 6, fats: 8),
               tags: ["Anti-inflamatorio"],
-              emoji: "🍲"),
+              emoji: "🍲",
+              photoURL: URL(string: "https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80")),
         .init(name: "Ensalada del valle",
               subtitle: "Hojas verdes, aguacate, semillas, aceite de oliva",
               kcal: 380,
               macros: .init(protein: 9, carbs: 22, fats: 28),
               tags: ["Keto-friendly"],
-              emoji: "🥗"),
+              emoji: "🥗",
+              photoURL: URL(string: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80")),
         .init(name: "Cena ligera",
               subtitle: "Pescado blanco al vapor, calabacitas y limón",
               kcal: 310,
               macros: .init(protein: 32, carbs: 14, fats: 12),
               tags: ["Digestivo"],
-              emoji: "🍋"),
+              emoji: "🍋",
+              photoURL: URL(string: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80")),
     ]
 }
 

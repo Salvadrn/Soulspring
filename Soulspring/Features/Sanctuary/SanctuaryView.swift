@@ -226,12 +226,9 @@ struct MealCard: View {
     let meal: Meal
     var body: some View {
         HStack(spacing: 14) {
-            ZStack {
-                RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
-                    .fill(SoulTheme.Palette.cream)
-                    .frame(width: 64, height: 64)
-                Text(meal.emoji).font(.system(size: 32))
-            }
+            mealThumbnail
+                .frame(width: 72, height: 72)
+                .clipShape(RoundedRectangle(cornerRadius: SoulTheme.Radius.md))
             VStack(alignment: .leading, spacing: 4) {
                 Text(meal.name)
                     .font(SoulTheme.Font.card)
@@ -257,6 +254,30 @@ struct MealCard: View {
             .fill(SoulTheme.Color.surface))
         .overlay(RoundedRectangle(cornerRadius: SoulTheme.Radius.md)
             .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
+    }
+
+    @ViewBuilder
+    private var mealThumbnail: some View {
+        if let url = meal.photoURL {
+            AsyncImage(url: url) { phase in
+                switch phase {
+                case .success(let img):
+                    img.resizable().scaledToFill()
+                case .failure(_), .empty:
+                    ZStack {
+                        Rectangle().fill(SoulTheme.Palette.cream)
+                        Text(meal.emoji).font(.system(size: 32))
+                    }
+                @unknown default:
+                    Rectangle().fill(SoulTheme.Palette.cream)
+                }
+            }
+        } else {
+            ZStack {
+                Rectangle().fill(SoulTheme.Palette.cream)
+                Text(meal.emoji).font(.system(size: 32))
+            }
+        }
     }
 }
 
