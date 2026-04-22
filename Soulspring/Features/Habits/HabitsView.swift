@@ -190,6 +190,7 @@ struct HabitRow: View {
                 }
             }
             .buttonStyle(.plain)
+            .hapticOnTap()
         }
         .padding(14)
         .background(
@@ -320,6 +321,7 @@ struct InviteTile: View {
             )
         }
         .buttonStyle(.plain)
+            .hapticOnTap()
     }
 }
 

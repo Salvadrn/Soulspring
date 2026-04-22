@@ -20,6 +20,7 @@ struct WorkoutsView: View {
                 ForEach(workouts) { w in
                     Button { selected = w } label: { WorkoutCard(workout: w) }
                         .buttonStyle(.plain)
+            .hapticOnTap()
                 }
             }
             .padding(SoulTheme.Spacing.lg)

@@ -157,6 +157,7 @@ struct StayBookingCard: View {
                                     lineWidth: tier == t ? 1.2 : 0.5))
                     }
                     .buttonStyle(.plain)
+            .hapticOnTap()
                 }
             }
         }
@@ -226,6 +227,7 @@ struct ExperienceCatalogSection: View {
             ForEach(Experience.catalog) { exp in
                 Button { picked = exp } label: { ExperienceRow(exp: exp) }
                     .buttonStyle(.plain)
+            .hapticOnTap()
             }
         }
     }

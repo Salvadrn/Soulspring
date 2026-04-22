@@ -135,7 +135,7 @@ struct LoginView: View {
                 .shadow(color: .black.opacity(0.06), radius: 2, y: 1)
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
     }
 
     private func startAppleSignIn() {
@@ -194,7 +194,7 @@ struct LoginView: View {
             .shadow(color: .black.opacity(0.06), radius: 2, y: 1)
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
     }
 
     // MARK: OR divider
@@ -230,7 +230,7 @@ struct LoginView: View {
                 .shadow(color: .black.opacity(0.10), radius: 3, y: 2)
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
     }
 
     // MARK: Guest
@@ -245,7 +245,7 @@ struct LoginView: View {
                 .underline()
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
         .padding(.top, 4)
     }
 

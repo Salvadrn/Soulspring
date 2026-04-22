@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		028EAA70B45FDEDC5B0B9766 /* FinanceHomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */; };
 		10496A3811672A7C2E888F5E /* SleepDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E42316F6DC60B775B4F04D /* SleepDetailView.swift */; };
+		19FCC493A73FD47F012F02FB /* CocinaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE67FE4BC2E72761896EF86 /* CocinaView.swift */; };
 		1B03571CF29B032FECD6BFE0 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8A6D9CF2309466C6B5F34 /* TermsView.swift */; };
 		1B5ED598308B95DC7F8054B5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865873E3ABD06A116E7809AA /* WidgetKit.framework */; };
 		1E857DC8F7A1A83AE07F5D95 /* BiologicalAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26530EB1413F58064A870AFE /* BiologicalAgeView.swift */; };
@@ -45,6 +46,7 @@
 		6C54923CE05E7DD50E787E3D /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72DFA40AA6BD19A5ABDDDAB /* SoulTheme.swift */; };
 		6E6921840AE869D171E5943B /* LabParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818F613DC46AE52C39AA64B3 /* LabParser.swift */; };
 		6F3F9810030CF2948B805DC0 /* AudioLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2886676E3A3F51EF9B8C3A25 /* AudioLibraryView.swift */; };
+		7521C6771940730D452D257B /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729B24DFDEA21FD8D7DF13A0 /* RoutineView.swift */; };
 		76C7D95D8CD6800D0D24D880 /* LabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2819E42AFF7091EB4565565A /* LabsView.swift */; };
 		80527C110594D385611E63CC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32373E095B5C2718418E74C2 /* LoginView.swift */; };
 		806D430F77D3808E727CAEE6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FA1ED2E2C76D1834F98746 /* SwiftUI.framework */; };
@@ -117,7 +119,7 @@
 		26530EB1413F58064A870AFE /* BiologicalAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeView.swift; sourceTree = "<group>"; };
 		27E42316F6DC60B775B4F04D /* SleepDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailView.swift; sourceTree = "<group>"; };
 		2819E42AFF7091EB4565565A /* LabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsView.swift; sourceTree = "<group>"; };
-		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2886676E3A3F51EF9B8C3A25 /* AudioLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryView.swift; sourceTree = "<group>"; };
 		2918512583E9203A3A5E6F8C /* Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finance.swift; sourceTree = "<group>"; };
 		32373E095B5C2718418E74C2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		6829D4238F6FF5BE7739724E /* DailyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMenuView.swift; sourceTree = "<group>"; };
 		6D3888A82C2DED46D72906CD /* LabReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabReport.swift; sourceTree = "<group>"; };
 		71F8A6D9CF2309466C6B5F34 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
+		729B24DFDEA21FD8D7DF13A0 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		7821FCC1B83A61013EDC1CE1 /* HeartRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
 		7E53F6878E4648B9E13D341F /* SoulspringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulspringApp.swift; sourceTree = "<group>"; };
 		818F613DC46AE52C39AA64B3 /* LabParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabParser.swift; sourceTree = "<group>"; };
@@ -165,7 +168,8 @@
 		D41B33BF372D7E5D00EA9689 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		D89389C9ED841ACA3245B875 /* GiftCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardView.swift; sourceTree = "<group>"; };
 		DA2B602A3143576B1ABAB0CD /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
-		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE67FE4BC2E72761896EF86 /* CocinaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocinaView.swift; sourceTree = "<group>"; };
+		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeWidget.swift; sourceTree = "<group>"; };
 		E2A198D2278D4652A44BEB86 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E41A923CF769CB55806F5C31 /* BudgetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetWidget.swift; sourceTree = "<group>"; };
@@ -213,6 +217,14 @@
 				1D4AB727BF757B500A0658E0 /* WalletView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		226E52946CCB0746D69057D2 /* Cocina */ = {
+			isa = PBXGroup;
+			children = (
+				DBE67FE4BC2E72761896EF86 /* CocinaView.swift */,
+			);
+			path = Cocina;
 			sourceTree = "<group>";
 		};
 		30AB5FD5A8E2CEE3B891A48E /* Products */ = {
@@ -312,12 +324,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		823C74419CCB54BC2C787AF6 /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				729B24DFDEA21FD8D7DF13A0 /* RoutineView.swift */,
+			);
+			path = Routine;
+			sourceTree = "<group>";
+		};
 		8B1371FFA0895B9C60ACB887 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				8C749759042A5976450E9CC2 /* MainTabView.swift */,
 				A0BD2F11D2AD0E786F2DA631 /* Achievements */,
 				32A7DBFD28F780D1087B7EFF /* Audio */,
+				226E52946CCB0746D69057D2 /* Cocina */,
 				FF5196426E60F9C76F3B5AEC /* Finance */,
 				9D80793B35890BD27C78F97B /* Habits */,
 				54AFCD2C1125E81F62001414 /* Heart */,
@@ -326,6 +347,7 @@
 				60735E37BB671831CE5170D9 /* Onboarding */,
 				1E334A65400679692FDBF443 /* Profile */,
 				FD94CB8DE95ED7E5750AAC2E /* Recommendations */,
+				823C74419CCB54BC2C787AF6 /* Routine */,
 				B43E1184EBBBF6F0128F185D /* Sanctuary */,
 				E9D08192E5CCBAEE9837BC01 /* SoulChat */,
 			);
@@ -557,6 +579,7 @@
 				1E857DC8F7A1A83AE07F5D95 /* BiologicalAgeView.swift in Sources */,
 				42206C4B3A8B0DEE4E07C14D /* BookingView.swift in Sources */,
 				69870981A100D8B5F2AC1180 /* BudgetsView.swift in Sources */,
+				19FCC493A73FD47F012F02FB /* CocinaView.swift in Sources */,
 				28DDFEEBE1193401C674E5E8 /* DailyMenu.swift in Sources */,
 				4341F25B3D38239DC95627F3 /* DailyMenuView.swift in Sources */,
 				3E2D872ADBDD894116623134 /* ExperienceBooking.swift in Sources */,
@@ -584,6 +607,7 @@
 				EF3C62DD24068411EF9ED940 /* RachaFlame.swift in Sources */,
 				54FEF6E3AC7BCFD51C0B57C8 /* Recommendation.swift in Sources */,
 				482108E967F10C6C7B31EAE4 /* RecommendationsView.swift in Sources */,
+				7521C6771940730D452D257B /* RoutineView.swift in Sources */,
 				AE4CC0FF1E86E0CF3C42DE93 /* SanctuaryModels.swift in Sources */,
 				8A9FEA873BFB844D95966C6D /* SanctuaryView.swift in Sources */,
 				5412A5623D45BEBDAE36C952 /* SharedStreak.swift in Sources */,
@@ -688,7 +712,6 @@
 				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -712,7 +735,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -789,7 +811,6 @@
 				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -813,7 +834,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D3PCCG557J;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

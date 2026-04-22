@@ -7,12 +7,14 @@ struct MainTabView: View {
     @State private var selection: Tab = .home
 
     enum Tab: Hashable, CaseIterable {
-        case home, heart, habits, sanctuary, profile
+        case home, heart, routine, cocina, habits, sanctuary, profile
 
         var title: String {
             switch self {
             case .home:      return "Hoy"
             case .heart:     return "Salud"
+            case .routine:   return "Rutina"
+            case .cocina:    return "Cocina"
             case .habits:    return "Rachas"
             case .sanctuary: return "Santuario"
             case .profile:   return "Yo"
@@ -23,6 +25,8 @@ struct MainTabView: View {
             switch self {
             case .home:      return "sun.max.fill"
             case .heart:     return "heart.fill"
+            case .routine:   return "checkmark.circle.fill"
+            case .cocina:    return "fork.knife"
             case .habits:    return "flame.fill"
             case .sanctuary: return "leaf.fill"
             case .profile:   return "person.fill"
@@ -37,6 +41,8 @@ struct MainTabView: View {
                 switch selection {
                 case .home:      HomeView()
                 case .heart:     HeartRateView()
+                case .routine:   RoutineView()
+                case .cocina:    CocinaView()
                 case .habits:    HabitsView()
                 case .sanctuary: SanctuaryView()
                 case .profile:   ProfileView()
@@ -60,12 +66,15 @@ struct FloatingTabBar: View {
     @Binding var selection: MainTabView.Tab
 
     var body: some View {
-        HStack(spacing: 4) {
-            ForEach(MainTabView.Tab.allCases, id: \.self) { tab in
-                tabItem(tab)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 4) {
+                ForEach(MainTabView.Tab.allCases, id: \.self) { tab in
+                    tabItem(tab)
+                }
             }
+            .padding(6)
         }
-        .padding(6)
+        .scrollClipDisabled()
         .background(
             Capsule(style: .continuous)
                 .fill(SoulTheme.Color.surface)
@@ -83,6 +92,7 @@ struct FloatingTabBar: View {
                                              dampingFraction: 0.8)) {
                 selection = tab
             }
+            SoulHaptics.tap()
         } label: {
             HStack(spacing: 6) {
                 Image(systemName: tab.icon)
@@ -105,5 +115,6 @@ struct FloatingTabBar: View {
             )
         }
         .buttonStyle(.plain)
+            .hapticOnTap()
     }
 }

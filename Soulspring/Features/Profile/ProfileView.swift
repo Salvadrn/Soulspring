@@ -100,6 +100,7 @@ struct ProfileView: View {
             .shadow(color: SoulTheme.Palette.moss.opacity(0.3), radius: 14, y: 8)
         }
         .buttonStyle(.plain)
+            .hapticOnTap()
     }
 
     // MARK: Interests
@@ -182,6 +183,7 @@ struct ProfileView: View {
             }
         }
         .buttonStyle(.plain)
+            .hapticOnTap()
     }
 
     // MARK: Actions
@@ -387,6 +389,7 @@ struct TierCard: View {
             }
         }
         .buttonStyle(.plain)
+            .hapticOnTap()
     }
 }
 

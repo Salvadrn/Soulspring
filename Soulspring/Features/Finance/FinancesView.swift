@@ -311,6 +311,7 @@ struct FinancesView: View {
                                 TransactionRow(tx: tx)
                             }
                             .buttonStyle(.plain)
+            .hapticOnTap()
                         }
                     }
                 }

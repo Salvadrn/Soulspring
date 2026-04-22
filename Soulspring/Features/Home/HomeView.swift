@@ -156,11 +156,13 @@ struct HomeView: View {
                 HydrationWidget()
             }
             .buttonStyle(.plain)
+            .hapticOnTap()
 
             NavigationLink { FinancesView() } label: {
                 FinanceHomeWidget()
             }
             .buttonStyle(.plain)
+            .hapticOnTap()
         }
     }
 
@@ -249,6 +251,7 @@ struct HomeView: View {
                 }
             }
             .buttonStyle(.plain)
+            .hapticOnTap()
         }
     }
 
@@ -262,7 +265,7 @@ struct HomeView: View {
                                   subtitle: nil)
                 Spacer()
                 NavigationLink("Ver todos") {
-                    SanctuaryView(initialTab: .reminders)
+                    RoutineView()
                 }
                 .font(SoulTheme.Font.caption)
                 .foregroundStyle(SoulTheme.Color.primary)

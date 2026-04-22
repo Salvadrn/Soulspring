@@ -105,7 +105,7 @@ struct SoulChatView: View {
                             .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
                     }
                     .buttonStyle(.plain)
-                    .hapticOnTap()
+            .hapticOnTap()
                 }
             }
             .padding(.top, 8)

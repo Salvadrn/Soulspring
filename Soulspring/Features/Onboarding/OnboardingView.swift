@@ -316,6 +316,7 @@ private struct FlowChips: View {
                     )
             }
             .buttonStyle(.plain)
+            .hapticOnTap()
         }
     }
 }
@@ -682,7 +683,7 @@ private struct SelectRow: View {
                     radius: 6, y: 2)
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
     }
 }
 
@@ -714,7 +715,7 @@ private struct ToggleChip: View {
                 .shadow(color: .black.opacity(0.05), radius: 5, y: 2)
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
     }
 }
 
@@ -763,7 +764,7 @@ private struct InterestCard: View {
             .shadow(color: .black.opacity(0.06), radius: 8, y: 3)
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
     }
 }
 

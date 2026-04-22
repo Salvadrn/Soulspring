@@ -41,7 +41,7 @@ struct AudioLibraryView: View {
                             trackRow(track)
                         }
                         .buttonStyle(.plain)
-                        .hapticOnTap()
+            .hapticOnTap()
                     }
                 }
 
@@ -80,7 +80,7 @@ struct AudioLibraryView: View {
                 .overlay(Capsule().stroke(SoulTheme.Color.divider, lineWidth: 0.5))
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
     }
 
     private func trackRow(_ track: AudioTrack) -> some View {

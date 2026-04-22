@@ -136,6 +136,7 @@ struct BiologicalAgeView: View {
                 .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
         }
         .buttonStyle(.plain)
+            .hapticOnTap()
     }
 
     // MARK: Breakdown

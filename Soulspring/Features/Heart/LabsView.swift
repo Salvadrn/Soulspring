@@ -30,6 +30,7 @@ struct LabsView: View {
                             LabReportDetailView(report: report)
                         } label: { LabReportCard(report: report) }
                         .buttonStyle(.plain)
+            .hapticOnTap()
                     }
                 }
             }
@@ -102,6 +103,7 @@ struct LabsView: View {
                 .foregroundStyle(SoulTheme.Color.primarySoft))
         }
         .buttonStyle(.plain)
+            .hapticOnTap()
     }
 
     // MARK: Empty

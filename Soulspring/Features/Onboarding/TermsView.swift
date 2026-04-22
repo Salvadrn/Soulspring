@@ -101,6 +101,7 @@ struct TermsView: View {
                 }
             }
             .buttonStyle(.plain)
+            .hapticOnTap()
 
             Button {
                 store.profile.acceptedTermsVersion = Self.currentVersion

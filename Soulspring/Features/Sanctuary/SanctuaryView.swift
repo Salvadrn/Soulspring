@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SanctuaryView: View {
-    enum Tab: Hashable { case reservar, menu, map, food, rooms, reminders }
+    enum Tab: Hashable { case reservar, map }
 
     @State private var tab: Tab
     init(initialTab: Tab = .reservar) {
@@ -18,11 +18,7 @@ struct SanctuaryView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
                             segment(title: "Reservar", tag: .reservar)
-                            segment(title: "Menú",     tag: .menu)
                             segment(title: "Lugares",  tag: .map)
-                            segment(title: "Cocina",   tag: .food)
-                            segment(title: "Room",     tag: .rooms)
-                            segment(title: "Rutina",   tag: .reminders)
                         }
                         .padding(.horizontal, SoulTheme.Spacing.lg)
                     }
@@ -31,11 +27,7 @@ struct SanctuaryView: View {
                     Group {
                         switch tab {
                         case .reservar:  BookingView()
-                        case .menu:      DailyMenuView()
                         case .map:       SanctuaryMapView()
-                        case .food:      FoodView()
-                        case .rooms:     RoomServiceView()
-                        case .reminders: RemindersView()
                         }
                     }
                 }
@@ -45,7 +37,10 @@ struct SanctuaryView: View {
     }
 
     private func segment(title: String, tag: Tab) -> some View {
-        Button { withAnimation { tab = tag } } label: {
+        Button {
+            withAnimation { tab = tag }
+            SoulHaptics.tap()
+        } label: {
             Text(title)
                 .font(SoulTheme.Font.caption)
                 .foregroundStyle(tab == tag
@@ -138,7 +133,7 @@ struct SanctuaryMapView: View {
                 .stroke(SoulTheme.Color.divider, lineWidth: 0.5))
         }
         .buttonStyle(.plain)
-        .hapticOnTap()
+            .hapticOnTap()
     }
 
     private func iconFor(_ kind: SoulPlace.Kind) -> String {
@@ -216,6 +211,7 @@ struct FoodView: View {
                 ForEach(Meal.catalog) { meal in
                     Button { selected = meal } label: { MealCard(meal: meal) }
                         .buttonStyle(.plain)
+            .hapticOnTap()
                 }
             }
             .padding(SoulTheme.Spacing.lg)
