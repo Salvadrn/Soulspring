@@ -1,0 +1,932 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		028EAA70B45FDEDC5B0B9766 /* FinanceHomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */; };
+		10496A3811672A7C2E888F5E /* SleepDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E42316F6DC60B775B4F04D /* SleepDetailView.swift */; };
+		19FCC493A73FD47F012F02FB /* CocinaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE67FE4BC2E72761896EF86 /* CocinaView.swift */; };
+		1B03571CF29B032FECD6BFE0 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8A6D9CF2309466C6B5F34 /* TermsView.swift */; };
+		1B5ED598308B95DC7F8054B5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865873E3ABD06A116E7809AA /* WidgetKit.framework */; };
+		1E857DC8F7A1A83AE07F5D95 /* BiologicalAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26530EB1413F58064A870AFE /* BiologicalAgeView.swift */; };
+		20ADBB62B276BE14E4B28902 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7810570A883B6BC5BD8385 /* AudioTrack.swift */; };
+		2118D7CEC57489975093927D /* SoulspringWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2829755636F734C5EC9D10AA /* mindfulness-45-15min.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBB4A7ED253A74343A1AAE9F /* mindfulness-45-15min.mp3 */; };
+		28DDFEEBE1193401C674E5E8 /* DailyMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941733A232EA4EF68BE25C0C /* DailyMenu.swift */; };
+		2B557F618CB4F75260D4BC4D /* SoulBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97FBE990E78774EF1D4A9E6 /* SoulBackend.swift */; };
+		2E13C160B3475B39CAFAAEB7 /* SoulspringWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D9666743A2BFE12798611 /* SoulspringWidgetsBundle.swift */; };
+		3376F088581A040EA2E7FD79 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C749759042A5976450E9CC2 /* MainTabView.swift */; };
+		3B1C19E2C586E32F47FB4E49 /* BiologicalAge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FD8610E86CE3DA65B43928 /* BiologicalAge.swift */; };
+		3D59EA3094FEDD758BE2469A /* SoulAITab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E6045A46363F091846763 /* SoulAITab.swift */; };
+		3DA68E4877BC62D321557FB5 /* LabReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3888A82C2DED46D72906CD /* LabReport.swift */; };
+		3DC86E38549B953B3ACFADC0 /* BudgetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41A923CF769CB55806F5C31 /* BudgetWidget.swift */; };
+		3E2D872ADBDD894116623134 /* ExperienceBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4FE4EFFCE193411F433CCD /* ExperienceBooking.swift */; };
+		4199076BCA4C5D651CB3AF33 /* RoutinesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0540E68BB6ACABF9910C59 /* RoutinesWidget.swift */; };
+		42206C4B3A8B0DEE4E07C14D /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A310AA145322CD9A1703A3 /* BookingView.swift */; };
+		4341F25B3D38239DC95627F3 /* DailyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6829D4238F6FF5BE7739724E /* DailyMenuView.swift */; };
+		482108E967F10C6C7B31EAE4 /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C786927502FD0031EF8D8D0E /* RecommendationsView.swift */; };
+		4D4D845F64874FA7C7E99230 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E809EEDEC3DFE2E94799448 /* Assets.xcassets */; };
+		4DB40B7178C3EE372EC2EE17 /* AddTransactionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFC17335A984946F2790E6D /* AddTransactionSheet.swift */; };
+		5305FA4A34E7CE148C3D446A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F69D920180149F47DE507B8 /* HomeView.swift */; };
+		5412A5623D45BEBDAE36C952 /* SharedStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A610FFC648C8855A24B2B1 /* SharedStreak.swift */; };
+		54708CD39693953858FC02EF /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7821FCC1B83A61013EDC1CE1 /* HeartRateView.swift */; };
+		54900529242FC0E5D7E7BF65 /* StreakEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2B602A3143576B1ABAB0CD /* StreakEngine.swift */; };
+		54FEF6E3AC7BCFD51C0B57C8 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20A4091305BB22E126FA04 /* Recommendation.swift */; };
+		568B8AFE176819C951EF5C4E /* WellnessExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B395D8AAAB973EC59756A /* WellnessExtras.swift */; };
+		57EFA699B505DEC0E9BF8C4C /* bells-25.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B117BC579229E35928D00BD5 /* bells-25.mp3 */; };
+		57FC3F7F0FA1F4A1643118FD /* SoulChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BA56315FD923B3A7169DA /* SoulChatView.swift */; };
+		598DB24AAB5DB1DC55A6639D /* OAuthSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D340FD8702EB26E168D408 /* OAuthSignIn.swift */; };
+		59EA242D9871C01AECDFFD29 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FB655C1191FD800E78E66 /* HealthKitManager.swift */; };
+		5A4A0D2EA9EA3A4E5031C854 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AB727BF757B500A0658E0 /* WalletView.swift */; };
+		5CFF65C4EAC1A1AF715BE680 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D58767266628EECBE2032FA /* HealthKit.framework */; };
+		6152B76B5A8F608AC59352F0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A198D2278D4652A44BEB86 /* ProfileView.swift */; };
+		69870981A100D8B5F2AC1180 /* BudgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F562697AF3D14B013F4 /* BudgetsView.swift */; };
+		6BC886BA2A0E500C008E07E7 /* HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C018CB86C4EBC8B8AA5F24E /* HabitsView.swift */; };
+		6C54923CE05E7DD50E787E3D /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72DFA40AA6BD19A5ABDDDAB /* SoulTheme.swift */; };
+		6E6921840AE869D171E5943B /* LabParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818F613DC46AE52C39AA64B3 /* LabParser.swift */; };
+		6F3F9810030CF2948B805DC0 /* AudioLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2886676E3A3F51EF9B8C3A25 /* AudioLibraryView.swift */; };
+		7521C6771940730D452D257B /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729B24DFDEA21FD8D7DF13A0 /* RoutineView.swift */; };
+		76C7D95D8CD6800D0D24D880 /* LabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2819E42AFF7091EB4565565A /* LabsView.swift */; };
+		80527C110594D385611E63CC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32373E095B5C2718418E74C2 /* LoginView.swift */; };
+		806D430F77D3808E727CAEE6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FA1ED2E2C76D1834F98746 /* SwiftUI.framework */; };
+		87136668FE724E6C70DA4461 /* Finance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2918512583E9203A3A5E6F8C /* Finance.swift */; };
+		89ED48AFFD9637FAB89644A0 /* bells-30.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B90E9B71B8991BF1C9E52349 /* bells-30.mp3 */; };
+		8A9FEA873BFB844D95966C6D /* SanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC32F9FEB91DC7907736AEF /* SanctuaryView.swift */; };
+		8DE071FBCC6506480B4855CC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A262EDAF46E9B8F6EFFD627 /* OnboardingView.swift */; };
+		90F7541E54BF500301C046C8 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20D6F38CB1D68BDFCB69E09 /* Habit.swift */; };
+		94FD3ACE1861F85CCFC40E4C /* SoulChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B08BF01955BF7AA0219751 /* SoulChatService.swift */; };
+		9B7CABE9CFB08AE30F0CD9FB /* mindfulness-45-5min.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF5DAFB1225EE054CF235E77 /* mindfulness-45-5min.mp3 */; };
+		9F6F5B6464696F515F5D68C4 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B33BF372D7E5D00EA9689 /* Achievement.swift */; };
+		AA20D099C12329773A794B87 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE1778FE54D1281289B5B2D /* AudioPlayer.swift */; };
+		AAD849F03E6B0CF411722380 /* AppleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC0F0692BFEA4B146823E38 /* AppleSignIn.swift */; };
+		ABDCC218D5ED435E0CB08DC7 /* GiftCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89389C9ED841ACA3245B875 /* GiftCardView.swift */; };
+		ADEFF54AFA7F158DF68D8E6F /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092B96D53D395443BA4B3D6 /* WidgetSnapshot.swift */; };
+		AE4CC0FF1E86E0CF3C42DE93 /* SanctuaryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52760F522CA4C655A95D1BD4 /* SanctuaryModels.swift */; };
+		B0BF2154899D53B5BB7589D0 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4744EDD0B53FD55C89D6527 /* SupabaseConfig.swift */; };
+		B3E3C7F4A34AA54BF6078C16 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092B96D53D395443BA4B3D6 /* WidgetSnapshot.swift */; };
+		B98D5E79C7830466BBA786D8 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E1AF5B498A74A24476E63B /* AppStore.swift */; };
+		BC14018CAF213331AC0D6CFF /* RachaFlame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419470EE23F5FD867EB8DCC5 /* RachaFlame.swift */; };
+		C4B435A969EF6D0DB45ACB1B /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F6CDD3DCEFD887AE0EC83 /* WorkoutsView.swift */; };
+		CA17D4C2B57BE12FB261B9E3 /* FinancesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A42C14B36CF794038EB44 /* FinancesView.swift */; };
+		D1698518AA692F6ECDDFEDC0 /* FinanceTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1AC86325463BEF69A89D18 /* FinanceTab.swift */; };
+		D238C7C0FB50CE8F36A20B5F /* HydrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE67EF80F7DBC0B9AAD9C32 /* HydrationView.swift */; };
+		D2AE3508FB3CDE24293D3DB4 /* SoulComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EFE5930F5ABDB6E474B3DD /* SoulComponents.swift */; };
+		D48DACC1451E29F8EA1E1D23 /* SoulLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD6D169C57767D9342752AF /* SoulLinks.swift */; };
+		D612F0CDF8C913D1975EC374 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000356F674F9B0C604273 /* Mood.swift */; };
+		D89C31BDB87E280795095D9D /* SoulspringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E53F6878E4648B9E13D341F /* SoulspringApp.swift */; };
+		DDEB069EEF2C7652DDDB89A3 /* SoulHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D74115B61BE013B253437A /* SoulHaptics.swift */; };
+		DFF855C04561F852B9458722 /* LabAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F7A1804B206FC942529B3 /* LabAIService.swift */; };
+		E26AE913ED611E4C71045148 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72DFA40AA6BD19A5ABDDDAB /* SoulTheme.swift */; };
+		E80D35FC6CADF384511498CF /* mindfulness-20.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B27EDFC64CAD353E2D9290E1 /* mindfulness-20.mp3 */; };
+		EF3C62DD24068411EF9ED940 /* RachaFlame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419470EE23F5FD867EB8DCC5 /* RachaFlame.swift */; };
+		EFE0EA669C9C369157E72B9B /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EA04BC44E1023F47FFEB61 /* AchievementsView.swift */; };
+		F724E4544D12D6606A8E01E0 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F14CE6103579EFC821BE93 /* UserProfile.swift */; };
+		FD5241F1D7A505A3AC75A29F /* MoodCheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10613BB24F752F725A247191 /* MoodCheckinView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FD8365866841015CFF5B91ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52426364346D96F71BA924FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE905CFF1E01D1EE5A33E75F;
+			remoteInfo = SoulspringWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1DEF5EF9C17A0697B820B02B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2118D7CEC57489975093927D /* SoulspringWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		057F6CDD3DCEFD887AE0EC83 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
+		0D6FB655C1191FD800E78E66 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		0DD6D169C57767D9342752AF /* SoulLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulLinks.swift; sourceTree = "<group>"; };
+		0EC0F0692BFEA4B146823E38 /* AppleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignIn.swift; sourceTree = "<group>"; };
+		0EFC17335A984946F2790E6D /* AddTransactionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionSheet.swift; sourceTree = "<group>"; };
+		0F69D920180149F47DE507B8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		10613BB24F752F725A247191 /* MoodCheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckinView.swift; sourceTree = "<group>"; };
+		17F14CE6103579EFC821BE93 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		1D4AB727BF757B500A0658E0 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		2092B96D53D395443BA4B3D6 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
+		26530EB1413F58064A870AFE /* BiologicalAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeView.swift; sourceTree = "<group>"; };
+		27E42316F6DC60B775B4F04D /* SleepDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailView.swift; sourceTree = "<group>"; };
+		2819E42AFF7091EB4565565A /* LabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsView.swift; sourceTree = "<group>"; };
+		28454EB334886AF31E5BEA7B /* Soulspring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soulspring.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2886676E3A3F51EF9B8C3A25 /* AudioLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryView.swift; sourceTree = "<group>"; };
+		2918512583E9203A3A5E6F8C /* Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finance.swift; sourceTree = "<group>"; };
+		32373E095B5C2718418E74C2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		36FA1ED2E2C76D1834F98746 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		37D340FD8702EB26E168D408 /* OAuthSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthSignIn.swift; sourceTree = "<group>"; };
+		39EA04BC44E1023F47FFEB61 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
+		3CE1778FE54D1281289B5B2D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		419470EE23F5FD867EB8DCC5 /* RachaFlame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RachaFlame.swift; sourceTree = "<group>"; };
+		4B0000356F674F9B0C604273 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		4E809EEDEC3DFE2E94799448 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52760F522CA4C655A95D1BD4 /* SanctuaryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryModels.swift; sourceTree = "<group>"; };
+		57A610FFC648C8855A24B2B1 /* SharedStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStreak.swift; sourceTree = "<group>"; };
+		5C8B395D8AAAB973EC59756A /* WellnessExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellnessExtras.swift; sourceTree = "<group>"; };
+		618D9666743A2BFE12798611 /* SoulspringWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulspringWidgetsBundle.swift; sourceTree = "<group>"; };
+		67A310AA145322CD9A1703A3 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
+		6829D4238F6FF5BE7739724E /* DailyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMenuView.swift; sourceTree = "<group>"; };
+		6D3888A82C2DED46D72906CD /* LabReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabReport.swift; sourceTree = "<group>"; };
+		71F8A6D9CF2309466C6B5F34 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
+		729B24DFDEA21FD8D7DF13A0 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
+		7821FCC1B83A61013EDC1CE1 /* HeartRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
+		7E53F6878E4648B9E13D341F /* SoulspringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulspringApp.swift; sourceTree = "<group>"; };
+		818F613DC46AE52C39AA64B3 /* LabParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabParser.swift; sourceTree = "<group>"; };
+		865873E3ABD06A116E7809AA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8A262EDAF46E9B8F6EFFD627 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		8C749759042A5976450E9CC2 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		8D58767266628EECBE2032FA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		8F4FE4EFFCE193411F433CCD /* ExperienceBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceBooking.swift; sourceTree = "<group>"; };
+		941733A232EA4EF68BE25C0C /* DailyMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMenu.swift; sourceTree = "<group>"; };
+		97D74115B61BE013B253437A /* SoulHaptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulHaptics.swift; sourceTree = "<group>"; };
+		9A20A4091305BB22E126FA04 /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
+		9C018CB86C4EBC8B8AA5F24E /* HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsView.swift; sourceTree = "<group>"; };
+		9E0540E68BB6ACABF9910C59 /* RoutinesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesWidget.swift; sourceTree = "<group>"; };
+		9E0E6045A46363F091846763 /* SoulAITab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulAITab.swift; sourceTree = "<group>"; };
+		A20D6F38CB1D68BDFCB69E09 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
+		A3FD8610E86CE3DA65B43928 /* BiologicalAge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAge.swift; sourceTree = "<group>"; };
+		A72DFA40AA6BD19A5ABDDDAB /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
+		ACC32F9FEB91DC7907736AEF /* SanctuaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryView.swift; sourceTree = "<group>"; };
+		B117BC579229E35928D00BD5 /* bells-25.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bells-25.mp3"; sourceTree = "<group>"; };
+		B13F7A1804B206FC942529B3 /* LabAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabAIService.swift; sourceTree = "<group>"; };
+		B27EDFC64CAD353E2D9290E1 /* mindfulness-20.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "mindfulness-20.mp3"; sourceTree = "<group>"; };
+		B90E9B71B8991BF1C9E52349 /* bells-30.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bells-30.mp3"; sourceTree = "<group>"; };
+		B9EFE5930F5ABDB6E474B3DD /* SoulComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulComponents.swift; sourceTree = "<group>"; };
+		BE7810570A883B6BC5BD8385 /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
+		BF5DAFB1225EE054CF235E77 /* mindfulness-45-5min.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "mindfulness-45-5min.mp3"; sourceTree = "<group>"; };
+		C34BA56315FD923B3A7169DA /* SoulChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulChatView.swift; sourceTree = "<group>"; };
+		C4744EDD0B53FD55C89D6527 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		C54C8F562697AF3D14B013F4 /* BudgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetsView.swift; sourceTree = "<group>"; };
+		C786927502FD0031EF8D8D0E /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
+		C97FBE990E78774EF1D4A9E6 /* SoulBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulBackend.swift; sourceTree = "<group>"; };
+		CBB4A7ED253A74343A1AAE9F /* mindfulness-45-15min.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "mindfulness-45-15min.mp3"; sourceTree = "<group>"; };
+		CC1AC86325463BEF69A89D18 /* FinanceTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTab.swift; sourceTree = "<group>"; };
+		D0E1AF5B498A74A24476E63B /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
+		D41B33BF372D7E5D00EA9689 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		D89389C9ED841ACA3245B875 /* GiftCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardView.swift; sourceTree = "<group>"; };
+		DA2B602A3143576B1ABAB0CD /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
+		DBE67FE4BC2E72761896EF86 /* CocinaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocinaView.swift; sourceTree = "<group>"; };
+		DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SoulspringWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceHomeWidget.swift; sourceTree = "<group>"; };
+		E2A198D2278D4652A44BEB86 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E41A923CF769CB55806F5C31 /* BudgetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetWidget.swift; sourceTree = "<group>"; };
+		E7B08BF01955BF7AA0219751 /* SoulChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulChatService.swift; sourceTree = "<group>"; };
+		EEE67EF80F7DBC0B9AAD9C32 /* HydrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrationView.swift; sourceTree = "<group>"; };
+		F01A42C14B36CF794038EB44 /* FinancesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2360CAAF0F93E40C94F75908 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CFF65C4EAC1A1AF715BE680 /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		951E1541DD9FE92FE4223CD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B5ED598308B95DC7F8054B5 /* WidgetKit.framework in Frameworks */,
+				806D430F77D3808E727CAEE6 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09DBC6880DFD1A4FE41F2CC2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D58767266628EECBE2032FA /* HealthKit.framework */,
+				36FA1ED2E2C76D1834F98746 /* SwiftUI.framework */,
+				865873E3ABD06A116E7809AA /* WidgetKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E334A65400679692FDBF443 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D89389C9ED841ACA3245B875 /* GiftCardView.swift */,
+				E2A198D2278D4652A44BEB86 /* ProfileView.swift */,
+				1D4AB727BF757B500A0658E0 /* WalletView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		226E52946CCB0746D69057D2 /* Cocina */ = {
+			isa = PBXGroup;
+			children = (
+				DBE67FE4BC2E72761896EF86 /* CocinaView.swift */,
+			);
+			path = Cocina;
+			sourceTree = "<group>";
+		};
+		30AB5FD5A8E2CEE3B891A48E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28454EB334886AF31E5BEA7B /* Soulspring.app */,
+				DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32A7DBFD28F780D1087B7EFF /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				2886676E3A3F51EF9B8C3A25 /* AudioLibraryView.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		54AFCD2C1125E81F62001414 /* Heart */ = {
+			isa = PBXGroup;
+			children = (
+				26530EB1413F58064A870AFE /* BiologicalAgeView.swift */,
+				7821FCC1B83A61013EDC1CE1 /* HeartRateView.swift */,
+				2819E42AFF7091EB4565565A /* LabsView.swift */,
+				27E42316F6DC60B775B4F04D /* SleepDetailView.swift */,
+				057F6CDD3DCEFD887AE0EC83 /* WorkoutsView.swift */,
+			);
+			path = Heart;
+			sourceTree = "<group>";
+		};
+		5EFEE490CA0D2C34CAB63173 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2092B96D53D395443BA4B3D6 /* WidgetSnapshot.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		60735E37BB671831CE5170D9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				32373E095B5C2718418E74C2 /* LoginView.swift */,
+				8A262EDAF46E9B8F6EFFD627 /* OnboardingView.swift */,
+				71F8A6D9CF2309466C6B5F34 /* TermsView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		624F876CF19C1DCCCC3F50A4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0EC0F0692BFEA4B146823E38 /* AppleSignIn.swift */,
+				D0E1AF5B498A74A24476E63B /* AppStore.swift */,
+				3CE1778FE54D1281289B5B2D /* AudioPlayer.swift */,
+				0D6FB655C1191FD800E78E66 /* HealthKitManager.swift */,
+				B13F7A1804B206FC942529B3 /* LabAIService.swift */,
+				818F613DC46AE52C39AA64B3 /* LabParser.swift */,
+				37D340FD8702EB26E168D408 /* OAuthSignIn.swift */,
+				C97FBE990E78774EF1D4A9E6 /* SoulBackend.swift */,
+				E7B08BF01955BF7AA0219751 /* SoulChatService.swift */,
+				0DD6D169C57767D9342752AF /* SoulLinks.swift */,
+				DA2B602A3143576B1ABAB0CD /* StreakEngine.swift */,
+				C4744EDD0B53FD55C89D6527 /* SupabaseConfig.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6F8BAE251DEE63BF57B3F87C = {
+			isa = PBXGroup;
+			children = (
+				E5BBB57CF18B2F273F9D7086 /* Resources */,
+				CF185000265FA52BE3DB720B /* Soulspring */,
+				C246C1B3F55FA22DB76D04F2 /* SoulspringWidgets */,
+				09DBC6880DFD1A4FE41F2CC2 /* Frameworks */,
+				30AB5FD5A8E2CEE3B891A48E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73C90EB8A6A5F6AEF08DD169 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D41B33BF372D7E5D00EA9689 /* Achievement.swift */,
+				BE7810570A883B6BC5BD8385 /* AudioTrack.swift */,
+				A3FD8610E86CE3DA65B43928 /* BiologicalAge.swift */,
+				941733A232EA4EF68BE25C0C /* DailyMenu.swift */,
+				8F4FE4EFFCE193411F433CCD /* ExperienceBooking.swift */,
+				2918512583E9203A3A5E6F8C /* Finance.swift */,
+				A20D6F38CB1D68BDFCB69E09 /* Habit.swift */,
+				6D3888A82C2DED46D72906CD /* LabReport.swift */,
+				4B0000356F674F9B0C604273 /* Mood.swift */,
+				9A20A4091305BB22E126FA04 /* Recommendation.swift */,
+				52760F522CA4C655A95D1BD4 /* SanctuaryModels.swift */,
+				57A610FFC648C8855A24B2B1 /* SharedStreak.swift */,
+				17F14CE6103579EFC821BE93 /* UserProfile.swift */,
+				5C8B395D8AAAB973EC59756A /* WellnessExtras.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		823C74419CCB54BC2C787AF6 /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				729B24DFDEA21FD8D7DF13A0 /* RoutineView.swift */,
+			);
+			path = Routine;
+			sourceTree = "<group>";
+		};
+		888F1D13321611182CE22AAE /* Audios */ = {
+			isa = PBXGroup;
+			children = (
+				B117BC579229E35928D00BD5 /* bells-25.mp3 */,
+				B90E9B71B8991BF1C9E52349 /* bells-30.mp3 */,
+				B27EDFC64CAD353E2D9290E1 /* mindfulness-20.mp3 */,
+				BF5DAFB1225EE054CF235E77 /* mindfulness-45-5min.mp3 */,
+				CBB4A7ED253A74343A1AAE9F /* mindfulness-45-15min.mp3 */,
+			);
+			path = Audios;
+			sourceTree = "<group>";
+		};
+		8B1371FFA0895B9C60ACB887 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				8C749759042A5976450E9CC2 /* MainTabView.swift */,
+				A0BD2F11D2AD0E786F2DA631 /* Achievements */,
+				32A7DBFD28F780D1087B7EFF /* Audio */,
+				226E52946CCB0746D69057D2 /* Cocina */,
+				FF5196426E60F9C76F3B5AEC /* Finance */,
+				9D80793B35890BD27C78F97B /* Habits */,
+				54AFCD2C1125E81F62001414 /* Heart */,
+				A45E1965656C25AC5E53DBFE /* Home */,
+				F1451FE938F769902B5E9CCC /* Mood */,
+				60735E37BB671831CE5170D9 /* Onboarding */,
+				1E334A65400679692FDBF443 /* Profile */,
+				FD94CB8DE95ED7E5750AAC2E /* Recommendations */,
+				823C74419CCB54BC2C787AF6 /* Routine */,
+				B43E1184EBBBF6F0128F185D /* Sanctuary */,
+				E9D08192E5CCBAEE9837BC01 /* SoulChat */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		9D80793B35890BD27C78F97B /* Habits */ = {
+			isa = PBXGroup;
+			children = (
+				9C018CB86C4EBC8B8AA5F24E /* HabitsView.swift */,
+			);
+			path = Habits;
+			sourceTree = "<group>";
+		};
+		A0BD2F11D2AD0E786F2DA631 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				39EA04BC44E1023F47FFEB61 /* AchievementsView.swift */,
+			);
+			path = Achievements;
+			sourceTree = "<group>";
+		};
+		A45E1965656C25AC5E53DBFE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0F69D920180149F47DE507B8 /* HomeView.swift */,
+				EEE67EF80F7DBC0B9AAD9C32 /* HydrationView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B43E1184EBBBF6F0128F185D /* Sanctuary */ = {
+			isa = PBXGroup;
+			children = (
+				67A310AA145322CD9A1703A3 /* BookingView.swift */,
+				6829D4238F6FF5BE7739724E /* DailyMenuView.swift */,
+				ACC32F9FEB91DC7907736AEF /* SanctuaryView.swift */,
+			);
+			path = Sanctuary;
+			sourceTree = "<group>";
+		};
+		C246C1B3F55FA22DB76D04F2 /* SoulspringWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				E41A923CF769CB55806F5C31 /* BudgetWidget.swift */,
+				9E0540E68BB6ACABF9910C59 /* RoutinesWidget.swift */,
+				618D9666743A2BFE12798611 /* SoulspringWidgetsBundle.swift */,
+			);
+			path = SoulspringWidgets;
+			sourceTree = "<group>";
+		};
+		C500E67365A7FB33BF7ADC5B /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				419470EE23F5FD867EB8DCC5 /* RachaFlame.swift */,
+				B9EFE5930F5ABDB6E474B3DD /* SoulComponents.swift */,
+				97D74115B61BE013B253437A /* SoulHaptics.swift */,
+				A72DFA40AA6BD19A5ABDDDAB /* SoulTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		CF185000265FA52BE3DB720B /* Soulspring */ = {
+			isa = PBXGroup;
+			children = (
+				4E809EEDEC3DFE2E94799448 /* Assets.xcassets */,
+				7E53F6878E4648B9E13D341F /* SoulspringApp.swift */,
+				8B1371FFA0895B9C60ACB887 /* Features */,
+				73C90EB8A6A5F6AEF08DD169 /* Models */,
+				624F876CF19C1DCCCC3F50A4 /* Services */,
+				5EFEE490CA0D2C34CAB63173 /* Shared */,
+				C500E67365A7FB33BF7ADC5B /* Theme */,
+			);
+			path = Soulspring;
+			sourceTree = "<group>";
+		};
+		E5BBB57CF18B2F273F9D7086 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				888F1D13321611182CE22AAE /* Audios */,
+			);
+			name = Resources;
+			path = Soulspring/Resources;
+			sourceTree = "<group>";
+		};
+		E9D08192E5CCBAEE9837BC01 /* SoulChat */ = {
+			isa = PBXGroup;
+			children = (
+				9E0E6045A46363F091846763 /* SoulAITab.swift */,
+				C34BA56315FD923B3A7169DA /* SoulChatView.swift */,
+			);
+			path = SoulChat;
+			sourceTree = "<group>";
+		};
+		F1451FE938F769902B5E9CCC /* Mood */ = {
+			isa = PBXGroup;
+			children = (
+				10613BB24F752F725A247191 /* MoodCheckinView.swift */,
+			);
+			path = Mood;
+			sourceTree = "<group>";
+		};
+		FD94CB8DE95ED7E5750AAC2E /* Recommendations */ = {
+			isa = PBXGroup;
+			children = (
+				C786927502FD0031EF8D8D0E /* RecommendationsView.swift */,
+			);
+			path = Recommendations;
+			sourceTree = "<group>";
+		};
+		FF5196426E60F9C76F3B5AEC /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				0EFC17335A984946F2790E6D /* AddTransactionSheet.swift */,
+				C54C8F562697AF3D14B013F4 /* BudgetsView.swift */,
+				E0AB34758C204280C0F7784A /* FinanceHomeWidget.swift */,
+				F01A42C14B36CF794038EB44 /* FinancesView.swift */,
+				CC1AC86325463BEF69A89D18 /* FinanceTab.swift */,
+			);
+			path = Finance;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2602AFE6C1097C4075E36206 /* Soulspring */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFC5F26A77CACD4DD9353687 /* Build configuration list for PBXNativeTarget "Soulspring" */;
+			buildPhases = (
+				89CD78F29507BA010DDD9E4A /* Sources */,
+				0567B2D2DBD2B7A3395E22A2 /* Resources */,
+				2360CAAF0F93E40C94F75908 /* Frameworks */,
+				1DEF5EF9C17A0697B820B02B /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FEA4D89B37F31FA3AFCD79D6 /* PBXTargetDependency */,
+			);
+			name = Soulspring;
+			packageProductDependencies = (
+			);
+			productName = Soulspring;
+			productReference = 28454EB334886AF31E5BEA7B /* Soulspring.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CE905CFF1E01D1EE5A33E75F /* SoulspringWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79D03F31C2F9441EEE8FDE27 /* Build configuration list for PBXNativeTarget "SoulspringWidgets" */;
+			buildPhases = (
+				35240941349F8B8D923B0687 /* Sources */,
+				951E1541DD9FE92FE4223CD6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SoulspringWidgets;
+			packageProductDependencies = (
+			);
+			productName = SoulspringWidgets;
+			productReference = DD71A7C8FDE72E886190C040 /* SoulspringWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52426364346D96F71BA924FE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2602AFE6C1097C4075E36206 = {
+						ProvisioningStyle = Automatic;
+					};
+					CE905CFF1E01D1EE5A33E75F = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 5338332578D795AD2E1F85F5 /* Build configuration list for PBXProject "Soulspring" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 6F8BAE251DEE63BF57B3F87C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 30AB5FD5A8E2CEE3B891A48E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2602AFE6C1097C4075E36206 /* Soulspring */,
+				CE905CFF1E01D1EE5A33E75F /* SoulspringWidgets */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0567B2D2DBD2B7A3395E22A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D4D845F64874FA7C7E99230 /* Assets.xcassets in Resources */,
+				57EFA699B505DEC0E9BF8C4C /* bells-25.mp3 in Resources */,
+				89ED48AFFD9637FAB89644A0 /* bells-30.mp3 in Resources */,
+				E80D35FC6CADF384511498CF /* mindfulness-20.mp3 in Resources */,
+				2829755636F734C5EC9D10AA /* mindfulness-45-15min.mp3 in Resources */,
+				9B7CABE9CFB08AE30F0CD9FB /* mindfulness-45-5min.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		35240941349F8B8D923B0687 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DC86E38549B953B3ACFADC0 /* BudgetWidget.swift in Sources */,
+				BC14018CAF213331AC0D6CFF /* RachaFlame.swift in Sources */,
+				4199076BCA4C5D651CB3AF33 /* RoutinesWidget.swift in Sources */,
+				6C54923CE05E7DD50E787E3D /* SoulTheme.swift in Sources */,
+				2E13C160B3475B39CAFAAEB7 /* SoulspringWidgetsBundle.swift in Sources */,
+				ADEFF54AFA7F158DF68D8E6F /* WidgetSnapshot.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89CD78F29507BA010DDD9E4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F6F5B6464696F515F5D68C4 /* Achievement.swift in Sources */,
+				EFE0EA669C9C369157E72B9B /* AchievementsView.swift in Sources */,
+				4DB40B7178C3EE372EC2EE17 /* AddTransactionSheet.swift in Sources */,
+				B98D5E79C7830466BBA786D8 /* AppStore.swift in Sources */,
+				AAD849F03E6B0CF411722380 /* AppleSignIn.swift in Sources */,
+				6F3F9810030CF2948B805DC0 /* AudioLibraryView.swift in Sources */,
+				AA20D099C12329773A794B87 /* AudioPlayer.swift in Sources */,
+				20ADBB62B276BE14E4B28902 /* AudioTrack.swift in Sources */,
+				3B1C19E2C586E32F47FB4E49 /* BiologicalAge.swift in Sources */,
+				1E857DC8F7A1A83AE07F5D95 /* BiologicalAgeView.swift in Sources */,
+				42206C4B3A8B0DEE4E07C14D /* BookingView.swift in Sources */,
+				69870981A100D8B5F2AC1180 /* BudgetsView.swift in Sources */,
+				19FCC493A73FD47F012F02FB /* CocinaView.swift in Sources */,
+				28DDFEEBE1193401C674E5E8 /* DailyMenu.swift in Sources */,
+				4341F25B3D38239DC95627F3 /* DailyMenuView.swift in Sources */,
+				3E2D872ADBDD894116623134 /* ExperienceBooking.swift in Sources */,
+				87136668FE724E6C70DA4461 /* Finance.swift in Sources */,
+				028EAA70B45FDEDC5B0B9766 /* FinanceHomeWidget.swift in Sources */,
+				D1698518AA692F6ECDDFEDC0 /* FinanceTab.swift in Sources */,
+				CA17D4C2B57BE12FB261B9E3 /* FinancesView.swift in Sources */,
+				ABDCC218D5ED435E0CB08DC7 /* GiftCardView.swift in Sources */,
+				90F7541E54BF500301C046C8 /* Habit.swift in Sources */,
+				6BC886BA2A0E500C008E07E7 /* HabitsView.swift in Sources */,
+				59EA242D9871C01AECDFFD29 /* HealthKitManager.swift in Sources */,
+				54708CD39693953858FC02EF /* HeartRateView.swift in Sources */,
+				5305FA4A34E7CE148C3D446A /* HomeView.swift in Sources */,
+				D238C7C0FB50CE8F36A20B5F /* HydrationView.swift in Sources */,
+				DFF855C04561F852B9458722 /* LabAIService.swift in Sources */,
+				6E6921840AE869D171E5943B /* LabParser.swift in Sources */,
+				3DA68E4877BC62D321557FB5 /* LabReport.swift in Sources */,
+				76C7D95D8CD6800D0D24D880 /* LabsView.swift in Sources */,
+				80527C110594D385611E63CC /* LoginView.swift in Sources */,
+				3376F088581A040EA2E7FD79 /* MainTabView.swift in Sources */,
+				D612F0CDF8C913D1975EC374 /* Mood.swift in Sources */,
+				FD5241F1D7A505A3AC75A29F /* MoodCheckinView.swift in Sources */,
+				598DB24AAB5DB1DC55A6639D /* OAuthSignIn.swift in Sources */,
+				8DE071FBCC6506480B4855CC /* OnboardingView.swift in Sources */,
+				6152B76B5A8F608AC59352F0 /* ProfileView.swift in Sources */,
+				EF3C62DD24068411EF9ED940 /* RachaFlame.swift in Sources */,
+				54FEF6E3AC7BCFD51C0B57C8 /* Recommendation.swift in Sources */,
+				482108E967F10C6C7B31EAE4 /* RecommendationsView.swift in Sources */,
+				7521C6771940730D452D257B /* RoutineView.swift in Sources */,
+				AE4CC0FF1E86E0CF3C42DE93 /* SanctuaryModels.swift in Sources */,
+				8A9FEA873BFB844D95966C6D /* SanctuaryView.swift in Sources */,
+				5412A5623D45BEBDAE36C952 /* SharedStreak.swift in Sources */,
+				10496A3811672A7C2E888F5E /* SleepDetailView.swift in Sources */,
+				3D59EA3094FEDD758BE2469A /* SoulAITab.swift in Sources */,
+				2B557F618CB4F75260D4BC4D /* SoulBackend.swift in Sources */,
+				94FD3ACE1861F85CCFC40E4C /* SoulChatService.swift in Sources */,
+				57FC3F7F0FA1F4A1643118FD /* SoulChatView.swift in Sources */,
+				D2AE3508FB3CDE24293D3DB4 /* SoulComponents.swift in Sources */,
+				DDEB069EEF2C7652DDDB89A3 /* SoulHaptics.swift in Sources */,
+				D48DACC1451E29F8EA1E1D23 /* SoulLinks.swift in Sources */,
+				E26AE913ED611E4C71045148 /* SoulTheme.swift in Sources */,
+				D89C31BDB87E280795095D9D /* SoulspringApp.swift in Sources */,
+				54900529242FC0E5D7E7BF65 /* StreakEngine.swift in Sources */,
+				B0BF2154899D53B5BB7589D0 /* SupabaseConfig.swift in Sources */,
+				1B03571CF29B032FECD6BFE0 /* TermsView.swift in Sources */,
+				F724E4544D12D6606A8E01E0 /* UserProfile.swift in Sources */,
+				5A4A0D2EA9EA3A4E5031C854 /* WalletView.swift in Sources */,
+				568B8AFE176819C951EF5C4E /* WellnessExtras.swift in Sources */,
+				B3E3C7F4A34AA54BF6078C16 /* WidgetSnapshot.swift in Sources */,
+				C4B435A969EF6D0DB45ACB1B /* WorkoutsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FEA4D89B37F31FA3AFCD79D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE905CFF1E01D1EE5A33E75F /* SoulspringWidgets */;
+			targetProxy = FD8365866841015CFF5B91ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2AA5F88934C14F625A11C0A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2CD288AA6D8D16F5969BA79A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3PCCG557J;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.soulspring.app.widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4438AEB465C9955F15DF4035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Soulspring/SupportingFiles/Soulspring.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3PCCG557J;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.soulspring.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		5F8351857D18E0E7B138647F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		ABD8F3B623533C1B8EE97FEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SoulspringWidgets/SoulspringWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3PCCG557J;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SoulspringWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.soulspring.app.widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		EBF29D75965287A4A6842ABF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Soulspring/SupportingFiles/Soulspring.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3PCCG557J;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Soulspring/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.soulspring.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5338332578D795AD2E1F85F5 /* Build configuration list for PBXProject "Soulspring" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AA5F88934C14F625A11C0A4 /* Debug */,
+				5F8351857D18E0E7B138647F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		79D03F31C2F9441EEE8FDE27 /* Build configuration list for PBXNativeTarget "SoulspringWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CD288AA6D8D16F5969BA79A /* Debug */,
+				ABD8F3B623533C1B8EE97FEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DFC5F26A77CACD4DD9353687 /* Build configuration list for PBXNativeTarget "Soulspring" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4438AEB465C9955F15DF4035 /* Debug */,
+				EBF29D75965287A4A6842ABF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52426364346D96F71BA924FE /* Project object */;
+}

@@ -1,0 +1,78 @@
+# XcodeGen spec.
+# Optional: regenerate the .xcodeproj from this file by running
+#   brew install xcodegen
+#   xcodegen generate
+#
+# The committed Soulspring.xcodeproj is generated from scripts/generate_xcodeproj.py
+# for teams that don't want to install XcodeGen. Both produce an equivalent project.
+
+name: Soulspring
+options:
+  bundleIdPrefix: mx.soulspring
+  deploymentTarget:
+    iOS: "17.0"
+  developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    ENABLE_PREVIEWS: "YES"
+
+targets:
+  Soulspring:
+    type: application
+    platform: iOS
+    scheme:
+      testTargets: []
+      gatherCoverageData: false
+    sources:
+      - path: Soulspring
+        excludes:
+          - "SupportingFiles/Info.plist"
+          - "SupportingFiles/Soulspring.entitlements"
+          - "Resources/**"
+      - path: Soulspring/Resources
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: mx.soulspring.app
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: Soulspring/SupportingFiles/Soulspring.entitlements
+        INFOPLIST_FILE: Soulspring/SupportingFiles/Info.plist
+        GENERATE_INFOPLIST_FILE: "NO"
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+    dependencies:
+      - sdk: HealthKit.framework
+      - target: SoulspringWidgets
+        embed: true
+        codeSign: true
+
+  SoulspringWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: SoulspringWidgets
+        excludes:
+          - "Info.plist"
+          - "SoulspringWidgets.entitlements"
+      # Share the model + theme + snapshot files with the app target.
+      - path: Soulspring/Theme/SoulTheme.swift
+      - path: Soulspring/Theme/RachaFlame.swift
+      - path: Soulspring/Shared/WidgetSnapshot.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: mx.soulspring.app.widgets
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: SoulspringWidgets/SoulspringWidgets.entitlements
+        INFOPLIST_FILE: SoulspringWidgets/Info.plist
+        GENERATE_INFOPLIST_FILE: "NO"
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SKIP_INSTALL: "YES"
+    dependencies:
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
